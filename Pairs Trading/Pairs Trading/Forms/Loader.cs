@@ -63,6 +63,8 @@ namespace Pairs_Trading.Forms
         {
             InitializeComponent();
 
+            this.Height = 150;
+
             // Initial variables.
             _fileName = string.Empty;
             _pathName = string.Empty;
@@ -101,6 +103,8 @@ namespace Pairs_Trading.Forms
                 lblDownloadWorkersIntro.Visible = true;
                 numDownloadWorkers.Visible = true;
                 btnProcess.Visible = true;
+
+                this.Height = 354;
             }
         }
 

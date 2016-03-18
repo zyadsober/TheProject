@@ -55,6 +55,8 @@ namespace Pairs_Trading.Forms
         {
             InitializeComponent();
 
+            this.Height = 150;
+
             // Initial variables.
             _fileName = string.Empty;
             _pathName = string.Empty;
@@ -76,18 +78,27 @@ namespace Pairs_Trading.Forms
 
             stockNames = Directory.GetFiles(_pathName);
             // Maybe filer out non-csv files?
-
+            
             _stockCount = stockNames.Count();
             lblLineCount.Text = _stockCount.ToString();
             lblLineCount.Visible = true;
             lblLineCountIntro.Visible = true;
-            /*lblRetieveIntro.Visible = true;
-            lblQuandlApiIntro.Visible = true;
-            txtQuandlApi.Visible = true;
-            lblDownloadWorkersIntro.Visible = true;
-            numDownloadWorkers.Visible = true;
-            btnProcess.Visible = true;*/
+            lblRetreiveDistance.Visible = true;
+            lblFirstStock.Visible = true;
+            lblSecondStock.Visible = true;
+            txtFirstStock.Visible = true;
+            txtSecondStock.Visible = true;
+            btnGetDistance.Visible = true;
+            lblDistance.Visible = true;
+            txtDistance.Visible = true;
+            lblNearestNeighborIntro.Visible = true;
+            lblStock.Visible = true;
+            txtStock.Visible = true;
+            btnNearestNeighbor.UseVisualStyleBackColor = true;
+            lblNearestNeighbor.Visible = true;
+            txtNearestNeighbour.Visible = true;
 
+            this.Height = 483;
             
         }
 
@@ -142,6 +153,8 @@ namespace Pairs_Trading.Forms
             double[,] grid=new double[stock1.Count+1,stock2.Count+1];
             for (int i = 1; i < stock1.Count + 1; i++)
                 grid[i, 0] = double.PositiveInfinity;
+
+
             for (int i = 1; i < stock2.Count + 1; i++)
                 grid[0, i] = double.PositiveInfinity;
             grid[0, 0] = 0;
