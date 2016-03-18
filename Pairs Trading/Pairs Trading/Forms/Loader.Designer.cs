@@ -89,9 +89,9 @@
             this.lblQuandlApiIntro.AutoSize = true;
             this.lblQuandlApiIntro.Location = new System.Drawing.Point(15, 166);
             this.lblQuandlApiIntro.Name = "lblQuandlApiIntro";
-            this.lblQuandlApiIntro.Size = new System.Drawing.Size(82, 13);
+            this.lblQuandlApiIntro.Size = new System.Drawing.Size(84, 13);
             this.lblQuandlApiIntro.TabIndex = 22;
-            this.lblQuandlApiIntro.Text = "quandl API key:";
+            this.lblQuandlApiIntro.Text = "Quandl API key:";
             this.lblQuandlApiIntro.Visible = false;
             // 
             // lblDownloadProgress
@@ -129,9 +129,9 @@
             this.lblRetieveIntro.AutoSize = true;
             this.lblRetieveIntro.Location = new System.Drawing.Point(15, 124);
             this.lblRetieveIntro.Name = "lblRetieveIntro";
-            this.lblRetieveIntro.Size = new System.Drawing.Size(501, 26);
+            this.lblRetieveIntro.Size = new System.Drawing.Size(503, 26);
             this.lblRetieveIntro.TabIndex = 18;
-            this.lblRetieveIntro.Text = "To begin the retrieval of the stock data, enter your quandl API key and press sta" +
+            this.lblRetieveIntro.Text = "To begin the retrieval of the stock data, enter your Quandl API key and press sta" +
     "rt. This may take a while.\r\nThe data will be saved into a folder named \"Stocks\" " +
     "in the directory of the selected CSV.";
             this.lblRetieveIntro.Visible = false;
@@ -161,10 +161,10 @@
             this.lblIntro.AutoSize = true;
             this.lblIntro.Location = new System.Drawing.Point(12, 9);
             this.lblIntro.Name = "lblIntro";
-            this.lblIntro.Size = new System.Drawing.Size(391, 39);
+            this.lblIntro.Size = new System.Drawing.Size(393, 39);
             this.lblIntro.TabIndex = 15;
-            this.lblIntro.Text = "This is a tool to retrieve the stock data in several formats from quandl.com.\r\n\r\n" +
-    "Browse for a CSV file containing stocks in the format of quandl code, stock name" +
+            this.lblIntro.Text = "This is a tool to retrieve the stock data in several formats from Quandl.com.\r\n\r\n" +
+    "Browse for a CSV file containing stocks in the format of Quandl code, stock name" +
     ".";
             // 
             // txtBrowse
