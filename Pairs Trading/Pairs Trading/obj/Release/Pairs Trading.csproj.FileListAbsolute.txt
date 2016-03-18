@@ -1,0 +1,10 @@
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\bin\Release\Pairs Trading.exe.config
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\bin\Release\Pairs Trading.exe
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\bin\Release\Pairs Trading.pdb
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs_Trading.Forms.Loader.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs_Trading.MainMenu.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs_Trading.Forms.Miner.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs_Trading.Properties.Resources.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs Trading.csproj.GenerateResource.Cache
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs Trading.exe
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Release\Pairs Trading.pdb
