@@ -133,7 +133,7 @@ namespace Pairs_Trading.Forms
             _downloadThread.Start();
         }
 
-        private void formDataRetieve_FormClosing(object sender, FormClosingEventArgs e)
+        private void Loader_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_downloadThread != null)
             {
@@ -236,6 +236,8 @@ namespace Pairs_Trading.Forms
         }
 
         #endregion
+
+       
 
     }
 }

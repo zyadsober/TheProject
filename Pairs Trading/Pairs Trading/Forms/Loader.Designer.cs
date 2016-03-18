@@ -210,6 +210,7 @@
             this.Name = "Loader";
             this.ShowInTaskbar = false;
             this.Text = "Loader";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Loader_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.numDownloadWorkers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
