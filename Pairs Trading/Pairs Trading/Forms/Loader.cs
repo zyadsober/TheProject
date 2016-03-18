@@ -106,6 +106,14 @@ namespace Pairs_Trading.Forms
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            if (btnProcess.Text == "Stop")
+            {
+                _downloadThread.Abort();
+                btnProcess.Text = "Start";
+                lblDownloadProgress.Text += ", Download Stopping";
+                btnProcess.Enabled = false;
+                return;
+            }
             btnProcess.Text = "Stop";
             txtQuandlApi.Enabled = false;
 
@@ -143,7 +151,9 @@ namespace Pairs_Trading.Forms
         private void DownloadData()
         {
             StreamReader reader = new StreamReader(File.OpenRead(_fileName));
-            
+            _stocks = new List<string>();
+            _stockDownloadedCount = 0;
+
             // Store all the stock data in one list.
             while (!reader.EndOfStream)
             {
@@ -204,6 +214,19 @@ namespace Pairs_Trading.Forms
                 UISync.Execute(() => pbDownload.Value = _stockDownloadedCount);
                 UISync.Execute(() => lblDownloadProgress.Text = "Downloaded " + _stockDownloadedCount + "/" + _stockCount);
                 _activeWorkers--;
+                if (btnProcess.Text == "Start")
+                {
+                    if (_activeWorkers != 0)
+                    {
+                        UISync.Execute(() => lblDownloadProgress.Text += ", Download Stopping");
+                    }
+                    else
+                    {
+                        UISync.Execute(() => lblDownloadProgress.Text += ", Download Stopped");
+                        UISync.Execute(() => btnProcess.Enabled = true);
+                    }
+
+                }
                 if(_stockDownloadedCount == _stockCount)
                 {
                     // All files downloaded.
@@ -213,5 +236,6 @@ namespace Pairs_Trading.Forms
         }
 
         #endregion
+
     }
 }

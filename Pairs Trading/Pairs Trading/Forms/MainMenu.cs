@@ -25,7 +25,7 @@ namespace Pairs_Trading
 
         private void btnMiner_Click(object sender, EventArgs e)
         {
-
+            new Miner().ShowDialog();
         }
 
         private void btnMonitor_Click(object sender, EventArgs e)

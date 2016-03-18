@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Loader));
             this.numDownloadWorkers = new System.Windows.Forms.NumericUpDown();
             this.lblDownloadWorkersIntro = new System.Windows.Forms.Label();
             this.txtQuandlApi = new System.Windows.Forms.TextBox();
@@ -46,12 +47,8 @@
             // 
             // numDownloadWorkers
             // 
+            this.numDownloadWorkers.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numDownloadWorkers.Location = new System.Drawing.Point(169, 192);
-            this.numDownloadWorkers.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numDownloadWorkers.Minimum = new decimal(new int[] {
             1,
             0,
@@ -79,6 +76,7 @@
             // 
             // txtQuandlApi
             // 
+            this.txtQuandlApi.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtQuandlApi.Location = new System.Drawing.Point(100, 163);
             this.txtQuandlApi.Name = "txtQuandlApi";
             this.txtQuandlApi.Size = new System.Drawing.Size(141, 20);
@@ -116,13 +114,15 @@
             // 
             // btnProcess
             // 
+            this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnProcess.Location = new System.Drawing.Point(15, 218);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(75, 23);
             this.btnProcess.TabIndex = 19;
             this.btnProcess.Text = "Start";
-            this.btnProcess.UseVisualStyleBackColor = true;
+            this.btnProcess.UseVisualStyleBackColor = false;
             this.btnProcess.Visible = false;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // lblRetieveIntro
             // 
@@ -169,27 +169,30 @@
             // 
             // txtBrowse
             // 
+            this.txtBrowse.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtBrowse.Location = new System.Drawing.Point(15, 60);
             this.txtBrowse.Name = "txtBrowse";
             this.txtBrowse.ReadOnly = true;
-            this.txtBrowse.Size = new System.Drawing.Size(498, 20);
+            this.txtBrowse.Size = new System.Drawing.Size(420, 20);
             this.txtBrowse.TabIndex = 14;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(519, 58);
+            this.btnBrowse.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnBrowse.Location = new System.Drawing.Point(441, 60);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 13;
             this.btnBrowse.Text = "Browse";
-            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // Loader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(606, 344);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.ClientSize = new System.Drawing.Size(528, 315);
             this.Controls.Add(this.numDownloadWorkers);
             this.Controls.Add(this.lblDownloadWorkersIntro);
             this.Controls.Add(this.txtQuandlApi);
@@ -203,7 +206,9 @@
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Loader";
+            this.ShowInTaskbar = false;
             this.Text = "Loader";
             ((System.ComponentModel.ISupportInitialize)(this.numDownloadWorkers)).EndInit();
             this.ResumeLayout(false);
