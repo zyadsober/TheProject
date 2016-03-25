@@ -47,6 +47,14 @@
             this.btnNearestNeighbor = new System.Windows.Forms.Button();
             this.txtNearestNeighbour = new System.Windows.Forms.TextBox();
             this.lblNearestNeighbor = new System.Windows.Forms.Label();
+            this.numStockDays = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkStockDays = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numWorkers = new System.Windows.Forms.NumericUpDown();
+            this.pbProgress = new System.Windows.Forms.ProgressBar();
+            ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -102,7 +110,7 @@
             // lblRetreiveDistance
             // 
             this.lblRetreiveDistance.AutoSize = true;
-            this.lblRetreiveDistance.Location = new System.Drawing.Point(12, 125);
+            this.lblRetreiveDistance.Location = new System.Drawing.Point(6, 225);
             this.lblRetreiveDistance.Name = "lblRetreiveDistance";
             this.lblRetreiveDistance.Size = new System.Drawing.Size(292, 13);
             this.lblRetreiveDistance.TabIndex = 22;
@@ -112,7 +120,7 @@
             // txtFirstStock
             // 
             this.txtFirstStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtFirstStock.Location = new System.Drawing.Point(72, 152);
+            this.txtFirstStock.Location = new System.Drawing.Point(66, 252);
             this.txtFirstStock.Name = "txtFirstStock";
             this.txtFirstStock.Size = new System.Drawing.Size(100, 20);
             this.txtFirstStock.TabIndex = 23;
@@ -122,7 +130,7 @@
             // txtSecondStock
             // 
             this.txtSecondStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtSecondStock.Location = new System.Drawing.Point(72, 175);
+            this.txtSecondStock.Location = new System.Drawing.Point(66, 275);
             this.txtSecondStock.Name = "txtSecondStock";
             this.txtSecondStock.Size = new System.Drawing.Size(100, 20);
             this.txtSecondStock.TabIndex = 24;
@@ -132,7 +140,7 @@
             // lblFirstStock
             // 
             this.lblFirstStock.AutoSize = true;
-            this.lblFirstStock.Location = new System.Drawing.Point(15, 152);
+            this.lblFirstStock.Location = new System.Drawing.Point(9, 252);
             this.lblFirstStock.Name = "lblFirstStock";
             this.lblFirstStock.Size = new System.Drawing.Size(51, 13);
             this.lblFirstStock.TabIndex = 25;
@@ -142,7 +150,7 @@
             // lblSecondStock
             // 
             this.lblSecondStock.AutoSize = true;
-            this.lblSecondStock.Location = new System.Drawing.Point(15, 178);
+            this.lblSecondStock.Location = new System.Drawing.Point(9, 278);
             this.lblSecondStock.Name = "lblSecondStock";
             this.lblSecondStock.Size = new System.Drawing.Size(51, 13);
             this.lblSecondStock.TabIndex = 26;
@@ -152,7 +160,7 @@
             // btnGetDistance
             // 
             this.btnGetDistance.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnGetDistance.Location = new System.Drawing.Point(18, 201);
+            this.btnGetDistance.Location = new System.Drawing.Point(12, 301);
             this.btnGetDistance.Name = "btnGetDistance";
             this.btnGetDistance.Size = new System.Drawing.Size(154, 23);
             this.btnGetDistance.TabIndex = 27;
@@ -164,7 +172,7 @@
             // lblDistance
             // 
             this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(18, 241);
+            this.lblDistance.Location = new System.Drawing.Point(12, 341);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(105, 13);
             this.lblDistance.TabIndex = 28;
@@ -174,7 +182,7 @@
             // txtDistance
             // 
             this.txtDistance.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtDistance.Location = new System.Drawing.Point(132, 241);
+            this.txtDistance.Location = new System.Drawing.Point(126, 341);
             this.txtDistance.Name = "txtDistance";
             this.txtDistance.ReadOnly = true;
             this.txtDistance.Size = new System.Drawing.Size(172, 20);
@@ -184,7 +192,7 @@
             // lblNearestNeighborIntro
             // 
             this.lblNearestNeighborIntro.AutoSize = true;
-            this.lblNearestNeighborIntro.Location = new System.Drawing.Point(18, 282);
+            this.lblNearestNeighborIntro.Location = new System.Drawing.Point(12, 382);
             this.lblNearestNeighborIntro.Name = "lblNearestNeighborIntro";
             this.lblNearestNeighborIntro.Size = new System.Drawing.Size(423, 13);
             this.lblNearestNeighborIntro.TabIndex = 30;
@@ -195,7 +203,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(18, 312);
+            this.lblStock.Location = new System.Drawing.Point(12, 412);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(45, 13);
             this.lblStock.TabIndex = 32;
@@ -205,7 +213,7 @@
             // txtStock
             // 
             this.txtStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtStock.Location = new System.Drawing.Point(75, 312);
+            this.txtStock.Location = new System.Drawing.Point(69, 412);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(100, 20);
             this.txtStock.TabIndex = 31;
@@ -215,7 +223,7 @@
             // btnNearestNeighbor
             // 
             this.btnNearestNeighbor.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnNearestNeighbor.Location = new System.Drawing.Point(18, 338);
+            this.btnNearestNeighbor.Location = new System.Drawing.Point(12, 438);
             this.btnNearestNeighbor.Name = "btnNearestNeighbor";
             this.btnNearestNeighbor.Size = new System.Drawing.Size(154, 23);
             this.btnNearestNeighbor.TabIndex = 33;
@@ -227,7 +235,7 @@
             // txtNearestNeighbour
             // 
             this.txtNearestNeighbour.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtNearestNeighbour.Location = new System.Drawing.Point(132, 379);
+            this.txtNearestNeighbour.Location = new System.Drawing.Point(126, 479);
             this.txtNearestNeighbour.Name = "txtNearestNeighbour";
             this.txtNearestNeighbour.ReadOnly = true;
             this.txtNearestNeighbour.Size = new System.Drawing.Size(172, 20);
@@ -237,18 +245,104 @@
             // lblNearestNeighbor
             // 
             this.lblNearestNeighbor.AutoSize = true;
-            this.lblNearestNeighbor.Location = new System.Drawing.Point(18, 379);
+            this.lblNearestNeighbor.Location = new System.Drawing.Point(12, 479);
             this.lblNearestNeighbor.Name = "lblNearestNeighbor";
             this.lblNearestNeighbor.Size = new System.Drawing.Size(99, 13);
             this.lblNearestNeighbor.TabIndex = 34;
             this.lblNearestNeighbor.Text = "Nearest Neighbour:";
             this.lblNearestNeighbor.Visible = false;
             // 
+            // numStockDays
+            // 
+            this.numStockDays.Location = new System.Drawing.Point(157, 111);
+            this.numStockDays.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numStockDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numStockDays.Name = "numStockDays";
+            this.numStockDays.Size = new System.Drawing.Size(41, 20);
+            this.numStockDays.TabIndex = 37;
+            this.numStockDays.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(204, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "Days";
+            // 
+            // chkStockDays
+            // 
+            this.chkStockDays.AutoSize = true;
+            this.chkStockDays.Location = new System.Drawing.Point(12, 111);
+            this.chkStockDays.Name = "chkStockDays";
+            this.chkStockDays.Size = new System.Drawing.Size(139, 17);
+            this.chkStockDays.TabIndex = 39;
+            this.chkStockDays.Text = "Use stocks from the last";
+            this.chkStockDays.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 135);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 13);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Number of threads to use: ";
+            // 
+            // numWorkers
+            // 
+            this.numWorkers.Location = new System.Drawing.Point(157, 138);
+            this.numWorkers.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numWorkers.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numWorkers.Name = "numWorkers";
+            this.numWorkers.Size = new System.Drawing.Size(41, 20);
+            this.numWorkers.TabIndex = 41;
+            this.numWorkers.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // pbProgress
+            // 
+            this.pbProgress.Location = new System.Drawing.Point(9, 164);
+            this.pbProgress.Maximum = 2940;
+            this.pbProgress.Name = "pbProgress";
+            this.pbProgress.Size = new System.Drawing.Size(498, 23);
+            this.pbProgress.TabIndex = 42;
+            // 
             // Miner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 444);
+            this.ClientSize = new System.Drawing.Size(528, 508);
+            this.Controls.Add(this.pbProgress);
+            this.Controls.Add(this.numWorkers);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.chkStockDays);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.numStockDays);
             this.Controls.Add(this.txtNearestNeighbour);
             this.Controls.Add(this.lblNearestNeighbor);
             this.Controls.Add(this.btnNearestNeighbor);
@@ -273,6 +367,8 @@
             this.Name = "Miner";
             this.ShowInTaskbar = false;
             this.Text = "Miner";
+            ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +395,11 @@
         private System.Windows.Forms.Button btnNearestNeighbor;
         private System.Windows.Forms.TextBox txtNearestNeighbour;
         private System.Windows.Forms.Label lblNearestNeighbor;
+        private System.Windows.Forms.NumericUpDown numStockDays;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkStockDays;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numWorkers;
+        private System.Windows.Forms.ProgressBar pbProgress;
     }
 }

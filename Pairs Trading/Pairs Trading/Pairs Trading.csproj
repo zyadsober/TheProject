@@ -16,7 +16,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -62,6 +62,12 @@
     <Compile Include="Forms\Miner.Designer.cs">
       <DependentUpon>Miner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Preprocessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Preprocessor.Designer.cs">
+      <DependentUpon>Preprocessor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Loader.resx">
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Miner.resx">
       <DependentUpon>Miner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Preprocessor.resx">
+      <DependentUpon>Preprocessor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

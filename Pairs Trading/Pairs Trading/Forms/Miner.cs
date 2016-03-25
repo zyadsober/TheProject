@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,7 +46,11 @@ namespace Pairs_Trading.Forms
         private string _fileName;
         private string _pathName;
         private int _stockCount;
-        private string[] stockNames;
+        private string[] _stockNames;
+        private double _minDistance;
+        private int _nearestNeighbour;
+        private Thread _DTWThread;
+        private int _activeWorkers;
 
         #endregion
 
@@ -61,6 +66,10 @@ namespace Pairs_Trading.Forms
             _fileName = string.Empty;
             _pathName = string.Empty;
             _stockCount = 0;
+            _DTWThread = null;
+            _nearestNeighbour = -1;
+            _minDistance = double.MaxValue;
+            _activeWorkers = 0;
 
             UISync.Init(this);
         }
@@ -76,10 +85,10 @@ namespace Pairs_Trading.Forms
             _pathName = folderDialog.SelectedPath;
             txtBrowse.Text = _pathName;
 
-            stockNames = Directory.GetFiles(_pathName);
+            _stockNames = Directory.GetFiles(_pathName);
             // Maybe filer out non-csv files?
             
-            _stockCount = stockNames.Count();
+            _stockCount = _stockNames.Count();
             lblLineCount.Text = _stockCount.ToString();
             lblLineCount.Visible = true;
             lblLineCountIntro.Visible = true;
@@ -94,11 +103,11 @@ namespace Pairs_Trading.Forms
             lblNearestNeighborIntro.Visible = true;
             lblStock.Visible = true;
             txtStock.Visible = true;
-            btnNearestNeighbor.UseVisualStyleBackColor = true;
+            btnNearestNeighbor.Visible = true;
             lblNearestNeighbor.Visible = true;
             txtNearestNeighbour.Visible = true;
 
-            this.Height = 483;
+            this.Height = 547;
             
         }
 
@@ -119,6 +128,18 @@ namespace Pairs_Trading.Forms
 
         #region ' Support Methods '
 
+        /* Check weather the date given is within the last given days */
+        private bool StockIsInLastDays(DateTime dt, int days)
+        {
+            DateTime dtNow = DateTime.Now;
+            if ((dtNow - dt).TotalDays <= days)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         private double getDTWDistance(int firstStock, int secondStock)
         {
             StreamReader strReader;
@@ -126,7 +147,8 @@ namespace Pairs_Trading.Forms
             List<List<double>> stockPrices = new List<List<double>>();;
             for (int i = 0; i < 2; i++)
             {
-                strReader = new StreamReader(stockNames[(i==0?firstStock:secondStock)]);
+
+                strReader = new StreamReader(_stockNames[(i==0?firstStock:secondStock)]);
                 line = strReader.ReadLine();
                 //stockPrices = new List<List<double>>();
                 stockPrices.Add(new List<double>());
@@ -136,7 +158,22 @@ namespace Pairs_Trading.Forms
 
                     try
                     {
-                        stockPrices[i].Add(Convert.ToDouble((line.Split(','))[4]));
+                        
+                        DateTime dt = Convert.ToDateTime(line.Split(',')[0]);
+
+                        /* If the checkbox for stocks within the last given days is checked,
+                         * check the current stock if it is within the correct period,
+                         * If the checkbox is not checked, use all the stocks*/
+                        if (!chkStockDays.Checked || StockIsInLastDays(dt, 30))
+                        {
+                            stockPrices[i].Add(Convert.ToDouble((line.Split(','))[4]));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        
+
                     }
                     catch (Exception)
                     {
@@ -176,23 +213,57 @@ namespace Pairs_Trading.Forms
 
         private void btnNearestNeighbour_Click(object sender, EventArgs e)
         {
-            double minDistance = double.MaxValue;
-            int nearestNeighbour = -1;
-            for(int i = 0;  i < _stockCount; i++)
+            int firstStock = Int32.Parse(txtStock.Text);
+            _DTWThread = new Thread(() => DTWWork(firstStock));
+            _DTWThread.Start();
+        }
+
+        private void DTWWork(int firstStock)
+        {
+            _minDistance = double.MaxValue;
+            _nearestNeighbour = -1;
+            for (int i = 0; i < _stockCount; i++)
             {
                 if (i == Int32.Parse(txtStock.Text))
                 {
                     continue;
                 }
-                double currentDistance = getDTWDistance(Int32.Parse(txtStock.Text), i);
-                if (currentDistance < minDistance)
+
+                // Wait for an available worker thread slot.
+                while (_activeWorkers >= numWorkers.Value)
                 {
-                    minDistance = currentDistance;
-                    nearestNeighbour = i;
+                    // Sleep to relieve the CPU.
+                    Thread.Sleep(500);
                 }
+
+                // Worker thread available, reserve it.
+                _activeWorkers++;
+
+                // Create the worker thread supplied with quandl code and stock name.
+                int secondStock = i; // Fix this, this is for data race prevention.
+                new Thread(() => DTWWorker(firstStock, secondStock)).Start();
+                
+                /*double currentDistance = getDTWDistance(Int32.Parse(txtStock.Text), i);
+                if (currentDistance < _minDistance)
+                {
+                    _minDistance = currentDistance;
+                    nearestNeighbour = i;
+                }*/
             }
-            txtNearestNeighbour.Text = nearestNeighbour.ToString();
-            
+            UISync.Execute(() => txtNearestNeighbour.Text = _nearestNeighbour.ToString());
+        }
+
+        private void DTWWorker(int firstStock, int secondStock)
+        {
+            double currentDistance = getDTWDistance(firstStock, secondStock);
+            if (currentDistance < _minDistance)
+            {
+                _minDistance = currentDistance;
+                _nearestNeighbour = secondStock;
+            }
+            UISync.Execute(() => pbProgress.Value++);
+            _activeWorkers--;
+            //Console.WriteLine("Worker number " + secondStock + " Distance: " + _minDistance);
         }
 
 
