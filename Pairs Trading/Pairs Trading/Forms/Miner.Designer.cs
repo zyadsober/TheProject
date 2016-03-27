@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Miner));
             this.lblIntro = new System.Windows.Forms.Label();
             this.lblLineCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
@@ -363,6 +364,7 @@
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblIntro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Miner";
             this.ShowInTaskbar = false;

@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preprocessor));
             this.lblIntro = new System.Windows.Forms.Label();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
+            this.lblNewDirectory = new System.Windows.Forms.Label();
+            this.txtNewDirectory = new System.Windows.Forms.TextBox();
+            this.lblDays = new System.Windows.Forms.Label();
+            this.numDays = new System.Windows.Forms.NumericUpDown();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.btnProcess = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -63,16 +72,99 @@
             this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
+            // lblNewDirectory
+            // 
+            this.lblNewDirectory.AutoSize = true;
+            this.lblNewDirectory.Location = new System.Drawing.Point(12, 98);
+            this.lblNewDirectory.Name = "lblNewDirectory";
+            this.lblNewDirectory.Size = new System.Drawing.Size(322, 13);
+            this.lblNewDirectory.TabIndex = 19;
+            this.lblNewDirectory.Text = "Newly generated CSV files will be created in the following directory:";
+            this.lblNewDirectory.Visible = false;
+            // 
+            // txtNewDirectory
+            // 
+            this.txtNewDirectory.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.txtNewDirectory.Location = new System.Drawing.Point(12, 123);
+            this.txtNewDirectory.Name = "txtNewDirectory";
+            this.txtNewDirectory.ReadOnly = true;
+            this.txtNewDirectory.Size = new System.Drawing.Size(420, 20);
+            this.txtNewDirectory.TabIndex = 20;
+            this.txtNewDirectory.Visible = false;
+            // 
+            // lblDays
+            // 
+            this.lblDays.AutoSize = true;
+            this.lblDays.Location = new System.Drawing.Point(12, 163);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(220, 13);
+            this.lblDays.TabIndex = 21;
+            this.lblDays.Text = "Create new files with data containing the last \r\n";
+            // 
+            // numDays
+            // 
+            this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numDays.Location = new System.Drawing.Point(229, 163);
+            this.numDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDays.Name = "numDays";
+            this.numDays.Size = new System.Drawing.Size(37, 20);
+            this.numDays.TabIndex = 26;
+            this.numDays.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDays.Visible = false;
+            // 
+            // datePicker
+            // 
+            this.datePicker.Location = new System.Drawing.Point(153, 197);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(200, 20);
+            this.datePicker.TabIndex = 27;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(12, 197);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(135, 13);
+            this.lblDate.TabIndex = 28;
+            this.lblDate.Text = "days starting from this date:";
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnProcess.Location = new System.Drawing.Point(15, 238);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(113, 23);
+            this.btnProcess.TabIndex = 29;
+            this.btnProcess.Text = "Begin Preprocess";
+            this.btnProcess.UseVisualStyleBackColor = false;
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 315);
+            this.Controls.Add(this.btnProcess);
+            this.Controls.Add(this.lblDate);
+            this.Controls.Add(this.datePicker);
+            this.Controls.Add(this.numDays);
+            this.Controls.Add(this.lblDays);
+            this.Controls.Add(this.txtNewDirectory);
+            this.Controls.Add(this.lblNewDirectory);
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Preprocessor";
             this.Text = "Preprocessor";
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,5 +175,12 @@
         private System.Windows.Forms.Label lblIntro;
         private System.Windows.Forms.TextBox txtBrowse;
         private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Label lblNewDirectory;
+        private System.Windows.Forms.TextBox txtNewDirectory;
+        private System.Windows.Forms.Label lblDays;
+        private System.Windows.Forms.NumericUpDown numDays;
+        private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Button btnProcess;
     }
 }

@@ -37,5 +37,10 @@ namespace Pairs_Trading
         {
 
         }
+
+        private void btnPreprocessor_Click(object sender, EventArgs e)
+        {
+            new Preprocessor().ShowDialog();
+        }
     }
 }

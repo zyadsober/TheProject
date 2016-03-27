@@ -45,7 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPreprocessor = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -208,7 +208,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Controls.Add(this.btnPreprocessor);
             this.groupBox5.Location = new System.Drawing.Point(5, 148);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(277, 85);
@@ -226,16 +226,17 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "\r\nUse this to preprocess the data obtained from Quandl.";
             // 
-            // button1
+            // btnPreprocessor
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(6, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(265, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Stock Data Preprocessor";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnPreprocessor.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPreprocessor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPreprocessor.Location = new System.Drawing.Point(6, 45);
+            this.btnPreprocessor.Name = "btnPreprocessor";
+            this.btnPreprocessor.Size = new System.Drawing.Size(265, 23);
+            this.btnPreprocessor.TabIndex = 0;
+            this.btnPreprocessor.Text = "Stock Data Preprocessor";
+            this.btnPreprocessor.UseVisualStyleBackColor = false;
+            this.btnPreprocessor.Click += new System.EventHandler(this.btnPreprocessor_Click);
             // 
             // MainMenu
             // 
@@ -289,7 +290,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPreprocessor;
     }
 }
 
