@@ -79,14 +79,14 @@ namespace Pairs_Trading.Forms
             lblNewDirectory.Visible = true;
             txtNewDirectory.Visible = true;
             lblDays.Visible = true;
-            numDays.Visible = true;
+            datePickerFirst.Visible = true;
             lblDate.Visible = true;
-            datePicker.Visible = true;
+            datePickerSecond.Visible = true;
             btnProcess.Visible = true;
 
             UpdateDirectory();
 
-            this.Height = 332;
+            this.Height = 345;
         }
 
         private void numDays_ValueChanged(object sender, EventArgs e)
@@ -99,8 +99,16 @@ namespace Pairs_Trading.Forms
             UpdateDirectory();
         }
 
+        private void datePickerFirst_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateDirectory();
+        }
+
+
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            pbProgress.Visible = true;
+
             StreamReader strReader;
             StreamWriter strWriter;
             string line;
@@ -122,7 +130,7 @@ namespace Pairs_Trading.Forms
                         /* If the checkbox for stocks within the last given days is checked,
                          * check the current stock if it is within the correct period,
                          * If the checkbox is not checked, use all the stocks*/
-                        if (StockIsInLastDaysFromDate(dt, Int32.Parse(numDays.Value.ToString()), datePicker.Value))
+                        if (StockIsInLastDaysFromDate(datePickerFirst.Value, datePickerSecond.Value, dt))
                         {
                             strWriter.WriteLine(line);
                         }
@@ -134,6 +142,7 @@ namespace Pairs_Trading.Forms
                 }
                 strReader.Close();
                 strWriter.Close();
+                pbProgress.Value++;
             }
         }
 
@@ -141,10 +150,9 @@ namespace Pairs_Trading.Forms
 
         #region ' Support Methods '
 
-        private bool StockIsInLastDaysFromDate(DateTime dtActual, int days, DateTime dtRule)
+        private bool StockIsInLastDaysFromDate(DateTime dtFirst, DateTime dtSecond, DateTime dtCurrent)
         {
-            if ((dtRule - dtActual).TotalDays <= days &&
-                (dtRule - dtActual).TotalDays >= 0)
+            if (dtCurrent >= dtFirst && dtCurrent <= dtSecond)
             {
                 return true;
             }
@@ -153,11 +161,13 @@ namespace Pairs_Trading.Forms
 
         private void UpdateDirectory()
         {
-            txtNewDirectory.Text = _pathName + "-" + numDays.Value.ToString() + "-days-from-"
-                + datePicker.Value.Day + "-" + datePicker.Value.Month + "-" + datePicker.Value.Year;
+            txtNewDirectory.Text = _pathName + "-" + datePickerFirst.Value.Day + "-" + datePickerFirst.Value.Month
+                + "-" + datePickerFirst.Value.Year + "-to-"
+                + datePickerSecond.Value.Day + "-" + datePickerSecond.Value.Month + "-" + datePickerSecond.Value.Year;
         }
 
         #endregion
-        
+
+       
     }
 }

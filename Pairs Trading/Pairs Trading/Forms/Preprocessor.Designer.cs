@@ -35,13 +35,13 @@
             this.lblNewDirectory = new System.Windows.Forms.Label();
             this.txtNewDirectory = new System.Windows.Forms.TextBox();
             this.lblDays = new System.Windows.Forms.Label();
-            this.numDays = new System.Windows.Forms.NumericUpDown();
-            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.datePickerSecond = new System.Windows.Forms.DateTimePicker();
             this.lblDate = new System.Windows.Forms.Label();
             this.btnProcess = new System.Windows.Forms.Button();
             this.lblLineCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
+            this.datePickerFirst = new System.Windows.Forms.DateTimePicker();
+            this.pbProgress = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -99,59 +99,34 @@
             this.lblDays.AutoSize = true;
             this.lblDays.Location = new System.Drawing.Point(12, 183);
             this.lblDays.Name = "lblDays";
-            this.lblDays.Size = new System.Drawing.Size(220, 13);
+            this.lblDays.Size = new System.Drawing.Size(224, 13);
             this.lblDays.TabIndex = 21;
-            this.lblDays.Text = "Create new files with data containing the last \r\n";
+            this.lblDays.Text = "Create new files with data from dates between\r\n";
             this.lblDays.Visible = false;
             // 
-            // numDays
+            // datePickerSecond
             // 
-            this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numDays.Location = new System.Drawing.Point(229, 183);
-            this.numDays.Maximum = new decimal(new int[] {
-            40000,
-            0,
-            0,
-            0});
-            this.numDays.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numDays.Name = "numDays";
-            this.numDays.Size = new System.Drawing.Size(37, 20);
-            this.numDays.TabIndex = 26;
-            this.numDays.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numDays.Visible = false;
-            this.numDays.ValueChanged += new System.EventHandler(this.numDays_ValueChanged);
-            // 
-            // datePicker
-            // 
-            this.datePicker.Location = new System.Drawing.Point(153, 217);
-            this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(200, 20);
-            this.datePicker.TabIndex = 27;
-            this.datePicker.Visible = false;
-            this.datePicker.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
+            this.datePickerSecond.Location = new System.Drawing.Point(242, 217);
+            this.datePickerSecond.Name = "datePickerSecond";
+            this.datePickerSecond.Size = new System.Drawing.Size(200, 20);
+            this.datePickerSecond.TabIndex = 27;
+            this.datePickerSecond.Visible = false;
+            this.datePickerSecond.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(12, 217);
+            this.lblDate.Location = new System.Drawing.Point(210, 217);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(135, 13);
+            this.lblDate.Size = new System.Drawing.Size(26, 13);
             this.lblDate.TabIndex = 28;
-            this.lblDate.Text = "days starting from this date:";
+            this.lblDate.Text = "And";
             this.lblDate.Visible = false;
             // 
             // btnProcess
             // 
             this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnProcess.Location = new System.Drawing.Point(15, 258);
+            this.btnProcess.Location = new System.Drawing.Point(329, 243);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(113, 23);
             this.btnProcess.TabIndex = 29;
@@ -180,17 +155,36 @@
             this.lblLineCountIntro.Text = "Stocks found: ";
             this.lblLineCountIntro.Visible = false;
             // 
+            // datePickerFirst
+            // 
+            this.datePickerFirst.Location = new System.Drawing.Point(242, 183);
+            this.datePickerFirst.Name = "datePickerFirst";
+            this.datePickerFirst.Size = new System.Drawing.Size(200, 20);
+            this.datePickerFirst.TabIndex = 32;
+            this.datePickerFirst.Visible = false;
+            this.datePickerFirst.ValueChanged += new System.EventHandler(this.datePickerFirst_ValueChanged);
+            // 
+            // pbProgress
+            // 
+            this.pbProgress.Location = new System.Drawing.Point(15, 272);
+            this.pbProgress.Maximum = 2940;
+            this.pbProgress.Name = "pbProgress";
+            this.pbProgress.Size = new System.Drawing.Size(498, 23);
+            this.pbProgress.TabIndex = 43;
+            this.pbProgress.Visible = false;
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 293);
+            this.ClientSize = new System.Drawing.Size(528, 306);
+            this.Controls.Add(this.pbProgress);
+            this.Controls.Add(this.datePickerFirst);
             this.Controls.Add(this.lblLineCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.datePicker);
-            this.Controls.Add(this.numDays);
+            this.Controls.Add(this.datePickerSecond);
             this.Controls.Add(this.lblDays);
             this.Controls.Add(this.txtNewDirectory);
             this.Controls.Add(this.lblNewDirectory);
@@ -200,7 +194,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Preprocessor";
             this.Text = "Preprocessor";
-            ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,11 +207,12 @@
         private System.Windows.Forms.Label lblNewDirectory;
         private System.Windows.Forms.TextBox txtNewDirectory;
         private System.Windows.Forms.Label lblDays;
-        private System.Windows.Forms.NumericUpDown numDays;
-        private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.DateTimePicker datePickerSecond;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.Label lblLineCount;
         private System.Windows.Forms.Label lblLineCountIntro;
+        private System.Windows.Forms.DateTimePicker datePickerFirst;
+        private System.Windows.Forms.ProgressBar pbProgress;
     }
 }
