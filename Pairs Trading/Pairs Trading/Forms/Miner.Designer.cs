@@ -110,7 +110,7 @@
             // lblRetreiveDistance
             // 
             this.lblRetreiveDistance.AutoSize = true;
-            this.lblRetreiveDistance.Location = new System.Drawing.Point(6, 225);
+            this.lblRetreiveDistance.Location = new System.Drawing.Point(9, 161);
             this.lblRetreiveDistance.Name = "lblRetreiveDistance";
             this.lblRetreiveDistance.Size = new System.Drawing.Size(292, 13);
             this.lblRetreiveDistance.TabIndex = 22;
@@ -120,7 +120,7 @@
             // txtFirstStock
             // 
             this.txtFirstStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtFirstStock.Location = new System.Drawing.Point(66, 252);
+            this.txtFirstStock.Location = new System.Drawing.Point(69, 188);
             this.txtFirstStock.Name = "txtFirstStock";
             this.txtFirstStock.Size = new System.Drawing.Size(100, 20);
             this.txtFirstStock.TabIndex = 23;
@@ -130,7 +130,7 @@
             // txtSecondStock
             // 
             this.txtSecondStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtSecondStock.Location = new System.Drawing.Point(66, 275);
+            this.txtSecondStock.Location = new System.Drawing.Point(69, 211);
             this.txtSecondStock.Name = "txtSecondStock";
             this.txtSecondStock.Size = new System.Drawing.Size(100, 20);
             this.txtSecondStock.TabIndex = 24;
@@ -140,7 +140,7 @@
             // lblFirstStock
             // 
             this.lblFirstStock.AutoSize = true;
-            this.lblFirstStock.Location = new System.Drawing.Point(9, 252);
+            this.lblFirstStock.Location = new System.Drawing.Point(12, 188);
             this.lblFirstStock.Name = "lblFirstStock";
             this.lblFirstStock.Size = new System.Drawing.Size(51, 13);
             this.lblFirstStock.TabIndex = 25;
@@ -150,7 +150,7 @@
             // lblSecondStock
             // 
             this.lblSecondStock.AutoSize = true;
-            this.lblSecondStock.Location = new System.Drawing.Point(9, 278);
+            this.lblSecondStock.Location = new System.Drawing.Point(12, 214);
             this.lblSecondStock.Name = "lblSecondStock";
             this.lblSecondStock.Size = new System.Drawing.Size(51, 13);
             this.lblSecondStock.TabIndex = 26;
@@ -160,7 +160,7 @@
             // btnGetDistance
             // 
             this.btnGetDistance.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnGetDistance.Location = new System.Drawing.Point(12, 301);
+            this.btnGetDistance.Location = new System.Drawing.Point(15, 237);
             this.btnGetDistance.Name = "btnGetDistance";
             this.btnGetDistance.Size = new System.Drawing.Size(154, 23);
             this.btnGetDistance.TabIndex = 27;
@@ -172,7 +172,7 @@
             // lblDistance
             // 
             this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(12, 341);
+            this.lblDistance.Location = new System.Drawing.Point(15, 277);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(105, 13);
             this.lblDistance.TabIndex = 28;
@@ -182,7 +182,7 @@
             // txtDistance
             // 
             this.txtDistance.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtDistance.Location = new System.Drawing.Point(126, 341);
+            this.txtDistance.Location = new System.Drawing.Point(129, 277);
             this.txtDistance.Name = "txtDistance";
             this.txtDistance.ReadOnly = true;
             this.txtDistance.Size = new System.Drawing.Size(172, 20);
@@ -192,7 +192,7 @@
             // lblNearestNeighborIntro
             // 
             this.lblNearestNeighborIntro.AutoSize = true;
-            this.lblNearestNeighborIntro.Location = new System.Drawing.Point(12, 382);
+            this.lblNearestNeighborIntro.Location = new System.Drawing.Point(15, 318);
             this.lblNearestNeighborIntro.Name = "lblNearestNeighborIntro";
             this.lblNearestNeighborIntro.Size = new System.Drawing.Size(423, 13);
             this.lblNearestNeighborIntro.TabIndex = 30;
@@ -203,7 +203,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(12, 412);
+            this.lblStock.Location = new System.Drawing.Point(15, 348);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(45, 13);
             this.lblStock.TabIndex = 32;
@@ -213,7 +213,7 @@
             // txtStock
             // 
             this.txtStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtStock.Location = new System.Drawing.Point(69, 412);
+            this.txtStock.Location = new System.Drawing.Point(72, 348);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(100, 20);
             this.txtStock.TabIndex = 31;
@@ -223,7 +223,7 @@
             // btnNearestNeighbor
             // 
             this.btnNearestNeighbor.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnNearestNeighbor.Location = new System.Drawing.Point(12, 438);
+            this.btnNearestNeighbor.Location = new System.Drawing.Point(15, 374);
             this.btnNearestNeighbor.Name = "btnNearestNeighbor";
             this.btnNearestNeighbor.Size = new System.Drawing.Size(154, 23);
             this.btnNearestNeighbor.TabIndex = 33;
@@ -235,7 +235,7 @@
             // txtNearestNeighbour
             // 
             this.txtNearestNeighbour.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtNearestNeighbour.Location = new System.Drawing.Point(126, 479);
+            this.txtNearestNeighbour.Location = new System.Drawing.Point(129, 415);
             this.txtNearestNeighbour.Name = "txtNearestNeighbour";
             this.txtNearestNeighbour.ReadOnly = true;
             this.txtNearestNeighbour.Size = new System.Drawing.Size(172, 20);
@@ -245,7 +245,7 @@
             // lblNearestNeighbor
             // 
             this.lblNearestNeighbor.AutoSize = true;
-            this.lblNearestNeighbor.Location = new System.Drawing.Point(12, 479);
+            this.lblNearestNeighbor.Location = new System.Drawing.Point(15, 415);
             this.lblNearestNeighbor.Name = "lblNearestNeighbor";
             this.lblNearestNeighbor.Size = new System.Drawing.Size(99, 13);
             this.lblNearestNeighbor.TabIndex = 34;
@@ -326,7 +326,7 @@
             // 
             // pbProgress
             // 
-            this.pbProgress.Location = new System.Drawing.Point(9, 164);
+            this.pbProgress.Location = new System.Drawing.Point(12, 463);
             this.pbProgress.Maximum = 2940;
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(498, 23);
