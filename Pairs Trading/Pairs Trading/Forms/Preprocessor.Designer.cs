@@ -106,6 +106,11 @@
             // 
             this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numDays.Location = new System.Drawing.Point(229, 163);
+            this.numDays.Maximum = new decimal(new int[] {
+            40000,
+            0,
+            0,
+            0});
             this.numDays.Minimum = new decimal(new int[] {
             1,
             0,
