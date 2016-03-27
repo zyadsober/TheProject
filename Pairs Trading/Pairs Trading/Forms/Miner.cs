@@ -89,6 +89,8 @@ namespace Pairs_Trading.Forms
             // Maybe filer out non-csv files?
             
             _stockCount = _stockNames.Count();
+            pbProgress.Maximum = _stockCount;
+
             lblLineCount.Text = _stockCount.ToString();
             lblLineCount.Visible = true;
             lblLineCountIntro.Visible = true;
@@ -113,7 +115,9 @@ namespace Pairs_Trading.Forms
 
         private void btnGetDistance_Click(object sender, EventArgs e)
         {
-            
+            pbProgress.Visible = true;
+            pbProgress.Value = 0;
+
             txtDistance.Text = getDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
             //MessageBox.Show(DTW(stocksPrices[0],stocksPrices[1]).ToString());
         }
@@ -211,6 +215,9 @@ namespace Pairs_Trading.Forms
 
         private void btnNearestNeighbour_Click(object sender, EventArgs e)
         {
+            pbProgress.Visible = true;
+            pbProgress.Value = 0;
+
             int firstStock = Int32.Parse(txtStock.Text);
             _DTWThread = new Thread(() => DTWWork(firstStock));
             _DTWThread.Start();

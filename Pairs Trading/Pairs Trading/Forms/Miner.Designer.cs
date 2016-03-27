@@ -332,6 +332,7 @@
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(498, 23);
             this.pbProgress.TabIndex = 42;
+            this.pbProgress.Visible = false;
             // 
             // Miner
             // 

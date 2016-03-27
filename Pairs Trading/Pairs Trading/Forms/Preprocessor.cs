@@ -74,6 +74,8 @@ namespace Pairs_Trading.Forms
             _stockNames = Directory.GetFiles(_pathName);
 
             _stockCount = _stockNames.Count();
+            pbProgress.Maximum = _stockCount;
+
             lblLineCount.Text = _stockCount.ToString();
             lblLineCount.Visible = true;
             lblLineCountIntro.Visible = true;
@@ -111,6 +113,7 @@ namespace Pairs_Trading.Forms
         private void btnProcess_Click(object sender, EventArgs e)
         {
             pbProgress.Visible = true;
+            pbProgress.Value = 0;
 
             StreamReader strReader;
             StreamWriter strWriter;
