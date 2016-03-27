@@ -86,26 +86,27 @@ namespace Pairs_Trading.Forms
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "CVS |*.csv";
             DialogResult result = fileDialog.ShowDialog();
-            if (result == DialogResult.OK)
+            if (result != DialogResult.OK)
             {
-                // Whole path of the file.
-                _fileName = fileDialog.FileName;
-                _pathName = Path.GetDirectoryName(_fileName);
-                txtBrowse.Text = _fileName;
-                // Number of stocks, minus 1 because of the header line.
-                _stockCount = File.ReadLines(fileDialog.FileName).Count() - 1;
-                lblLineCount.Text = _stockCount.ToString();
-                lblLineCount.Visible = true;
-                lblLineCountIntro.Visible = true;
-                lblRetieveIntro.Visible = true;
-                lblQuandlApiIntro.Visible = true;
-                txtQuandlApi.Visible = true;
-                lblDownloadWorkersIntro.Visible = true;
-                numDownloadWorkers.Visible = true;
-                btnProcess.Visible = true;
-
-                this.Height = 354;
+                return;
             }
+            // Whole path of the file.
+            _fileName = fileDialog.FileName;
+            _pathName = Path.GetDirectoryName(_fileName);
+            txtBrowse.Text = _fileName;
+            // Number of stocks, minus 1 because of the header line.
+            _stockCount = File.ReadLines(fileDialog.FileName).Count() - 1;
+            lblLineCount.Text = _stockCount.ToString();
+            lblLineCount.Visible = true;
+            lblLineCountIntro.Visible = true;
+            lblRetieveIntro.Visible = true;
+            lblQuandlApiIntro.Visible = true;
+            txtQuandlApi.Visible = true;
+            lblDownloadWorkersIntro.Visible = true;
+            numDownloadWorkers.Visible = true;
+            btnProcess.Visible = true;
+
+            this.Height = 354;
         }
 
         private void btnProcess_Click(object sender, EventArgs e)

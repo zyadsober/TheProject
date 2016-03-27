@@ -68,6 +68,10 @@ namespace Pairs_Trading.Forms
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             DialogResult result = folderDialog.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
             _pathName = folderDialog.SelectedPath;
             txtBrowse.Text = _pathName;
 
