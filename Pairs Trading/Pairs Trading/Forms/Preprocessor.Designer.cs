@@ -100,6 +100,7 @@
             this.lblDays.Size = new System.Drawing.Size(220, 13);
             this.lblDays.TabIndex = 21;
             this.lblDays.Text = "Create new files with data containing the last \r\n";
+            this.lblDays.Visible = false;
             // 
             // numDays
             // 
@@ -126,6 +127,7 @@
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(200, 20);
             this.datePicker.TabIndex = 27;
+            this.datePicker.Visible = false;
             // 
             // lblDate
             // 
@@ -135,6 +137,7 @@
             this.lblDate.Size = new System.Drawing.Size(135, 13);
             this.lblDate.TabIndex = 28;
             this.lblDate.Text = "days starting from this date:";
+            this.lblDate.Visible = false;
             // 
             // btnProcess
             // 
@@ -145,12 +148,13 @@
             this.btnProcess.TabIndex = 29;
             this.btnProcess.Text = "Begin Preprocess";
             this.btnProcess.UseVisualStyleBackColor = false;
+            this.btnProcess.Visible = false;
             // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 315);
+            this.ClientSize = new System.Drawing.Size(528, 271);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.datePicker);

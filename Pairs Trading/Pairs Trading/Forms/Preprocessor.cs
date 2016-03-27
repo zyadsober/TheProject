@@ -50,6 +50,8 @@ namespace Pairs_Trading.Forms
         {
             InitializeComponent();
 
+            this.Height = 150;
+
             _pathName = null;
         }
 
@@ -63,6 +65,16 @@ namespace Pairs_Trading.Forms
             DialogResult result = folderDialog.ShowDialog();
             _pathName = folderDialog.SelectedPath;
             txtBrowse.Text = _pathName;
+
+            lblNewDirectory.Visible = true;
+            txtNewDirectory.Visible = true;
+            lblDays.Visible = true;
+            numDays.Visible = true;
+            lblDate.Visible = true;
+            datePicker.Visible = true;
+            btnProcess.Visible = true;
+
+            this.Height = 310;
         }
 
         #endregion
