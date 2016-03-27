@@ -120,7 +120,7 @@ namespace Pairs_Trading.Forms
 
         private void formDataRetieve_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+           //Handle thread abortions
         }
 
         #endregion
@@ -155,16 +155,14 @@ namespace Pairs_Trading.Forms
                 while (!strReader.EndOfStream)
                 {
                     line = strReader.ReadLine();
-
                     try
                     {
-                        
                         DateTime dt = Convert.ToDateTime(line.Split(',')[0]);
 
                         /* If the checkbox for stocks within the last given days is checked,
                          * check the current stock if it is within the correct period,
                          * If the checkbox is not checked, use all the stocks*/
-                        if (!chkStockDays.Checked || StockIsInLastDays(dt, 30))
+                        if (!chkStockDays.Checked || StockIsInLastDays(dt, Int32.Parse(numStockDays.Value.ToString())))
                         {
                             stockPrices[i].Add(Convert.ToDouble((line.Split(','))[4]));
                         }

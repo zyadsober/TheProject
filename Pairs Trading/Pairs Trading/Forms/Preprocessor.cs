@@ -89,18 +89,6 @@ namespace Pairs_Trading.Forms
             this.Height = 332;
         }
 
-        #endregion
-
-        #region ' Support Methods '
-
-        private void UpdateDirectory()
-        {
-            txtNewDirectory.Text = _pathName + "-" + numDays.Value.ToString() + "-days-from-"
-                + datePicker.Value.Day + "/" + datePicker.Value.Month + "/" + datePicker.Value.Year;
-        }
-
-        #endregion
-
         private void numDays_ValueChanged(object sender, EventArgs e)
         {
             UpdateDirectory();
@@ -110,6 +98,66 @@ namespace Pairs_Trading.Forms
         {
             UpdateDirectory();
         }
+
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            StreamReader strReader;
+            StreamWriter strWriter;
+            string line;
+            for (int i = 0; i < _stockNames.Count(); i++)
+            {
+                strReader = new StreamReader(_stockNames[i]);
+                string newStockName = _stockNames[i].Substring(_stockNames[i].LastIndexOf("\\"));
+                System.IO.Directory.CreateDirectory(txtNewDirectory.Text);
+                strWriter = new StreamWriter(txtNewDirectory.Text + newStockName);
+                line = strReader.ReadLine();
+                strWriter.WriteLine(line);
+                while (!strReader.EndOfStream)
+                {
+                    line = strReader.ReadLine();
+                    try
+                    {
+                        DateTime dt = Convert.ToDateTime(line.Split(',')[0]);
+
+                        /* If the checkbox for stocks within the last given days is checked,
+                         * check the current stock if it is within the correct period,
+                         * If the checkbox is not checked, use all the stocks*/
+                        if (StockIsInLastDaysFromDate(dt, Int32.Parse(numDays.Value.ToString()), datePicker.Value))
+                        {
+                            strWriter.WriteLine(line);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
+                strReader.Close();
+                strWriter.Close();
+            }
+        }
+
+        #endregion
+
+        #region ' Support Methods '
+
+        private bool StockIsInLastDaysFromDate(DateTime dtActual, int days, DateTime dtRule)
+        {
+            if ((dtRule - dtActual).TotalDays <= days &&
+                (dtRule - dtActual).TotalDays >= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void UpdateDirectory()
+        {
+            txtNewDirectory.Text = _pathName + "-" + numDays.Value.ToString() + "-days-from-"
+                + datePicker.Value.Day + "-" + datePicker.Value.Month + "-" + datePicker.Value.Year;
+        }
+
+        #endregion
         
     }
 }

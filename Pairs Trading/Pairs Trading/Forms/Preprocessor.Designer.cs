@@ -158,6 +158,7 @@
             this.btnProcess.Text = "Begin Preprocess";
             this.btnProcess.UseVisualStyleBackColor = false;
             this.btnProcess.Visible = false;
+            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
             // lblLineCount
             // 
