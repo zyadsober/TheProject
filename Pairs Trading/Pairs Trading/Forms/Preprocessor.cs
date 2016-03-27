@@ -83,10 +83,12 @@ namespace Pairs_Trading.Forms
             lblDate.Visible = true;
             datePickerSecond.Visible = true;
             btnProcess.Visible = true;
+            lblPercentage.Visible = true;
+            numPercentage.Visible = true;
 
             UpdateDirectory();
 
-            this.Height = 345;
+            this.Height = 388;
         }
 
         private void numDays_ValueChanged(object sender, EventArgs e)

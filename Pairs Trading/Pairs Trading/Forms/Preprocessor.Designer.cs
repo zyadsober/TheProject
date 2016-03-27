@@ -42,6 +42,9 @@
             this.lblLineCountIntro = new System.Windows.Forms.Label();
             this.datePickerFirst = new System.Windows.Forms.DateTimePicker();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
+            this.lblPercentage = new System.Windows.Forms.Label();
+            this.numPercentage = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -126,7 +129,7 @@
             // btnProcess
             // 
             this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnProcess.Location = new System.Drawing.Point(329, 243);
+            this.btnProcess.Location = new System.Drawing.Point(329, 280);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(113, 23);
             this.btnProcess.TabIndex = 29;
@@ -166,18 +169,48 @@
             // 
             // pbProgress
             // 
-            this.pbProgress.Location = new System.Drawing.Point(15, 272);
+            this.pbProgress.Location = new System.Drawing.Point(15, 309);
             this.pbProgress.Maximum = 2940;
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(498, 23);
             this.pbProgress.TabIndex = 43;
             this.pbProgress.Visible = false;
             // 
+            // lblPercentage
+            // 
+            this.lblPercentage.AutoSize = true;
+            this.lblPercentage.Location = new System.Drawing.Point(12, 247);
+            this.lblPercentage.Name = "lblPercentage";
+            this.lblPercentage.Size = new System.Drawing.Size(226, 13);
+            this.lblPercentage.TabIndex = 44;
+            this.lblPercentage.Text = "Percentage of data to include in the new files: ";
+            this.lblPercentage.Visible = false;
+            // 
+            // numPercentage
+            // 
+            this.numPercentage.Location = new System.Drawing.Point(242, 247);
+            this.numPercentage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numPercentage.Name = "numPercentage";
+            this.numPercentage.Size = new System.Drawing.Size(55, 20);
+            this.numPercentage.TabIndex = 45;
+            this.numPercentage.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numPercentage.Visible = false;
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 306);
+            this.ClientSize = new System.Drawing.Size(528, 349);
+            this.Controls.Add(this.numPercentage);
+            this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.pbProgress);
             this.Controls.Add(this.datePickerFirst);
             this.Controls.Add(this.lblLineCount);
@@ -194,6 +227,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Preprocessor";
             this.Text = "Preprocessor";
+            ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +248,7 @@
         private System.Windows.Forms.Label lblLineCountIntro;
         private System.Windows.Forms.DateTimePicker datePickerFirst;
         private System.Windows.Forms.ProgressBar pbProgress;
+        private System.Windows.Forms.Label lblPercentage;
+        private System.Windows.Forms.NumericUpDown numPercentage;
     }
 }
