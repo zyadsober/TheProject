@@ -44,7 +44,7 @@ namespace Pairs_Trading.Forms
         private string _pathName;
         private int _stockCount;
         private string[] _stockNames;
-
+        private Random random;
         #endregion
 
         #region ' Constructors '
@@ -57,6 +57,7 @@ namespace Pairs_Trading.Forms
 
             _pathName = null;
             _stockCount = 0;
+            random = new Random();
         }
 
         #endregion
@@ -128,11 +129,10 @@ namespace Pairs_Trading.Forms
                     try
                     {
                         DateTime dt = Convert.ToDateTime(line.Split(',')[0]);
-
-                        /* If the checkbox for stocks within the last given days is checked,
-                         * check the current stock if it is within the correct period,
-                         * If the checkbox is not checked, use all the stocks*/
-                        if (StockIsInLastDaysFromDate(datePickerFirst.Value, datePickerSecond.Value, dt))
+                        
+                        int r = random.Next(0, 100);
+                        if (StockIsInLastDaysFromDate(datePickerFirst.Value, datePickerSecond.Value, dt)
+                            && r <= numPercentage.Value)
                         {
                             strWriter.WriteLine(line);
                         }
