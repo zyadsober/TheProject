@@ -39,6 +39,8 @@
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.lblDate = new System.Windows.Forms.Label();
             this.btnProcess = new System.Windows.Forms.Button();
+            this.lblLineCount = new System.Windows.Forms.Label();
+            this.lblLineCountIntro = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +77,7 @@
             // lblNewDirectory
             // 
             this.lblNewDirectory.AutoSize = true;
-            this.lblNewDirectory.Location = new System.Drawing.Point(12, 98);
+            this.lblNewDirectory.Location = new System.Drawing.Point(12, 118);
             this.lblNewDirectory.Name = "lblNewDirectory";
             this.lblNewDirectory.Size = new System.Drawing.Size(322, 13);
             this.lblNewDirectory.TabIndex = 19;
@@ -85,7 +87,7 @@
             // txtNewDirectory
             // 
             this.txtNewDirectory.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtNewDirectory.Location = new System.Drawing.Point(12, 123);
+            this.txtNewDirectory.Location = new System.Drawing.Point(12, 143);
             this.txtNewDirectory.Name = "txtNewDirectory";
             this.txtNewDirectory.ReadOnly = true;
             this.txtNewDirectory.Size = new System.Drawing.Size(420, 20);
@@ -95,7 +97,7 @@
             // lblDays
             // 
             this.lblDays.AutoSize = true;
-            this.lblDays.Location = new System.Drawing.Point(12, 163);
+            this.lblDays.Location = new System.Drawing.Point(12, 183);
             this.lblDays.Name = "lblDays";
             this.lblDays.Size = new System.Drawing.Size(220, 13);
             this.lblDays.TabIndex = 21;
@@ -105,7 +107,7 @@
             // numDays
             // 
             this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numDays.Location = new System.Drawing.Point(229, 163);
+            this.numDays.Location = new System.Drawing.Point(229, 183);
             this.numDays.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -125,19 +127,21 @@
             0,
             0});
             this.numDays.Visible = false;
+            this.numDays.ValueChanged += new System.EventHandler(this.numDays_ValueChanged);
             // 
             // datePicker
             // 
-            this.datePicker.Location = new System.Drawing.Point(153, 197);
+            this.datePicker.Location = new System.Drawing.Point(153, 217);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(200, 20);
             this.datePicker.TabIndex = 27;
             this.datePicker.Visible = false;
+            this.datePicker.ValueChanged += new System.EventHandler(this.datePicker_ValueChanged);
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(12, 197);
+            this.lblDate.Location = new System.Drawing.Point(12, 217);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(135, 13);
             this.lblDate.TabIndex = 28;
@@ -147,7 +151,7 @@
             // btnProcess
             // 
             this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnProcess.Location = new System.Drawing.Point(15, 238);
+            this.btnProcess.Location = new System.Drawing.Point(15, 258);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(113, 23);
             this.btnProcess.TabIndex = 29;
@@ -155,11 +159,33 @@
             this.btnProcess.UseVisualStyleBackColor = false;
             this.btnProcess.Visible = false;
             // 
+            // lblLineCount
+            // 
+            this.lblLineCount.AutoSize = true;
+            this.lblLineCount.Location = new System.Drawing.Point(88, 92);
+            this.lblLineCount.Name = "lblLineCount";
+            this.lblLineCount.Size = new System.Drawing.Size(67, 13);
+            this.lblLineCount.TabIndex = 31;
+            this.lblLineCount.Text = "_stockCount";
+            this.lblLineCount.Visible = false;
+            // 
+            // lblLineCountIntro
+            // 
+            this.lblLineCountIntro.AutoSize = true;
+            this.lblLineCountIntro.Location = new System.Drawing.Point(12, 92);
+            this.lblLineCountIntro.Name = "lblLineCountIntro";
+            this.lblLineCountIntro.Size = new System.Drawing.Size(76, 13);
+            this.lblLineCountIntro.TabIndex = 30;
+            this.lblLineCountIntro.Text = "Stocks found: ";
+            this.lblLineCountIntro.Visible = false;
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 271);
+            this.ClientSize = new System.Drawing.Size(528, 293);
+            this.Controls.Add(this.lblLineCount);
+            this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.datePicker);
@@ -191,5 +217,7 @@
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.Label lblLineCount;
+        private System.Windows.Forms.Label lblLineCountIntro;
     }
 }

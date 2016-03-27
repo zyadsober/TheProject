@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,8 @@ namespace Pairs_Trading.Forms
         #region ' Member Variables '
 
         private string _pathName;
+        private int _stockCount;
+        private string[] _stockNames;
 
         #endregion
 
@@ -53,6 +56,7 @@ namespace Pairs_Trading.Forms
             this.Height = 150;
 
             _pathName = null;
+            _stockCount = 0;
         }
 
         #endregion
@@ -66,6 +70,12 @@ namespace Pairs_Trading.Forms
             _pathName = folderDialog.SelectedPath;
             txtBrowse.Text = _pathName;
 
+            _stockNames = Directory.GetFiles(_pathName);
+
+            _stockCount = _stockNames.Count();
+            lblLineCount.Text = _stockCount.ToString();
+            lblLineCount.Visible = true;
+            lblLineCountIntro.Visible = true;
             lblNewDirectory.Visible = true;
             txtNewDirectory.Visible = true;
             lblDays.Visible = true;
@@ -74,15 +84,32 @@ namespace Pairs_Trading.Forms
             datePicker.Visible = true;
             btnProcess.Visible = true;
 
-            this.Height = 310;
+            UpdateDirectory();
+
+            this.Height = 332;
         }
 
         #endregion
 
         #region ' Support Methods '
-        
+
+        private void UpdateDirectory()
+        {
+            txtNewDirectory.Text = _pathName + "-" + numDays.Value.ToString() + "-days-from-"
+                + datePicker.Value.Day + "/" + datePicker.Value.Month + "/" + datePicker.Value.Year;
+        }
 
         #endregion
+
+        private void numDays_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateDirectory();
+        }
+
+        private void datePicker_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateDirectory();
+        }
         
     }
 }
