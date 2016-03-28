@@ -154,6 +154,7 @@
             // 
             this.btnMonitor.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnMonitor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMonitor.Enabled = false;
             this.btnMonitor.Location = new System.Drawing.Point(9, 45);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(265, 23);
@@ -187,6 +188,7 @@
             // 
             this.btnStats.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnStats.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStats.Enabled = false;
             this.btnStats.Location = new System.Drawing.Point(9, 58);
             this.btnStats.Name = "btnStats";
             this.btnStats.Size = new System.Drawing.Size(265, 23);
