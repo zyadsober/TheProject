@@ -118,6 +118,7 @@ namespace Pairs_Trading.Forms
         {
             pbProgress.Visible = true;
             pbProgress.Value = 0;
+            btnProcess.Enabled = false;
 
             StreamReader strReader;
             StreamWriter strWriter;
@@ -153,6 +154,7 @@ namespace Pairs_Trading.Forms
                 strWriter.Close();
                 pbProgress.Value++;
             }
+            btnProcess.Enabled = true;
         }
 
         #endregion

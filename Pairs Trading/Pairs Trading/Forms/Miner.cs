@@ -121,8 +121,12 @@ namespace Pairs_Trading.Forms
         {
             pbProgress.Visible = true;
             pbProgress.Value = 0;
+            btnGetDistance.Enabled = false;
+            btnNearestNeighbor.Enabled = false;
 
             txtDistance.Text = getDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
+            btnGetDistance.Enabled = true;
+            btnNearestNeighbor.Enabled = true;
             //MessageBox.Show(DTW(stocksPrices[0],stocksPrices[1]).ToString());
         }
 
@@ -135,6 +139,8 @@ namespace Pairs_Trading.Forms
 
 
         #region ' Support Methods '
+
+
 
         /* Check weather the date given is within the last given days */
         private bool StockIsInLastDays(DateTime dt, int days)
@@ -188,6 +194,7 @@ namespace Pairs_Trading.Forms
                     }
                 }
             }
+            
             return DTW(stockPrices[0], stockPrices[1]);
         }
 
@@ -221,6 +228,8 @@ namespace Pairs_Trading.Forms
         {
             pbProgress.Visible = true;
             pbProgress.Value = 0;
+            btnGetDistance.Enabled = false;
+            btnNearestNeighbor.Enabled = false;
 
             int firstStock = Int32.Parse(txtStock.Text);
             _DTWThread = new Thread(() => DTWWork(firstStock));
@@ -271,6 +280,11 @@ namespace Pairs_Trading.Forms
                 _nearestNeighbour = secondStock;
             }
             UISync.Execute(() => pbProgress.Value++);
+            if (pbProgress.Value == _stockCount)
+            {
+                btnGetDistance.Enabled = true;
+                btnNearestNeighbor.Enabled = true;
+            }
             _activeWorkers--;
             //Console.WriteLine("Worker number " + secondStock + " Distance: " + _minDistance);
         }
