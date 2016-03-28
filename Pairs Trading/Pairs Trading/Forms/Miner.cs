@@ -98,6 +98,8 @@ namespace Pairs_Trading.Forms
             lblLineCount.Text = _stockCount.ToString();
             lblLineCount.Visible = true;
             lblLineCountIntro.Visible = true;
+            lblDistanceMeasure.Visible = true;
+            cboxDistanceMeasure.Visible = true;
             lblRetreiveDistance.Visible = true;
             lblFirstStock.Visible = true;
             lblSecondStock.Visible = true;
@@ -133,6 +135,21 @@ namespace Pairs_Trading.Forms
         private void formDataRetieve_FormClosing(object sender, FormClosingEventArgs e)
         {
            //Handle thread abortions
+        }
+
+        private void Miner_Load(object sender, EventArgs e)
+        {
+            cboxDistanceMeasure.SelectedIndex = 0;
+        }
+
+        private void cboxDistanceMeasure_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblRetreiveDistance.Text = "Select two pairs to retrieve the " +
+                cboxDistanceMeasure.Text + " distance between them";
+            btnGetDistance.Text = "Get " + cboxDistanceMeasure.Text + " Distance";
+            lblNearestNeighborIntro.Text = "Select a pair to get its nearest neighbor with respect to the "
+            + cboxDistanceMeasure.Text + " between them";
+            btnNearestNeighbor.Text = "Get Nearest Neighbour (" + cboxDistanceMeasure.Text + ")";
         }
 
         #endregion
@@ -288,6 +305,10 @@ namespace Pairs_Trading.Forms
             _activeWorkers--;
             //Console.WriteLine("Worker number " + secondStock + " Distance: " + _minDistance);
         }
+
+        
+
+        
 
 
     }

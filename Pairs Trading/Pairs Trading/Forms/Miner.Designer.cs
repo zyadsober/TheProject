@@ -54,6 +54,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numWorkers = new System.Windows.Forms.NumericUpDown();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
+            this.cboxDistanceMeasure = new System.Windows.Forms.ComboBox();
+            this.lblDistanceMeasure = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).BeginInit();
             this.SuspendLayout();
@@ -111,7 +113,7 @@
             // lblRetreiveDistance
             // 
             this.lblRetreiveDistance.AutoSize = true;
-            this.lblRetreiveDistance.Location = new System.Drawing.Point(9, 161);
+            this.lblRetreiveDistance.Location = new System.Drawing.Point(9, 186);
             this.lblRetreiveDistance.Name = "lblRetreiveDistance";
             this.lblRetreiveDistance.Size = new System.Drawing.Size(292, 13);
             this.lblRetreiveDistance.TabIndex = 22;
@@ -121,7 +123,7 @@
             // txtFirstStock
             // 
             this.txtFirstStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtFirstStock.Location = new System.Drawing.Point(69, 188);
+            this.txtFirstStock.Location = new System.Drawing.Point(69, 213);
             this.txtFirstStock.Name = "txtFirstStock";
             this.txtFirstStock.Size = new System.Drawing.Size(100, 20);
             this.txtFirstStock.TabIndex = 23;
@@ -131,7 +133,7 @@
             // txtSecondStock
             // 
             this.txtSecondStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtSecondStock.Location = new System.Drawing.Point(69, 211);
+            this.txtSecondStock.Location = new System.Drawing.Point(69, 236);
             this.txtSecondStock.Name = "txtSecondStock";
             this.txtSecondStock.Size = new System.Drawing.Size(100, 20);
             this.txtSecondStock.TabIndex = 24;
@@ -141,7 +143,7 @@
             // lblFirstStock
             // 
             this.lblFirstStock.AutoSize = true;
-            this.lblFirstStock.Location = new System.Drawing.Point(12, 188);
+            this.lblFirstStock.Location = new System.Drawing.Point(12, 213);
             this.lblFirstStock.Name = "lblFirstStock";
             this.lblFirstStock.Size = new System.Drawing.Size(51, 13);
             this.lblFirstStock.TabIndex = 25;
@@ -151,7 +153,7 @@
             // lblSecondStock
             // 
             this.lblSecondStock.AutoSize = true;
-            this.lblSecondStock.Location = new System.Drawing.Point(12, 214);
+            this.lblSecondStock.Location = new System.Drawing.Point(12, 239);
             this.lblSecondStock.Name = "lblSecondStock";
             this.lblSecondStock.Size = new System.Drawing.Size(51, 13);
             this.lblSecondStock.TabIndex = 26;
@@ -161,11 +163,11 @@
             // btnGetDistance
             // 
             this.btnGetDistance.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnGetDistance.Location = new System.Drawing.Point(15, 237);
+            this.btnGetDistance.Location = new System.Drawing.Point(15, 262);
             this.btnGetDistance.Name = "btnGetDistance";
-            this.btnGetDistance.Size = new System.Drawing.Size(154, 23);
+            this.btnGetDistance.Size = new System.Drawing.Size(220, 23);
             this.btnGetDistance.TabIndex = 27;
-            this.btnGetDistance.Text = "Get Distance";
+            this.btnGetDistance.Text = "Get DTW Distance";
             this.btnGetDistance.UseVisualStyleBackColor = false;
             this.btnGetDistance.Visible = false;
             this.btnGetDistance.Click += new System.EventHandler(this.btnGetDistance_Click);
@@ -173,7 +175,7 @@
             // lblDistance
             // 
             this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(15, 277);
+            this.lblDistance.Location = new System.Drawing.Point(15, 302);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(105, 13);
             this.lblDistance.TabIndex = 28;
@@ -183,7 +185,7 @@
             // txtDistance
             // 
             this.txtDistance.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.txtDistance.Location = new System.Drawing.Point(129, 277);
+            this.txtDistance.Location = new System.Drawing.Point(129, 302);
             this.txtDistance.Name = "txtDistance";
             this.txtDistance.ReadOnly = true;
             this.txtDistance.Size = new System.Drawing.Size(172, 20);
@@ -193,7 +195,7 @@
             // lblNearestNeighborIntro
             // 
             this.lblNearestNeighborIntro.AutoSize = true;
-            this.lblNearestNeighborIntro.Location = new System.Drawing.Point(15, 318);
+            this.lblNearestNeighborIntro.Location = new System.Drawing.Point(15, 343);
             this.lblNearestNeighborIntro.Name = "lblNearestNeighborIntro";
             this.lblNearestNeighborIntro.Size = new System.Drawing.Size(423, 13);
             this.lblNearestNeighborIntro.TabIndex = 30;
@@ -204,7 +206,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(15, 348);
+            this.lblStock.Location = new System.Drawing.Point(15, 373);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(45, 13);
             this.lblStock.TabIndex = 32;
@@ -214,7 +216,7 @@
             // txtStock
             // 
             this.txtStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtStock.Location = new System.Drawing.Point(72, 348);
+            this.txtStock.Location = new System.Drawing.Point(72, 373);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(100, 20);
             this.txtStock.TabIndex = 31;
@@ -224,11 +226,11 @@
             // btnNearestNeighbor
             // 
             this.btnNearestNeighbor.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnNearestNeighbor.Location = new System.Drawing.Point(15, 374);
+            this.btnNearestNeighbor.Location = new System.Drawing.Point(15, 399);
             this.btnNearestNeighbor.Name = "btnNearestNeighbor";
-            this.btnNearestNeighbor.Size = new System.Drawing.Size(154, 23);
+            this.btnNearestNeighbor.Size = new System.Drawing.Size(220, 23);
             this.btnNearestNeighbor.TabIndex = 33;
-            this.btnNearestNeighbor.Text = "Get Nearest Neighbour";
+            this.btnNearestNeighbor.Text = "Get Nearest Neighbour (DTW)";
             this.btnNearestNeighbor.UseVisualStyleBackColor = false;
             this.btnNearestNeighbor.Visible = false;
             this.btnNearestNeighbor.Click += new System.EventHandler(this.btnNearestNeighbour_Click);
@@ -236,7 +238,7 @@
             // txtNearestNeighbour
             // 
             this.txtNearestNeighbour.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtNearestNeighbour.Location = new System.Drawing.Point(129, 415);
+            this.txtNearestNeighbour.Location = new System.Drawing.Point(129, 440);
             this.txtNearestNeighbour.Name = "txtNearestNeighbour";
             this.txtNearestNeighbour.ReadOnly = true;
             this.txtNearestNeighbour.Size = new System.Drawing.Size(172, 20);
@@ -246,7 +248,7 @@
             // lblNearestNeighbor
             // 
             this.lblNearestNeighbor.AutoSize = true;
-            this.lblNearestNeighbor.Location = new System.Drawing.Point(15, 415);
+            this.lblNearestNeighbor.Location = new System.Drawing.Point(15, 440);
             this.lblNearestNeighbor.Name = "lblNearestNeighbor";
             this.lblNearestNeighbor.Size = new System.Drawing.Size(99, 13);
             this.lblNearestNeighbor.TabIndex = 34;
@@ -255,7 +257,7 @@
             // 
             // numStockDays
             // 
-            this.numStockDays.Location = new System.Drawing.Point(157, 111);
+            this.numStockDays.Location = new System.Drawing.Point(157, 136);
             this.numStockDays.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -278,7 +280,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 113);
+            this.label2.Location = new System.Drawing.Point(204, 138);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 38;
@@ -287,7 +289,7 @@
             // chkStockDays
             // 
             this.chkStockDays.AutoSize = true;
-            this.chkStockDays.Location = new System.Drawing.Point(12, 111);
+            this.chkStockDays.Location = new System.Drawing.Point(12, 136);
             this.chkStockDays.Name = "chkStockDays";
             this.chkStockDays.Size = new System.Drawing.Size(139, 17);
             this.chkStockDays.TabIndex = 39;
@@ -297,7 +299,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 135);
+            this.label1.Location = new System.Drawing.Point(12, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 13);
             this.label1.TabIndex = 40;
@@ -305,7 +307,7 @@
             // 
             // numWorkers
             // 
-            this.numWorkers.Location = new System.Drawing.Point(157, 138);
+            this.numWorkers.Location = new System.Drawing.Point(157, 163);
             this.numWorkers.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -327,18 +329,45 @@
             // 
             // pbProgress
             // 
-            this.pbProgress.Location = new System.Drawing.Point(12, 463);
+            this.pbProgress.Location = new System.Drawing.Point(12, 488);
             this.pbProgress.Maximum = 2940;
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(498, 23);
             this.pbProgress.TabIndex = 42;
             this.pbProgress.Visible = false;
             // 
+            // cboxDistanceMeasure
+            // 
+            this.cboxDistanceMeasure.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxDistanceMeasure.FormattingEnabled = true;
+            this.cboxDistanceMeasure.Items.AddRange(new object[] {
+            "DTW",
+            "Euclidean",
+            "Manhattan"});
+            this.cboxDistanceMeasure.Location = new System.Drawing.Point(217, 106);
+            this.cboxDistanceMeasure.Name = "cboxDistanceMeasure";
+            this.cboxDistanceMeasure.Size = new System.Drawing.Size(121, 21);
+            this.cboxDistanceMeasure.TabIndex = 43;
+            this.cboxDistanceMeasure.Visible = false;
+            this.cboxDistanceMeasure.SelectedIndexChanged += new System.EventHandler(this.cboxDistanceMeasure_SelectedIndexChanged);
+            // 
+            // lblDistanceMeasure
+            // 
+            this.lblDistanceMeasure.AutoSize = true;
+            this.lblDistanceMeasure.Location = new System.Drawing.Point(12, 109);
+            this.lblDistanceMeasure.Name = "lblDistanceMeasure";
+            this.lblDistanceMeasure.Size = new System.Drawing.Size(199, 13);
+            this.lblDistanceMeasure.TabIndex = 44;
+            this.lblDistanceMeasure.Text = "Select a distance measurement method: ";
+            this.lblDistanceMeasure.Visible = false;
+            // 
             // Miner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 508);
+            this.ClientSize = new System.Drawing.Size(528, 525);
+            this.Controls.Add(this.lblDistanceMeasure);
+            this.Controls.Add(this.cboxDistanceMeasure);
             this.Controls.Add(this.pbProgress);
             this.Controls.Add(this.numWorkers);
             this.Controls.Add(this.label1);
@@ -370,6 +399,7 @@
             this.Name = "Miner";
             this.ShowInTaskbar = false;
             this.Text = "Miner";
+            this.Load += new System.EventHandler(this.Miner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).EndInit();
             this.ResumeLayout(false);
@@ -404,5 +434,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numWorkers;
         private System.Windows.Forms.ProgressBar pbProgress;
+        private System.Windows.Forms.ComboBox cboxDistanceMeasure;
+        private System.Windows.Forms.Label lblDistanceMeasure;
     }
 }
