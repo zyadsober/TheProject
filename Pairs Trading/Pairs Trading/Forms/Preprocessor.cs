@@ -133,7 +133,8 @@ namespace Pairs_Trading.Forms
                 System.IO.Directory.CreateDirectory(txtNewDirectory.Text);
                 strWriter = new StreamWriter(txtNewDirectory.Text + newStockName);
                 line = strReader.ReadLine();
-                strWriter.WriteLine(line);
+                //strWriter.WriteLine(line);
+                strWriter.Write(line);
                 while (!strReader.EndOfStream)
                 {
                     line = strReader.ReadLine();
@@ -145,7 +146,8 @@ namespace Pairs_Trading.Forms
                         if (StockIsInLastDaysFromDate(datePickerFirst.Value, datePickerSecond.Value, dt)
                             && r <= numPercentage.Value)
                         {
-                            strWriter.WriteLine(line);
+                            //strWriter.WriteLine(line);
+                            strWriter.Write("\n" + line);
                         }
                     }
                     catch (Exception)

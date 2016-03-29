@@ -56,8 +56,11 @@
             this.pbProgress = new System.Windows.Forms.ProgressBar();
             this.cboxDistanceMeasure = new System.Windows.Forms.ComboBox();
             this.lblDistanceMeasure = new System.Windows.Forms.Label();
+            this.lblDTWWindow = new System.Windows.Forms.Label();
+            this.numDTWWindow = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDTWWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -361,11 +364,46 @@
             this.lblDistanceMeasure.Text = "Select a distance measurement method: ";
             this.lblDistanceMeasure.Visible = false;
             // 
+            // lblDTWWindow
+            // 
+            this.lblDTWWindow.AutoSize = true;
+            this.lblDTWWindow.Location = new System.Drawing.Point(370, 186);
+            this.lblDTWWindow.Name = "lblDTWWindow";
+            this.lblDTWWindow.Size = new System.Drawing.Size(99, 13);
+            this.lblDTWWindow.TabIndex = 45;
+            this.lblDTWWindow.Text = "DTW Window size:";
+            this.lblDTWWindow.Visible = false;
+            // 
+            // numDTWWindow
+            // 
+            this.numDTWWindow.Location = new System.Drawing.Point(475, 186);
+            this.numDTWWindow.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numDTWWindow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDTWWindow.Name = "numDTWWindow";
+            this.numDTWWindow.Size = new System.Drawing.Size(41, 20);
+            this.numDTWWindow.TabIndex = 46;
+            this.numDTWWindow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDTWWindow.Visible = false;
+            // 
             // Miner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 525);
+            this.Controls.Add(this.numDTWWindow);
+            this.Controls.Add(this.lblDTWWindow);
             this.Controls.Add(this.lblDistanceMeasure);
             this.Controls.Add(this.cboxDistanceMeasure);
             this.Controls.Add(this.pbProgress);
@@ -402,6 +440,7 @@
             this.Load += new System.EventHandler(this.Miner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDTWWindow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,5 +475,7 @@
         private System.Windows.Forms.ProgressBar pbProgress;
         private System.Windows.Forms.ComboBox cboxDistanceMeasure;
         private System.Windows.Forms.Label lblDistanceMeasure;
+        private System.Windows.Forms.Label lblDTWWindow;
+        private System.Windows.Forms.NumericUpDown numDTWWindow;
     }
 }
