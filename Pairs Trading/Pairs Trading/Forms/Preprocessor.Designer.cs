@@ -44,7 +44,11 @@
             this.pbProgress = new System.Windows.Forms.ProgressBar();
             this.lblPercentage = new System.Windows.Forms.Label();
             this.numPercentage = new System.Windows.Forms.NumericUpDown();
+            this.lblFrequency = new System.Windows.Forms.Label();
+            this.numDays = new System.Windows.Forms.NumericUpDown();
+            this.lblFrequencyDays = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -129,7 +133,7 @@
             // btnProcess
             // 
             this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnProcess.Location = new System.Drawing.Point(329, 280);
+            this.btnProcess.Location = new System.Drawing.Point(326, 297);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(113, 23);
             this.btnProcess.TabIndex = 29;
@@ -169,10 +173,10 @@
             // 
             // pbProgress
             // 
-            this.pbProgress.Location = new System.Drawing.Point(15, 309);
+            this.pbProgress.Location = new System.Drawing.Point(12, 330);
             this.pbProgress.Maximum = 2940;
             this.pbProgress.Name = "pbProgress";
-            this.pbProgress.Size = new System.Drawing.Size(498, 23);
+            this.pbProgress.Size = new System.Drawing.Size(498, 20);
             this.pbProgress.TabIndex = 43;
             this.pbProgress.Visible = false;
             // 
@@ -204,11 +208,57 @@
             0});
             this.numPercentage.Visible = false;
             // 
+            // lblFrequency
+            // 
+            this.lblFrequency.AutoSize = true;
+            this.lblFrequency.Location = new System.Drawing.Point(12, 273);
+            this.lblFrequency.Name = "lblFrequency";
+            this.lblFrequency.Size = new System.Drawing.Size(106, 13);
+            this.lblFrequency.TabIndex = 46;
+            this.lblFrequency.Text = "Take a sample every";
+            this.lblFrequency.Visible = false;
+            // 
+            // numDays
+            // 
+            this.numDays.Location = new System.Drawing.Point(124, 271);
+            this.numDays.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDays.Name = "numDays";
+            this.numDays.Size = new System.Drawing.Size(55, 20);
+            this.numDays.TabIndex = 47;
+            this.numDays.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDays.Visible = false;
+            // 
+            // lblFrequencyDays
+            // 
+            this.lblFrequencyDays.AutoSize = true;
+            this.lblFrequencyDays.Location = new System.Drawing.Point(186, 272);
+            this.lblFrequencyDays.Name = "lblFrequencyDays";
+            this.lblFrequencyDays.Size = new System.Drawing.Size(31, 13);
+            this.lblFrequencyDays.TabIndex = 48;
+            this.lblFrequencyDays.Text = "Days";
+            this.lblFrequencyDays.Visible = false;
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 349);
+            this.ClientSize = new System.Drawing.Size(528, 361);
+            this.Controls.Add(this.lblFrequencyDays);
+            this.Controls.Add(this.numDays);
+            this.Controls.Add(this.lblFrequency);
             this.Controls.Add(this.numPercentage);
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.pbProgress);
@@ -228,6 +278,7 @@
             this.Name = "Preprocessor";
             this.Text = "Preprocessor";
             ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +301,8 @@
         private System.Windows.Forms.ProgressBar pbProgress;
         private System.Windows.Forms.Label lblPercentage;
         private System.Windows.Forms.NumericUpDown numPercentage;
+        private System.Windows.Forms.Label lblFrequency;
+        private System.Windows.Forms.NumericUpDown numDays;
+        private System.Windows.Forms.Label lblFrequencyDays;
     }
 }

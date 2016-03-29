@@ -132,6 +132,18 @@ namespace Pairs_Trading.Forms
             //MessageBox.Show(DTW(stocksPrices[0],stocksPrices[1]).ToString());
         }
 
+        private void btnNearestNeighbour_Click(object sender, EventArgs e)
+        {
+            pbProgress.Visible = true;
+            pbProgress.Value = 0;
+            btnGetDistance.Enabled = false;
+            btnNearestNeighbor.Enabled = false;
+
+            int firstStock = Int32.Parse(txtStock.Text);
+            _DTWThread = new Thread(() => DTWWork(firstStock));
+            _DTWThread.Start();
+        }
+
         private void formDataRetieve_FormClosing(object sender, FormClosingEventArgs e)
         {
            //Handle thread abortions
@@ -234,23 +246,10 @@ namespace Pairs_Trading.Forms
             }
             return grid[stock1.Count, stock2.Count];
         }
+
         private double Distance(double x, double y)
         {
             return Math.Abs(x - y);
-        }
-
-        #endregion
-
-        private void btnNearestNeighbour_Click(object sender, EventArgs e)
-        {
-            pbProgress.Visible = true;
-            pbProgress.Value = 0;
-            btnGetDistance.Enabled = false;
-            btnNearestNeighbor.Enabled = false;
-
-            int firstStock = Int32.Parse(txtStock.Text);
-            _DTWThread = new Thread(() => DTWWork(firstStock));
-            _DTWThread.Start();
         }
 
         private void DTWWork(int firstStock)
@@ -277,7 +276,7 @@ namespace Pairs_Trading.Forms
                 // Create the worker thread supplied with quandl code and stock name.
                 int secondStock = i; // Fix this, this is for data race prevention.
                 new Thread(() => DTWWorker(firstStock, secondStock)).Start();
-                
+
                 /*double currentDistance = getDTWDistance(Int32.Parse(txtStock.Text), i);
                 if (currentDistance < _minDistance)
                 {
@@ -306,10 +305,10 @@ namespace Pairs_Trading.Forms
             //Console.WriteLine("Worker number " + secondStock + " Distance: " + _minDistance);
         }
 
-        
+        #endregion
 
         
 
-
+        
     }
 }

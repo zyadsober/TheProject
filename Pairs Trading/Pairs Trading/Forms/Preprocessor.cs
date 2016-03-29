@@ -92,10 +92,13 @@ namespace Pairs_Trading.Forms
             btnProcess.Visible = true;
             lblPercentage.Visible = true;
             numPercentage.Visible = true;
+            lblFrequency.Visible = true;
+            lblFrequencyDays.Visible = true;
+            numDays.Visible = true;
 
             UpdateDirectory();
 
-            this.Height = 388;
+            this.Height = 400;
         }
 
         private void numDays_ValueChanged(object sender, EventArgs e)
@@ -178,6 +181,7 @@ namespace Pairs_Trading.Forms
         }
 
         #endregion
+
 
        
     }
