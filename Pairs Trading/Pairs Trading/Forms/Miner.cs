@@ -168,7 +168,6 @@ namespace Pairs_Trading.Forms
 
         #endregion
 
-
         #region ' Support Methods '
 
 
@@ -225,49 +224,59 @@ namespace Pairs_Trading.Forms
                     }
                 }
             }
-            
-            return DTW(stockPrices[0], stockPrices[1], (int)numDTWWindow.Value);
+
+            //return DTW(stockPrices[0], stockPrices[1], (int)numDTWWindow.Value);
+            return DTW(stockPrices[0], stockPrices[1]);
         }
 
-        //private double DTW(List<double> stock1,List<double> stock2)
-        //{
-        //    double[,] grid=new double[stock1.Count+1,stock2.Count+1];
-        //    for (int i = 1; i < stock1.Count + 1; i++)
-        //        grid[i, 0] = double.PositiveInfinity;
-
-
-        //    for (int i = 1; i < stock2.Count + 1; i++)
-        //        grid[0, i] = double.PositiveInfinity;
-        //    grid[0, 0] = 0;
-        //    for(int i=1;i<stock1.Count+1;i++)
-        //    {
-        //        for(int j=1;j<stock2.Count+1;j++)
-        //        {
-        //            grid[i,j]=Distance(stock1[i-1],stock2[j-1])+ Math.Min(Math.Min(grid[i-1,j],grid[i,j-1]),grid[i-1,j-1]);
-        //        }
-        //    }
-        //    return grid[stock1.Count, stock2.Count];
-        //}
-
-        private double DTW(List<double> stock1, List<double> stock2, int w)
+        private double DTW(List<double> stock1, List<double> stock2)
         {
             double[,] grid = new double[stock1.Count + 1, stock2.Count + 1];
-            w = Math.Max(w, Math.Abs(stock1.Count - stock2.Count));
-            for (int i = 0; i < stock1.Count + 1; i++)
-                for (int j = 0; j < stock2.Count; j++)
-                    grid[i, j] = double.PositiveInfinity;
+            for (int i = 1; i < stock1.Count + 1; i++)
+                grid[i, 0] = double.PositiveInfinity;
+
+
+            for (int i = 1; i < stock2.Count + 1; i++)
+                grid[0, i] = double.PositiveInfinity;
             grid[0, 0] = 0;
             for (int i = 1; i < stock1.Count + 1; i++)
             {
-                for (int j = Math.Max(1, i - w); j < Math.Min(stock2.Count + 1, i + w); j++)
+                for (int j = 1; j < stock2.Count + 1; j++)
                 {
                     grid[i, j] = Distance(stock1[i - 1], stock2[j - 1]) + Math.Min(Math.Min(grid[i - 1, j], grid[i, j - 1]), grid[i - 1, j - 1]);
                 }
             }
-            double lol = grid[stock1.Count, stock2.Count];
-            return lol;// :)
-            // return grid[stock1.Count, stock2.Count];
+            StreamWriter strw = new StreamWriter(_pathName+"\\Grid.txt");
+            for (int i = 0; i < stock1.Count; i++)
+            {
+                for (int j = 0; j < stock2.Count; j++)
+                {
+                    strw.Write(grid[i, j] + "\t");
+                }
+                strw.Write("\n");
+            }
+            strw.Close();
+
+                return grid[stock1.Count, stock2.Count];
         }
+
+        //private double DTW(List<double> stock1, List<double> stock2, int w)
+        //{
+        //    double[,] grid = new double[stock1.Count + 1, stock2.Count + 1];
+        //    w = Math.Max(w, Math.Abs(stock1.Count - stock2.Count));
+        //    for (int i = 0; i < stock1.Count + 1; i++)
+        //        for (int j = 0; j < stock2.Count; j++)
+        //            grid[i, j] = double.PositiveInfinity;
+        //    grid[0, 0] = 0;
+        //    for (int i = 1; i < stock1.Count + 1; i++)
+        //    {
+        //        for (int j = Math.Max(1, i - w); j < Math.Min(stock2.Count + 1, i + w); j++)
+        //        {
+        //            grid[i, j] = Distance(stock1[i - 1], stock2[j - 1]) + Math.Min(Math.Min(grid[i - 1, j], grid[i, j - 1]), grid[i - 1, j - 1]);
+        //        }
+        //    }
+        //     return grid[stock1.Count, stock2.Count];
+        //}
 
         private double Distance(double x, double y)
         {
