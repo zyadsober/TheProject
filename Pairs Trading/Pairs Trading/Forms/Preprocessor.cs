@@ -78,7 +78,8 @@ namespace Pairs_Trading.Forms
             _stockNames = Directory.GetFiles(_pathName);
 
             _stockCount = _stockNames.Count();
-            pbProgress.Maximum = _stockCount;
+
+            pbProgress.Maximum = _stockCount*2;
 
             lblLineCount.Text = _stockCount.ToString();
             lblLineCount.Visible = true;
@@ -94,11 +95,13 @@ namespace Pairs_Trading.Forms
             numPercentage.Visible = true;
             lblFrequency.Visible = true;
             lblFrequencyDays.Visible = true;
+            lblRecordsPercentage.Visible = true;
+            numRecordsPercentage.Visible = true;
             numDays.Visible = true;
 
             UpdateDirectory();
 
-            this.Height = 400;
+            this.Height = 431;
         }
 
         private void numDays_ValueChanged(object sender, EventArgs e)
@@ -119,8 +122,9 @@ namespace Pairs_Trading.Forms
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            int[] stockLineCount = new int[_stockCount];
             int lineCount = 0;
-
+            int maxLineCount = 0;
             pbProgress.Visible = true;
             pbProgress.Value = 0;
             btnProcess.Enabled = false;
@@ -163,14 +167,40 @@ namespace Pairs_Trading.Forms
                 strReader.Close();
                 strWriter.Close();
 
+                stockLineCount[i] = lineCount;
+
                 // File is empty of data.
                 if (lineCount < 1)
                 {
                     //Delete the empty file.
                     File.Delete(txtNewDirectory.Text + newStockName);
                 }
+                
+                // Calculate the maximum number of lines in all the files.
+                if (lineCount > maxLineCount)
+                {
+                    maxLineCount = lineCount;
+                }
+
                 pbProgress.Value++;
             }
+            
+            /* Remove files which have less than the minimum percentage of
+             * records with respect to the largest file. Also delete empty
+             * files with no records */
+
+            double minPercentage = (double)numRecordsPercentage.Value / 100.0;
+            for (int i = 0; i < _stockNames.Count(); i++)
+            {
+                if ((double)stockLineCount[i] / (double)maxLineCount < minPercentage
+                    || lineCount < 1)
+                {
+                    string newStockName = _stockNames[i].Substring(_stockNames[i].LastIndexOf("\\"));
+                    File.Delete(txtNewDirectory.Text + newStockName);
+                }
+                pbProgress.Value++;
+            }
+
             btnProcess.Enabled = true;
         }
 
@@ -196,7 +226,5 @@ namespace Pairs_Trading.Forms
 
         #endregion
 
-
-       
     }
 }

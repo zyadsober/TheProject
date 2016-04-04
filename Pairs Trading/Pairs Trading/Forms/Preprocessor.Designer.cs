@@ -47,8 +47,11 @@
             this.lblFrequency = new System.Windows.Forms.Label();
             this.numDays = new System.Windows.Forms.NumericUpDown();
             this.lblFrequencyDays = new System.Windows.Forms.Label();
+            this.numRecordsPercentage = new System.Windows.Forms.NumericUpDown();
+            this.lblRecordsPercentage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRecordsPercentage)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -133,7 +136,7 @@
             // btnProcess
             // 
             this.btnProcess.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnProcess.Location = new System.Drawing.Point(326, 297);
+            this.btnProcess.Location = new System.Drawing.Point(12, 327);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(113, 23);
             this.btnProcess.TabIndex = 29;
@@ -173,7 +176,7 @@
             // 
             // pbProgress
             // 
-            this.pbProgress.Location = new System.Drawing.Point(12, 330);
+            this.pbProgress.Location = new System.Drawing.Point(13, 356);
             this.pbProgress.Maximum = 2940;
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(498, 20);
@@ -213,14 +216,14 @@
             this.lblFrequency.AutoSize = true;
             this.lblFrequency.Location = new System.Drawing.Point(12, 273);
             this.lblFrequency.Name = "lblFrequency";
-            this.lblFrequency.Size = new System.Drawing.Size(106, 13);
+            this.lblFrequency.Size = new System.Drawing.Size(112, 13);
             this.lblFrequency.TabIndex = 46;
-            this.lblFrequency.Text = "Take a sample every";
+            this.lblFrequency.Text = "Take a sample every: ";
             this.lblFrequency.Visible = false;
             // 
             // numDays
             // 
-            this.numDays.Location = new System.Drawing.Point(124, 271);
+            this.numDays.Location = new System.Drawing.Point(130, 271);
             this.numDays.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -244,18 +247,48 @@
             // lblFrequencyDays
             // 
             this.lblFrequencyDays.AutoSize = true;
-            this.lblFrequencyDays.Location = new System.Drawing.Point(186, 272);
+            this.lblFrequencyDays.Location = new System.Drawing.Point(192, 272);
             this.lblFrequencyDays.Name = "lblFrequencyDays";
             this.lblFrequencyDays.Size = new System.Drawing.Size(31, 13);
             this.lblFrequencyDays.TabIndex = 48;
             this.lblFrequencyDays.Text = "Days";
             this.lblFrequencyDays.Visible = false;
             // 
+            // numRecordsPercentage
+            // 
+            this.numRecordsPercentage.Location = new System.Drawing.Point(377, 297);
+            this.numRecordsPercentage.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numRecordsPercentage.Name = "numRecordsPercentage";
+            this.numRecordsPercentage.Size = new System.Drawing.Size(55, 20);
+            this.numRecordsPercentage.TabIndex = 50;
+            this.numRecordsPercentage.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numRecordsPercentage.Visible = false;
+            // 
+            // lblRecordsPercentage
+            // 
+            this.lblRecordsPercentage.AutoSize = true;
+            this.lblRecordsPercentage.Location = new System.Drawing.Point(12, 299);
+            this.lblRecordsPercentage.Name = "lblRecordsPercentage";
+            this.lblRecordsPercentage.Size = new System.Drawing.Size(360, 13);
+            this.lblRecordsPercentage.TabIndex = 49;
+            this.lblRecordsPercentage.Text = "Minimum percentage of records for new files with respect to the largest file: ";
+            this.lblRecordsPercentage.Visible = false;
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 361);
+            this.ClientSize = new System.Drawing.Size(528, 392);
+            this.Controls.Add(this.numRecordsPercentage);
+            this.Controls.Add(this.lblRecordsPercentage);
             this.Controls.Add(this.lblFrequencyDays);
             this.Controls.Add(this.numDays);
             this.Controls.Add(this.lblFrequency);
@@ -279,6 +312,7 @@
             this.Text = "Preprocessor";
             ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRecordsPercentage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,5 +338,7 @@
         private System.Windows.Forms.Label lblFrequency;
         private System.Windows.Forms.NumericUpDown numDays;
         private System.Windows.Forms.Label lblFrequencyDays;
+        private System.Windows.Forms.NumericUpDown numRecordsPercentage;
+        private System.Windows.Forms.Label lblRecordsPercentage;
     }
 }
