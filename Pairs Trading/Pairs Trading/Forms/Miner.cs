@@ -276,16 +276,16 @@ namespace Pairs_Trading.Forms
                     grid[i, j] = Distance(stock1[i - 1], stock2[j - 1]) + Math.Min(Math.Min(grid[i - 1, j], grid[i, j - 1]), grid[i - 1, j - 1]);
                 }
             }
-            StreamWriter strw = new StreamWriter(_pathName + "\\Grid.txt");
-            for (int i = 0; i < stock1.Count; i++)
-            {
-                for (int j = 0; j < stock2.Count; j++)
-                {
-                    strw.Write(grid[i, j] + "\t");
-                }
-                strw.Write("\n");
-            }
-            strw.Close();
+            //StreamWriter strw = new StreamWriter(_pathName + "\\Grid.txt");
+            //for (int i = 0; i < stock1.Count; i++)
+            //{
+            //    for (int j = 0; j < stock2.Count; j++)
+            //    {
+            //        strw.Write(grid[i, j] + "\t");
+            //    }
+            //    strw.Write("\n");
+            //}
+            //strw.Close();
             return grid[stock1.Count, stock2.Count];
         }
 
@@ -325,6 +325,13 @@ namespace Pairs_Trading.Forms
                     _minDistance = currentDistance;
                     nearestNeighbour = i;
                 }*/
+            }
+
+            // Wait for all workers to exit before printing a result.
+            while (_activeWorkers > 0)
+            {
+                // Sleep to relieve the CPU.
+                Thread.Sleep(500);
             }
             UISync.Execute(() => txtNearestNeighbour.Text = _nearestNeighbour.ToString());
         }
