@@ -58,6 +58,9 @@
             this.lblDistanceMeasure = new System.Windows.Forms.Label();
             this.lblDTWWindow = new System.Windows.Forms.Label();
             this.numDTWWindow = new System.Windows.Forms.NumericUpDown();
+            this.btnGetCorrelation = new System.Windows.Forms.Button();
+            this.txtCorrelation = new System.Windows.Forms.TextBox();
+            this.lblCorrelation = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDTWWindow)).BeginInit();
@@ -367,7 +370,7 @@
             // lblDTWWindow
             // 
             this.lblDTWWindow.AutoSize = true;
-            this.lblDTWWindow.Location = new System.Drawing.Point(370, 186);
+            this.lblDTWWindow.Location = new System.Drawing.Point(344, 109);
             this.lblDTWWindow.Name = "lblDTWWindow";
             this.lblDTWWindow.Size = new System.Drawing.Size(99, 13);
             this.lblDTWWindow.TabIndex = 45;
@@ -376,7 +379,7 @@
             // 
             // numDTWWindow
             // 
-            this.numDTWWindow.Location = new System.Drawing.Point(475, 186);
+            this.numDTWWindow.Location = new System.Drawing.Point(449, 106);
             this.numDTWWindow.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -397,11 +400,46 @@
             0});
             this.numDTWWindow.Visible = false;
             // 
+            // btnGetCorrelation
+            // 
+            this.btnGetCorrelation.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnGetCorrelation.Location = new System.Drawing.Point(318, 262);
+            this.btnGetCorrelation.Name = "btnGetCorrelation";
+            this.btnGetCorrelation.Size = new System.Drawing.Size(220, 23);
+            this.btnGetCorrelation.TabIndex = 47;
+            this.btnGetCorrelation.Text = "Get Correlation";
+            this.btnGetCorrelation.UseVisualStyleBackColor = false;
+            this.btnGetCorrelation.Visible = false;
+            this.btnGetCorrelation.Click += new System.EventHandler(this.btnGetCorrelation_Click);
+            // 
+            // txtCorrelation
+            // 
+            this.txtCorrelation.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtCorrelation.Location = new System.Drawing.Point(429, 302);
+            this.txtCorrelation.Name = "txtCorrelation";
+            this.txtCorrelation.ReadOnly = true;
+            this.txtCorrelation.Size = new System.Drawing.Size(172, 20);
+            this.txtCorrelation.TabIndex = 49;
+            this.txtCorrelation.Visible = false;
+            // 
+            // lblCorrelation
+            // 
+            this.lblCorrelation.AutoSize = true;
+            this.lblCorrelation.Location = new System.Drawing.Point(315, 302);
+            this.lblCorrelation.Name = "lblCorrelation";
+            this.lblCorrelation.Size = new System.Drawing.Size(113, 13);
+            this.lblCorrelation.TabIndex = 48;
+            this.lblCorrelation.Text = "Calculated Correlation:";
+            this.lblCorrelation.Visible = false;
+            // 
             // Miner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 525);
+            this.ClientSize = new System.Drawing.Size(808, 525);
+            this.Controls.Add(this.txtCorrelation);
+            this.Controls.Add(this.lblCorrelation);
+            this.Controls.Add(this.btnGetCorrelation);
             this.Controls.Add(this.numDTWWindow);
             this.Controls.Add(this.lblDTWWindow);
             this.Controls.Add(this.lblDistanceMeasure);
@@ -477,5 +515,8 @@
         private System.Windows.Forms.Label lblDistanceMeasure;
         private System.Windows.Forms.Label lblDTWWindow;
         private System.Windows.Forms.NumericUpDown numDTWWindow;
+        private System.Windows.Forms.Button btnGetCorrelation;
+        private System.Windows.Forms.TextBox txtCorrelation;
+        private System.Windows.Forms.Label lblCorrelation;
     }
 }

@@ -110,6 +110,9 @@ namespace Pairs_Trading.Forms
             btnGetDistance.Visible = true;
             lblDistance.Visible = true;
             txtDistance.Visible = true;
+            btnGetCorrelation.Visible = true;
+            lblCorrelation.Visible = true;
+            txtCorrelation.Visible = true;
             lblNearestNeighborIntro.Visible = true;
             lblStock.Visible = true;
             txtStock.Visible = true;
@@ -128,10 +131,15 @@ namespace Pairs_Trading.Forms
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
 
-            txtDistance.Text = getDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
+            txtDistance.Text = GetDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
             btnGetDistance.Enabled = true;
             btnNearestNeighbor.Enabled = true;
             //MessageBox.Show(DTW(stocksPrices[0],stocksPrices[1]).ToString());
+        }
+
+        private void btnGetCorrelation_Click(object sender, EventArgs e)
+        {
+            txtCorrelation.Text = GetCorrelation(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
         }
 
         private void btnNearestNeighbour_Click(object sender, EventArgs e)
@@ -170,8 +178,6 @@ namespace Pairs_Trading.Forms
 
         #region ' Support Methods '
 
-
-
         /* Check weather the date given is within the last given days */
         private bool StockIsInLastDays(DateTime dt, int days)
         {
@@ -184,7 +190,7 @@ namespace Pairs_Trading.Forms
         }
 
 
-        private double getDTWDistance(int firstStock, int secondStock)
+        private double GetDTWDistance(int firstStock, int secondStock)
         {
             StreamReader strReader;
             string line;
@@ -338,7 +344,7 @@ namespace Pairs_Trading.Forms
 
         private void DTWWorker(int firstStock, int secondStock)
         {
-            double currentDistance = getDTWDistance(firstStock, secondStock);
+            double currentDistance = GetDTWDistance(firstStock, secondStock);
             if (currentDistance < _minDistance)
             {
                 _minDistance = currentDistance;
@@ -354,10 +360,92 @@ namespace Pairs_Trading.Forms
             //Console.WriteLine("Worker number " + secondStock + " Distance: " + _minDistance);
         }
 
+        private double GetCorrelation(int firstStock, int secondStock)
+        {
+            // Used to check that the number of lines are the same.
+            int[] lineCount = new int[2];
+
+            StreamReader strReader;
+            string line;
+            List<List<double>> stockPrices = new List<List<double>>(); ;
+            for (int i = 0; i < 2; i++)
+            {
+                lineCount[i] = 0;
+
+                strReader = new StreamReader(_stockNames[(i == 0 ? firstStock : secondStock)]);
+                line = strReader.ReadLine();
+                //stockPrices = new List<List<double>>();
+                stockPrices.Add(new List<double>());
+                while (!strReader.EndOfStream)
+                {
+                    line = strReader.ReadLine();
+                    try
+                    {
+                        DateTime dt = Convert.ToDateTime(line.Split(',')[0]);
+
+                        /* If the checkbox for stocks within the last given days is checked,
+                         * check the current stock if it is within the correct period,
+                         * If the checkbox is not checked, use all the stocks*/
+                        if (!chkStockDays.Checked || StockIsInLastDays(dt, Int32.Parse(numStockDays.Value.ToString())))
+                        {
+                            stockPrices[i].Add(Convert.ToDouble((line.Split(','))[4]));
+                            lineCount[i]++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+                }
+            }
+            if (lineCount[0] != lineCount[1])
+            {
+                // Indicate that the lines aren't of the same length by using an impossible correlation value.
+                return -2;
+            }
+            //return DTW(stockPrices[0], stockPrices[1]);
+            return Correlation(stockPrices[0], stockPrices[1]);
+        }
+        private double Correlation(List<double> stock1, List<double> stock2)
+        {
+            return Covariance(stock1, stock2) / (Std(stock1) * Std(stock2));
+        }
+
+        private double Covariance(List<double> stock1, List<double> stock2)
+        {
+            double sum = 0;
+            double mean1 = Mean(stock1), mean2 = Mean(stock2);
+            for (int i = 0; i < stock1.Count; i++)
+                sum += (stock1[i] - mean1) * (stock2[i] - mean2);
+            return sum / (stock1.Count - 1);
+        }
+
+        private double Std(List<double> stock)
+        {
+            double sum = 0, mean = Mean(stock); ;
+            for (int i = 0; i < stock.Count; i++)
+                sum += (stock[i] - mean) * (stock[i] - mean);
+            return Math.Sqrt(sum / (stock.Count - 1));
+        }
+
+        private double Mean(List<double> stock)
+        {
+            double sum = 0;
+            for (int i = 0; i < stock.Count; i++)
+                sum += stock[i];
+            return sum / stock.Count;
+        }
+
         #endregion
 
         
 
-        
     }
 }
