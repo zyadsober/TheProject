@@ -270,7 +270,7 @@ namespace Pairs_Trading.Forms
         private double DTW(List<double> stock1, List<double> stock2, int w)
         {
             double[,] grid = new double[stock1.Count + 1, stock2.Count + 1];
-            w = Math.Max(w, Math.Abs(stock1.Count - stock2.Count));
+            w = Math.Max(w, Math.Abs(stock1.Count - stock2.Count) + 1);
             for (int i = 0; i < stock1.Count + 1; i++)
                 for (int j = 0; j < stock2.Count + 1; j++)
                     grid[i, j] = double.PositiveInfinity;
