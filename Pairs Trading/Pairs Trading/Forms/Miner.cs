@@ -120,7 +120,7 @@ namespace Pairs_Trading.Forms
             lblNearestNeighbor.Visible = true;
             txtNearestNeighbour.Visible = true;
 
-            this.Height = 547;
+            this.Height = 564;
             
         }
 
