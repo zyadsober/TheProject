@@ -119,6 +119,8 @@ namespace Pairs_Trading.Forms
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            int lineCount = 0;
+
             pbProgress.Visible = true;
             pbProgress.Value = 0;
             btnProcess.Enabled = false;
@@ -128,6 +130,8 @@ namespace Pairs_Trading.Forms
             string line;
             for (int i = 0; i < _stockNames.Count(); i++)
             {
+                lineCount = 0;
+
                 strReader = new StreamReader(_stockNames[i]);
                 string newStockName = _stockNames[i].Substring(_stockNames[i].LastIndexOf("\\"));
                 System.IO.Directory.CreateDirectory(txtNewDirectory.Text);
@@ -148,6 +152,7 @@ namespace Pairs_Trading.Forms
                         {
                             //strWriter.WriteLine(line);
                             strWriter.Write("\n" + line);
+                            lineCount++;
                         }
                     }
                     catch (Exception)
@@ -157,6 +162,13 @@ namespace Pairs_Trading.Forms
                 }
                 strReader.Close();
                 strWriter.Close();
+
+                // File is empty of data.
+                if (lineCount < 1)
+                {
+                    //Delete the empty file.
+                    File.Delete(txtNewDirectory.Text + newStockName);
+                }
                 pbProgress.Value++;
             }
             btnProcess.Enabled = true;
