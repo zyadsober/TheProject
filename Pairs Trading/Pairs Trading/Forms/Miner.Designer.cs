@@ -61,6 +61,7 @@
             this.btnGetCorrelation = new System.Windows.Forms.Button();
             this.txtCorrelation = new System.Windows.Forms.TextBox();
             this.lblCorrelation = new System.Windows.Forms.Label();
+            this.btnAllNearestNeighbors = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDTWWindow)).BeginInit();
@@ -432,11 +433,24 @@
             this.lblCorrelation.Text = "Calculated Correlation:";
             this.lblCorrelation.Visible = false;
             // 
+            // btnAllNearestNeighbors
+            // 
+            this.btnAllNearestNeighbors.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAllNearestNeighbors.Location = new System.Drawing.Point(303, 399);
+            this.btnAllNearestNeighbors.Name = "btnAllNearestNeighbors";
+            this.btnAllNearestNeighbors.Size = new System.Drawing.Size(220, 23);
+            this.btnAllNearestNeighbors.TabIndex = 50;
+            this.btnAllNearestNeighbors.Text = "Get All Nearest Neighbours (DTW)";
+            this.btnAllNearestNeighbors.UseVisualStyleBackColor = false;
+            this.btnAllNearestNeighbors.Visible = false;
+            this.btnAllNearestNeighbors.Click += new System.EventHandler(this.btnGetAllNearestNeighbors_Click);
+            // 
             // Miner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 525);
+            this.Controls.Add(this.btnAllNearestNeighbors);
             this.Controls.Add(this.txtCorrelation);
             this.Controls.Add(this.lblCorrelation);
             this.Controls.Add(this.btnGetCorrelation);
@@ -518,5 +532,6 @@
         private System.Windows.Forms.Button btnGetCorrelation;
         private System.Windows.Forms.TextBox txtCorrelation;
         private System.Windows.Forms.Label lblCorrelation;
+        private System.Windows.Forms.Button btnAllNearestNeighbors;
     }
 }
