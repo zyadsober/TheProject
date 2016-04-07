@@ -488,6 +488,7 @@
             this.Name = "Miner";
             this.ShowInTaskbar = false;
             this.Text = "Miner";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Miner_FormClosing);
             this.Load += new System.EventHandler(this.Miner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numStockDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWorkers)).EndInit();
