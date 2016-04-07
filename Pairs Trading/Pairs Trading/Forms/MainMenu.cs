@@ -30,7 +30,7 @@ namespace Pairs_Trading
 
         private void btnMonitor_Click(object sender, EventArgs e)
         {
-
+            new Monitor().ShowDialog();
         }
 
         private void btnStats_Click(object sender, EventArgs e)

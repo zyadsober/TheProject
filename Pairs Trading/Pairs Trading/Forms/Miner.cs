@@ -588,6 +588,9 @@ namespace Pairs_Trading.Forms
             {
                 UISync.Execute(() => btnGetDistance.Enabled = true);
                 UISync.Execute(() => btnNearestNeighbor.Enabled = true);
+                UISync.Execute(() => btnGetDistance.Enabled = true);
+                UISync.Execute(() => btnGetCorrelation.Enabled = true);
+                UISync.Execute(() => btnAllNearestNeighbors.Enabled = true);
             }
             
 
