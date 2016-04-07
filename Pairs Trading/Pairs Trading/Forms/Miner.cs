@@ -152,8 +152,15 @@ namespace Pairs_Trading.Forms
             btnNearestNeighbor.Enabled = false;
 
             int stock = Int32.Parse(txtStock.Text);
-            _DTWThread = new Thread(() => DTWWork(stock));
-            _DTWThread.Start();
+            if (cboxDistanceMeasure.SelectedIndex == 0)
+            {
+                _DTWThread = new Thread(() => DTWWork(stock));
+                _DTWThread.Start();
+            }
+            else if (cboxDistanceMeasure.SelectedIndex == 1)
+            {
+                txtNearestNeighbour.Text = GetEuclideanDistance(0, 1).ToString();
+            }
         }
 
         private void btnGetAllNearestNeighbors_Click(object sender, EventArgs e)
@@ -190,9 +197,10 @@ namespace Pairs_Trading.Forms
 
         #region ' Support Methods '
 
-        /* Check weather the date given is within the last given days */
+        
         private bool StockIsInLastDays(DateTime dt, int days)
         {
+            /* Check weather the date given is within the last given days */
             DateTime dtNow = DateTime.Now;
             if ((dtNow - dt).TotalDays <= days)
             {
@@ -200,7 +208,6 @@ namespace Pairs_Trading.Forms
             }
             return false;
         }
-
 
         private double GetDTWDistance(int firstStock, int secondStock)
         {
@@ -248,6 +255,55 @@ namespace Pairs_Trading.Forms
             
         }
 
+        private double GetEuclideanDistance(int firstStock, int secondStock)
+        {
+            string line1, line2;
+            List<List<double>> stockPrices = new List<List<double>>();
+            StreamReader strReader1 = new StreamReader(_stockNames[firstStock]);
+            StreamReader strReader2 = new StreamReader(_stockNames[secondStock]);
+            line1 = strReader1.ReadLine();
+            line2 = strReader2.ReadLine();
+
+            stockPrices.Add(new List<double>());
+            stockPrices.Add(new List<double>());
+            while (!strReader1.EndOfStream && !strReader2.EndOfStream)
+            {
+                line1 = strReader1.ReadLine();
+                line2 = strReader2.ReadLine();
+                try
+                {
+                    DateTime dt1 = Convert.ToDateTime(line1.Split(',')[0]);
+                    DateTime dt2 = Convert.ToDateTime(line2.Split(',')[0]);
+                    while (dt1.Date != dt2.Date && !strReader1.EndOfStream && !strReader2.EndOfStream)
+                    {
+                        while (dt1.Date > dt2.Date && !strReader1.EndOfStream)
+                        {
+                            line1 = strReader1.ReadLine();
+                            dt1 = Convert.ToDateTime(line1.Split(',')[0]);
+                        }
+                        while (dt1.Date < dt2.Date && !strReader2.EndOfStream)
+                        {
+                            line2 = strReader2.ReadLine();
+                            dt2 = Convert.ToDateTime(line2.Split(',')[0]);
+                        }
+                    }
+                    if (dt1.Date == dt2.Date)
+                    {
+                        stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
+                        stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[4]));
+                    }
+                }
+                catch (Exception)
+                {
+
+                    continue;
+                }
+            }
+
+            //return DTW(stockPrices[0], stockPrices[1]);
+            return Euclidean(stockPrices[0], stockPrices[1]);
+        }
+        
         //private double DTW(List<double> stock1, List<double> stock2)
         //{
         //    double[,] grid = new double[stock1.Count + 1, stock2.Count + 1];
@@ -392,6 +448,16 @@ namespace Pairs_Trading.Forms
             }
             _activeWorkers--;
             //Console.WriteLine("Worker number " + secondStock + " Distance: " + _minDistance);
+        }
+
+        private double Euclidean(List<double> stock1, List<double> stock2)
+        {
+            double distance = 0;
+            for (int i = 0; i < stock1.Count; i++)
+            {
+                distance += Distance(stock1[i], stock2[i]);
+            }
+            return distance;
         }
 
         private double GetCorrelation(int firstStock, int secondStock)
