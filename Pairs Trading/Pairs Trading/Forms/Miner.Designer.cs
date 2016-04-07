@@ -349,8 +349,7 @@
             this.cboxDistanceMeasure.FormattingEnabled = true;
             this.cboxDistanceMeasure.Items.AddRange(new object[] {
             "DTW",
-            "Euclidean",
-            "Manhattan"});
+            "Euclidean"});
             this.cboxDistanceMeasure.Location = new System.Drawing.Point(217, 106);
             this.cboxDistanceMeasure.Name = "cboxDistanceMeasure";
             this.cboxDistanceMeasure.Size = new System.Drawing.Size(121, 21);

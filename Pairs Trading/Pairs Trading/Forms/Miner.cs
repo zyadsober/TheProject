@@ -178,7 +178,15 @@ namespace Pairs_Trading.Forms
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
 
-            new Thread(() => DTWAllManager()).Start();
+            if (cboxDistanceMeasure.SelectedIndex == 0)
+            {
+                new Thread(() => DTWAllManager()).Start();
+            }
+            else if (cboxDistanceMeasure.SelectedIndex == 1)
+            {
+
+            }
+            
         }
 
         private void formDataRetieve_FormClosing(object sender, FormClosingEventArgs e)
