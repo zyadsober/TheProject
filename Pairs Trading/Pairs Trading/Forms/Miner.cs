@@ -179,6 +179,8 @@ namespace Pairs_Trading.Forms
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
                 _mode = 1;
+                _DistanceThread = new Thread(() => Work(stock));
+                _DistanceThread.Start();
             }
         }
 
@@ -191,11 +193,13 @@ namespace Pairs_Trading.Forms
 
             if (cboxDistanceMeasure.SelectedIndex == 0)
             {
+                _mode = 0;
                 new Thread(() => AllManager()).Start();
             }
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
-
+                _mode = 1;
+                new Thread(() => AllManager()).Start();
             }
             
         }
@@ -363,7 +367,6 @@ namespace Pairs_Trading.Forms
         //}
 
         
-
         private double Distance(double x, double y)
         {
             return Math.Abs(x - y);
@@ -553,7 +556,7 @@ namespace Pairs_Trading.Forms
                 //Thread.Sleep(1);
             }
             UISync.Execute(() => txtNearestNeighbour.Text = _nearestNeighbour.ToString());
-            StreamWriter strw = new StreamWriter(_pathName + "\\Pairs.csv", true);
+            StreamWriter strw = new StreamWriter(_pathName + "\\Pairs\\Pairs.csv", true);
             strw.WriteLine(stock.ToString() + "," + txtNearestNeighbour.Text + "," + _minDistance);
             strw.Close();
             _neighborThreadAlive = false;
@@ -561,13 +564,25 @@ namespace Pairs_Trading.Forms
 
         private void Worker(int firstStock, int secondStock)
         {
-            double currentDistance = GetDTWDistance(firstStock, secondStock);
+            double currentDistance = 0.0;
+
+            if(_mode == 0)
+            {
+            currentDistance = GetDTWDistance(firstStock, secondStock);   
+            }
+            else if (_mode == 1)
+            {
+                currentDistance = GetEuclideanDistance(firstStock, secondStock);
+            }
+
             if (currentDistance < _minDistance)
             {
                 _minDistance = currentDistance;
                 _nearestNeighbour = secondStock;
             }
+
             //UISync.Execute(() => pbProgress.Value++);
+
             if (pbProgress.Value == _stockCount)
             {
                 btnGetDistance.Enabled = true;
