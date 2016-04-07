@@ -173,13 +173,13 @@ namespace Pairs_Trading.Forms
             if (cboxDistanceMeasure.SelectedIndex == 0)
             {
                 _mode = 0;
-                _DistanceThread = new Thread(() => Work(stock));
+                _DistanceThread = new Thread(() => Work(stock, false));
                 _DistanceThread.Start();
             }
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
                 _mode = 1;
-                _DistanceThread = new Thread(() => Work(stock));
+                _DistanceThread = new Thread(() => Work(stock, false));
                 _DistanceThread.Start();
             }
         }
@@ -190,6 +190,9 @@ namespace Pairs_Trading.Forms
             pbProgress.Value = 0;
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
+            btnGetDistance.Enabled = false;
+            btnGetCorrelation.Enabled = false;
+            btnAllNearestNeighbors.Enabled = false;
 
             if (cboxDistanceMeasure.SelectedIndex == 0)
             {
@@ -374,12 +377,12 @@ namespace Pairs_Trading.Forms
 
         private void AllManager()
         {
-            StreamWriter strw = new StreamWriter(_pathName + "\\Pairs.csv", false);
-            strw.WriteLine("Stock #1,Stock #2,Distance");
-            strw.Close();
+            //StreamWriter strw = new StreamWriter(_pathName + "\\Pairs.csv", false);
+            //strw.WriteLine("Stock #1,Stock #2,Distance");
+            //strw.Close();
             for (int i = 0; i < _stockCount; i++)
             {
-                _DistanceThread = new Thread(() => Work(i));
+                _DistanceThread = new Thread(() => Work(i, true));
                 _neighborThreadAlive = true;
                 _DistanceThread.Start();
                 while (_neighborThreadAlive)
@@ -388,6 +391,11 @@ namespace Pairs_Trading.Forms
                 }
                 UISync.Execute(() => pbProgress.Value++);
             }
+            UISync.Execute(() =>btnGetDistance.Enabled = true);
+            UISync.Execute(() =>btnNearestNeighbor.Enabled = true);
+            UISync.Execute(() =>btnGetDistance.Enabled = true);
+            UISync.Execute(() =>btnGetCorrelation.Enabled = true);
+            UISync.Execute(() =>btnAllNearestNeighbors.Enabled = true);
         }
 
         private double DTW(List<double> stock1, List<double> stock2, int w)
@@ -516,30 +524,51 @@ namespace Pairs_Trading.Forms
 
         #region ' Threading '
 
-        private void Work(int stock)
+        private void Work(int firstStock, bool all)
         {
-            _minDistance = double.MaxValue;
+            double currentDistance = 0.0;
             _nearestNeighbour = -1;
+            _minDistance = double.MaxValue;
             for (int i = 0; i < _stockCount; i++)
             {
-                if (i == stock)
+                
+                if (i == firstStock)
                 {
                     continue;
                 }
 
                 // Wait for an available worker thread slot.
-                while (_activeWorkers >= numWorkers.Value)
+                //while (_activeWorkers >= numWorkers.Value)
+                //{
+                //    // Sleep to relieve the CPU.
+                //    //Thread.Sleep(1);
+                //}
+
+                
+
+                if (_mode == 0)
                 {
-                    // Sleep to relieve the CPU.
-                    //Thread.Sleep(1);
+                    currentDistance = GetDTWDistance(firstStock, i);
+                }
+                else if (_mode == 1)
+                {
+                    currentDistance = GetEuclideanDistance(firstStock, i);
                 }
 
+                if (currentDistance < _minDistance)
+                {
+                    _minDistance = currentDistance;
+                    _nearestNeighbour = i;
+                }
+
+                //UISync.Execute(() => pbProgress.Value++);
+
                 // Worker thread available, reserve it.
-                _activeWorkers++;
+                //_activeWorkers++;
 
                 // Create the worker thread supplied with quandl code and stock name.
-                int secondStock = i; // Fix this, this is for data race prevention.
-                new Thread(() => Worker(stock, secondStock)).Start();
+                //int secondStock = i; // Fix this, this is for data race prevention.
+                //new Thread(() => Worker(stock, secondStock)).Start();
 
                 /*double currentDistance = getDTWDistance(Int32.Parse(txtStock.Text), i);
                 if (currentDistance < _minDistance)
@@ -550,15 +579,26 @@ namespace Pairs_Trading.Forms
             }
 
             // Wait for all workers to exit before printing a result.
-            while (_activeWorkers > 0)
+            //while (_activeWorkers > 0)
+            //{
+            //    // Sleep to relieve the CPU.
+            //    //Thread.Sleep(1);
+            //}
+            if (!all)
             {
-                // Sleep to relieve the CPU.
-                //Thread.Sleep(1);
+                UISync.Execute(() => btnGetDistance.Enabled = true);
+                UISync.Execute(() => btnNearestNeighbor.Enabled = true);
             }
+            
+
             UISync.Execute(() => txtNearestNeighbour.Text = _nearestNeighbour.ToString());
-            StreamWriter strw = new StreamWriter(_pathName + "\\Pairs\\Pairs.csv", true);
-            strw.WriteLine(stock.ToString() + "," + txtNearestNeighbour.Text + "," + _minDistance);
-            strw.Close();
+
+            // Create directory if it does not exist.
+            //System.IO.Directory.CreateDirectory(_pathName + @"\Pairs");
+
+            //StreamWriter strw = new StreamWriter(_pathName + "\\Pairs\\Pairs.csv", true);
+            //strw.WriteLine(firstStock.ToString() + "," + txtNearestNeighbour.Text + "," + _minDistance);
+            //strw.Close();
             _neighborThreadAlive = false;
         }
 
