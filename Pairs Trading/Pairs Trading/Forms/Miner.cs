@@ -133,7 +133,15 @@ namespace Pairs_Trading.Forms
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
 
-            txtDistance.Text = GetDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
+            if (cboxDistanceMeasure.SelectedIndex == 0)
+            {
+                txtDistance.Text = GetDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
+            }
+            else if (cboxDistanceMeasure.SelectedIndex == 1)
+            {
+                txtDistance.Text = GetEuclideanDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
+            }
+            
             btnGetDistance.Enabled = true;
             btnNearestNeighbor.Enabled = true;
             //MessageBox.Show(DTW(stocksPrices[0],stocksPrices[1]).ToString());
@@ -159,7 +167,7 @@ namespace Pairs_Trading.Forms
             }
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
-                txtNearestNeighbour.Text = GetEuclideanDistance(0, 1).ToString();
+                
             }
         }
 
