@@ -26,7 +26,7 @@ namespace Pairs_Trading.Forms
                 _sync = sync;
             }
 
-            public static void Execute(Action action)
+            public static void Execute(System.Action action)
             {
                 try
                 {
