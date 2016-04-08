@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Monitor));
             this.lblStockCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
@@ -48,9 +48,14 @@
             this.numThreshold = new System.Windows.Forms.NumericUpDown();
             this.lblThreshold = new System.Windows.Forms.Label();
             this.timerMonitor = new System.Windows.Forms.Timer(this.components);
+            this.lblCurrentCorrelation = new System.Windows.Forms.Label();
+            this.txtCurrentCorrelation = new System.Windows.Forms.TextBox();
+            this.numWindow = new System.Windows.Forms.NumericUpDown();
+            this.lblWindow = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStockCount
@@ -106,10 +111,10 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.SystemColors.Control;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(272, 252);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(606, 235);
@@ -119,7 +124,7 @@
             // btnMonitor
             // 
             this.btnMonitor.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnMonitor.Location = new System.Drawing.Point(15, 236);
+            this.btnMonitor.Location = new System.Drawing.Point(15, 266);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(220, 23);
             this.btnMonitor.TabIndex = 32;
@@ -208,7 +213,7 @@
             0,
             0,
             131072});
-            this.numThreshold.Location = new System.Drawing.Point(201, 196);
+            this.numThreshold.Location = new System.Drawing.Point(201, 226);
             this.numThreshold.Maximum = new decimal(new int[] {
             1,
             0,
@@ -227,7 +232,7 @@
             // lblThreshold
             // 
             this.lblThreshold.AutoSize = true;
-            this.lblThreshold.Location = new System.Drawing.Point(12, 196);
+            this.lblThreshold.Location = new System.Drawing.Point(12, 226);
             this.lblThreshold.Name = "lblThreshold";
             this.lblThreshold.Size = new System.Drawing.Size(106, 13);
             this.lblThreshold.TabIndex = 51;
@@ -239,11 +244,68 @@
             this.timerMonitor.Interval = 50;
             this.timerMonitor.Tick += new System.EventHandler(this.timerMonitor_Tick);
             // 
+            // lblCurrentCorrelation
+            // 
+            this.lblCurrentCorrelation.AutoSize = true;
+            this.lblCurrentCorrelation.Location = new System.Drawing.Point(12, 292);
+            this.lblCurrentCorrelation.Name = "lblCurrentCorrelation";
+            this.lblCurrentCorrelation.Size = new System.Drawing.Size(100, 13);
+            this.lblCurrentCorrelation.TabIndex = 53;
+            this.lblCurrentCorrelation.Text = "Current Correlation: ";
+            this.lblCurrentCorrelation.Visible = false;
+            // 
+            // txtCurrentCorrelation
+            // 
+            this.txtCurrentCorrelation.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.txtCurrentCorrelation.Location = new System.Drawing.Point(118, 292);
+            this.txtCurrentCorrelation.Name = "txtCurrentCorrelation";
+            this.txtCurrentCorrelation.Size = new System.Drawing.Size(100, 20);
+            this.txtCurrentCorrelation.TabIndex = 54;
+            this.txtCurrentCorrelation.Text = "0";
+            this.txtCurrentCorrelation.Visible = false;
+            // 
+            // numWindow
+            // 
+            this.numWindow.Location = new System.Drawing.Point(229, 198);
+            this.numWindow.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numWindow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numWindow.Name = "numWindow";
+            this.numWindow.Size = new System.Drawing.Size(55, 20);
+            this.numWindow.TabIndex = 56;
+            this.numWindow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numWindow.Visible = false;
+            // 
+            // lblWindow
+            // 
+            this.lblWindow.AutoSize = true;
+            this.lblWindow.Location = new System.Drawing.Point(12, 198);
+            this.lblWindow.Name = "lblWindow";
+            this.lblWindow.Size = new System.Drawing.Size(211, 13);
+            this.lblWindow.TabIndex = 55;
+            this.lblWindow.Text = "Calculate correlation within this many days: ";
+            this.lblWindow.Visible = false;
+            // 
             // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 499);
+            this.Controls.Add(this.numWindow);
+            this.Controls.Add(this.lblWindow);
+            this.Controls.Add(this.txtCurrentCorrelation);
+            this.Controls.Add(this.lblCurrentCorrelation);
             this.Controls.Add(this.numThreshold);
             this.Controls.Add(this.lblThreshold);
             this.Controls.Add(this.numDays);
@@ -265,6 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numWindow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,5 +351,9 @@
         private System.Windows.Forms.NumericUpDown numThreshold;
         private System.Windows.Forms.Label lblThreshold;
         private System.Windows.Forms.Timer timerMonitor;
+        private System.Windows.Forms.Label lblCurrentCorrelation;
+        private System.Windows.Forms.TextBox txtCurrentCorrelation;
+        private System.Windows.Forms.NumericUpDown numWindow;
+        private System.Windows.Forms.Label lblWindow;
     }
 }

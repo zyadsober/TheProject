@@ -109,10 +109,14 @@ namespace Pairs_Trading.Forms
             lblSecondStock.Visible = true;
             txtFirstStock.Visible = true;
             txtSecondStock.Visible = true;
+            lblWindow.Visible = true;
+            numWindow.Visible = true;
             lblDays.Visible = true;
             numDays.Visible = true;
             lblThreshold.Visible = true;
             numThreshold.Visible = true;
+            lblCurrentCorrelation.Visible = true;
+            txtCurrentCorrelation.Visible = true;
             btnMonitor.Visible = true;
 
         }
@@ -198,7 +202,10 @@ namespace Pairs_Trading.Forms
             // Now increment daily and check the correlation.
             else if (_currentDay < _stockPrices[0].Count)
             {
-                double correlation = Correlation(_stockPrices[0], _stockPrices[1], _currentDay);
+                double correlation = Correlation(_stockPrices[0], _stockPrices[1], _currentDay, (int)numWindow.Value);
+
+                txtCurrentCorrelation.Text = correlation.ToString();
+
                 chart1.Series[_stockName0].Points.AddY(_stockPrices[0][_currentDay]);
                 chart1.Series[_stockName1].Points.AddY(_stockPrices[1][_currentDay]);
                 if (correlation < (double)numThreshold.Value)
@@ -219,32 +226,32 @@ namespace Pairs_Trading.Forms
 
         #region ' Support Methods '
 
-        private double Correlation(List<double> stock1, List<double> stock2, int days)
+        private double Correlation(List<double> stock1, List<double> stock2, int Lastday, int numberOfDays)
         {
-            return Covariance(stock1, stock2, days) / (Std(stock1, days) * Std(stock2, days));
+            return Covariance(stock1, stock2, Lastday, numberOfDays) / (Std(stock1, Lastday, numberOfDays) * Std(stock2, Lastday, numberOfDays));
         }
 
-        private double Covariance(List<double> stock1, List<double> stock2, int days)
+        private double Covariance(List<double> stock1, List<double> stock2, int Lastday, int numberOfDays)
         {
             double sum = 0;
-            double mean1 = Mean(stock1, days), mean2 = Mean(stock2, days);
-            for (int i = 0; i < stock1.Count && i < days; i++)
+            double mean1 = Mean(stock1, Lastday, numberOfDays), mean2 = Mean(stock2, Lastday, numberOfDays);
+            for (int i = Lastday - numberOfDays; i < stock1.Count && i < Lastday; i++)
                 sum += (stock1[i] - mean1) * (stock2[i] - mean2);
             return sum / (stock1.Count - 1);
         }
 
-        private double Std(List<double> stock, int days)
+        private double Std(List<double> stock, int Lastday, int numberOfDays)
         {
-            double sum = 0, mean = Mean(stock, days); ;
-            for (int i = 0; i < stock.Count && i < days; i++)
+            double sum = 0, mean = Mean(stock, Lastday, numberOfDays);
+            for (int i = Lastday - numberOfDays; i < stock.Count && i < Lastday; i++)
                 sum += (stock[i] - mean) * (stock[i] - mean);
             return Math.Sqrt(sum / (stock.Count - 1));
         }
 
-        private double Mean(List<double> stock, int days)
+        private double Mean(List<double> stock, int Lastday, int numberOfDays)
         {
             double sum = 0;
-            for (int i = 0; i < stock.Count && i < days; i++)
+            for (int i = Lastday - numberOfDays; i < stock.Count && i < Lastday; i++)
                 sum += stock[i];
             return sum / stock.Count;
         }
