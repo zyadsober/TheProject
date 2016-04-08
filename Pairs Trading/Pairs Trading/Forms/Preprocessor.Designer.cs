@@ -38,7 +38,7 @@
             this.datePickerSecond = new System.Windows.Forms.DateTimePicker();
             this.lblDate = new System.Windows.Forms.Label();
             this.btnProcess = new System.Windows.Forms.Button();
-            this.lblLineCount = new System.Windows.Forms.Label();
+            this.lblStockCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
             this.datePickerFirst = new System.Windows.Forms.DateTimePicker();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
@@ -145,15 +145,15 @@
             this.btnProcess.Visible = false;
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
-            // lblLineCount
+            // lblStockCount
             // 
-            this.lblLineCount.AutoSize = true;
-            this.lblLineCount.Location = new System.Drawing.Point(88, 92);
-            this.lblLineCount.Name = "lblLineCount";
-            this.lblLineCount.Size = new System.Drawing.Size(67, 13);
-            this.lblLineCount.TabIndex = 31;
-            this.lblLineCount.Text = "_stockCount";
-            this.lblLineCount.Visible = false;
+            this.lblStockCount.AutoSize = true;
+            this.lblStockCount.Location = new System.Drawing.Point(88, 92);
+            this.lblStockCount.Name = "lblStockCount";
+            this.lblStockCount.Size = new System.Drawing.Size(67, 13);
+            this.lblStockCount.TabIndex = 31;
+            this.lblStockCount.Text = "_stockCount";
+            this.lblStockCount.Visible = false;
             // 
             // lblLineCountIntro
             // 
@@ -296,7 +296,7 @@
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.pbProgress);
             this.Controls.Add(this.datePickerFirst);
-            this.Controls.Add(this.lblLineCount);
+            this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.lblDate);
@@ -329,7 +329,7 @@
         private System.Windows.Forms.DateTimePicker datePickerSecond;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Button btnProcess;
-        private System.Windows.Forms.Label lblLineCount;
+        private System.Windows.Forms.Label lblStockCount;
         private System.Windows.Forms.Label lblLineCountIntro;
         private System.Windows.Forms.DateTimePicker datePickerFirst;
         private System.Windows.Forms.ProgressBar pbProgress;

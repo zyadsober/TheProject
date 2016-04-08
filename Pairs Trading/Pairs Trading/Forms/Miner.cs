@@ -107,8 +107,8 @@ namespace Pairs_Trading.Forms
             _stockCount = _stockNames.Count();
             pbProgress.Maximum = _stockCount;
 
-            lblLineCount.Text = _stockCount.ToString();
-            lblLineCount.Visible = true;
+            lblStockCount.Text = _stockCount.ToString();
+            lblStockCount.Visible = true;
             lblLineCountIntro.Visible = true;
             lblDistanceMeasure.Visible = true;
             cboxDistanceMeasure.Visible = true;

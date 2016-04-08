@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblLineCount = new System.Windows.Forms.Label();
+            this.lblStockCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lblIntro = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblLineCount
+            // lblStockCount
             // 
-            this.lblLineCount.AutoSize = true;
-            this.lblLineCount.Location = new System.Drawing.Point(88, 89);
-            this.lblLineCount.Name = "lblLineCount";
-            this.lblLineCount.Size = new System.Drawing.Size(67, 13);
-            this.lblLineCount.TabIndex = 26;
-            this.lblLineCount.Text = "_stockCount";
-            this.lblLineCount.Visible = false;
+            this.lblStockCount.AutoSize = true;
+            this.lblStockCount.Location = new System.Drawing.Point(88, 89);
+            this.lblStockCount.Name = "lblStockCount";
+            this.lblStockCount.Size = new System.Drawing.Size(67, 13);
+            this.lblStockCount.TabIndex = 26;
+            this.lblStockCount.Text = "_stockCount";
+            this.lblStockCount.Visible = false;
             // 
             // lblLineCountIntro
             // 
@@ -73,23 +73,24 @@
             this.btnBrowse.TabIndex = 23;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // lblIntro
             // 
             this.lblIntro.AutoSize = true;
             this.lblIntro.Location = new System.Drawing.Point(12, 9);
             this.lblIntro.Name = "lblIntro";
-            this.lblIntro.Size = new System.Drawing.Size(411, 39);
+            this.lblIntro.Size = new System.Drawing.Size(388, 39);
             this.lblIntro.TabIndex = 22;
-            this.lblIntro.Text = "This is a tool to mine for pairs using downloaded stock data.\r\n\r\nBrowse for a fol" +
-    "der containing stock data in CSV format obtained from the Loader tool.\r\n";
+            this.lblIntro.Text = "This is a tool to monitor found pairs using downloaded and processed stock data.\r" +
+    "\n\r\nBrowse for a folder containing the data.\r\n";
             // 
             // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 472);
-            this.Controls.Add(this.lblLineCount);
+            this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
@@ -103,7 +104,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblLineCount;
+        private System.Windows.Forms.Label lblStockCount;
         private System.Windows.Forms.Label lblLineCountIntro;
         private System.Windows.Forms.TextBox txtBrowse;
         private System.Windows.Forms.Button btnBrowse;

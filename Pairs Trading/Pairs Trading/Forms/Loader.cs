@@ -96,8 +96,8 @@ namespace Pairs_Trading.Forms
             txtBrowse.Text = _fileName;
             // Number of stocks, minus 1 because of the header line.
             _stockCount = File.ReadLines(fileDialog.FileName).Count() - 1;
-            lblLineCount.Text = _stockCount.ToString();
-            lblLineCount.Visible = true;
+            lblStockCount.Text = _stockCount.ToString();
+            lblStockCount.Visible = true;
             lblLineCountIntro.Visible = true;
             lblRetieveIntro.Visible = true;
             lblQuandlApiIntro.Visible = true;

@@ -81,8 +81,8 @@ namespace Pairs_Trading.Forms
 
             pbProgress.Maximum = _stockCount*2;
 
-            lblLineCount.Text = _stockCount.ToString();
-            lblLineCount.Visible = true;
+            lblStockCount.Text = _stockCount.ToString();
+            lblStockCount.Visible = true;
             lblLineCountIntro.Visible = true;
             lblNewDirectory.Visible = true;
             txtNewDirectory.Visible = true;

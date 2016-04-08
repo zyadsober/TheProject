@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Miner));
             this.lblIntro = new System.Windows.Forms.Label();
-            this.lblLineCount = new System.Windows.Forms.Label();
+            this.lblStockCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
@@ -77,15 +77,15 @@
             this.lblIntro.Text = "This is a tool to mine for pairs using downloaded stock data.\r\n\r\nBrowse for a fol" +
     "der containing stock data in CSV format obtained from the Loader tool.\r\n";
             // 
-            // lblLineCount
+            // lblStockCount
             // 
-            this.lblLineCount.AutoSize = true;
-            this.lblLineCount.Location = new System.Drawing.Point(85, 89);
-            this.lblLineCount.Name = "lblLineCount";
-            this.lblLineCount.Size = new System.Drawing.Size(67, 13);
-            this.lblLineCount.TabIndex = 21;
-            this.lblLineCount.Text = "_stockCount";
-            this.lblLineCount.Visible = false;
+            this.lblStockCount.AutoSize = true;
+            this.lblStockCount.Location = new System.Drawing.Point(85, 89);
+            this.lblStockCount.Name = "lblStockCount";
+            this.lblStockCount.Size = new System.Drawing.Size(67, 13);
+            this.lblStockCount.TabIndex = 21;
+            this.lblStockCount.Text = "_stockCount";
+            this.lblStockCount.Visible = false;
             // 
             // lblLineCountIntro
             // 
@@ -477,7 +477,7 @@
             this.Controls.Add(this.txtSecondStock);
             this.Controls.Add(this.txtFirstStock);
             this.Controls.Add(this.lblRetreiveDistance);
-            this.Controls.Add(this.lblLineCount);
+            this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
@@ -501,7 +501,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblIntro;
-        private System.Windows.Forms.Label lblLineCount;
+        private System.Windows.Forms.Label lblStockCount;
         private System.Windows.Forms.Label lblLineCountIntro;
         private System.Windows.Forms.TextBox txtBrowse;
         private System.Windows.Forms.Button btnBrowse;

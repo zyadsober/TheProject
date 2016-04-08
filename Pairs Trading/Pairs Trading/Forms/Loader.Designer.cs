@@ -37,7 +37,7 @@
             this.pbDownload = new System.Windows.Forms.ProgressBar();
             this.btnProcess = new System.Windows.Forms.Button();
             this.lblRetieveIntro = new System.Windows.Forms.Label();
-            this.lblLineCount = new System.Windows.Forms.Label();
+            this.lblStockCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
             this.lblIntro = new System.Windows.Forms.Label();
             this.txtBrowse = new System.Windows.Forms.TextBox();
@@ -136,15 +136,15 @@
     "in the directory of the selected CSV.";
             this.lblRetieveIntro.Visible = false;
             // 
-            // lblLineCount
+            // lblStockCount
             // 
-            this.lblLineCount.AutoSize = true;
-            this.lblLineCount.Location = new System.Drawing.Point(88, 87);
-            this.lblLineCount.Name = "lblLineCount";
-            this.lblLineCount.Size = new System.Drawing.Size(67, 13);
-            this.lblLineCount.TabIndex = 17;
-            this.lblLineCount.Text = "_stockCount";
-            this.lblLineCount.Visible = false;
+            this.lblStockCount.AutoSize = true;
+            this.lblStockCount.Location = new System.Drawing.Point(88, 87);
+            this.lblStockCount.Name = "lblStockCount";
+            this.lblStockCount.Size = new System.Drawing.Size(67, 13);
+            this.lblStockCount.TabIndex = 17;
+            this.lblStockCount.Text = "_stockCount";
+            this.lblStockCount.Visible = false;
             // 
             // lblLineCountIntro
             // 
@@ -201,7 +201,7 @@
             this.Controls.Add(this.pbDownload);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.lblRetieveIntro);
-            this.Controls.Add(this.lblLineCount);
+            this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.txtBrowse);
@@ -227,7 +227,7 @@
         private System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.Label lblRetieveIntro;
-        private System.Windows.Forms.Label lblLineCount;
+        private System.Windows.Forms.Label lblStockCount;
         private System.Windows.Forms.Label lblLineCountIntro;
         private System.Windows.Forms.Label lblIntro;
         private System.Windows.Forms.TextBox txtBrowse;
