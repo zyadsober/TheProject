@@ -208,6 +208,7 @@
             // 
             // numThreshold
             // 
+            this.numThreshold.DecimalPlaces = 2;
             this.numThreshold.Increment = new decimal(new int[] {
             1,
             0,
