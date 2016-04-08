@@ -154,7 +154,6 @@
             // 
             this.btnMonitor.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnMonitor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMonitor.Enabled = false;
             this.btnMonitor.Location = new System.Drawing.Point(9, 45);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(265, 23);

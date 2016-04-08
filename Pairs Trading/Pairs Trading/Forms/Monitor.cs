@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Pairs_Trading.Forms
 {
@@ -76,8 +76,22 @@ namespace Pairs_Trading.Forms
 
             _stockNames = Directory.GetFiles(_pathName);
             // Maybe filer out non-csv files?
-
+            
             _stockCount = _stockNames.Count();
+
+            Series series1;
+            string[] typeArray = { "01.01.2011", "02.01.2011", "03.01.2011", "04.01.2011", "05.01.2011" };
+
+            int[] pointsArray = { 1, 3, 9, 4, 2 };
+            int i = 5;
+            while (i > 0)
+            {
+                i--;
+                series1 = this.chart1.Series.Add(typeArray[i]);
+                series1.Points.AddXY("Dates", pointsArray[i]);
+                series1.ChartType = SeriesChartType.Line; // THIS LINE DOES NOT WORK
+
+            }
         }
 
         #region ' Event Handlers '
