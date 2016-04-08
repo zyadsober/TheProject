@@ -30,13 +30,22 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Monitor));
             this.lblStockCount = new System.Windows.Forms.Label();
             this.lblLineCountIntro = new System.Windows.Forms.Label();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lblIntro = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnMonitor = new System.Windows.Forms.Button();
+            this.lblSecondStock = new System.Windows.Forms.Label();
+            this.lblFirstStock = new System.Windows.Forms.Label();
+            this.txtSecondStock = new System.Windows.Forms.TextBox();
+            this.txtFirstStock = new System.Windows.Forms.TextBox();
+            this.datePickerFirst = new System.Windows.Forms.DateTimePicker();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.datePickerSecond = new System.Windows.Forms.DateTimePicker();
+            this.lblDays = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,35 +97,130 @@
             this.lblIntro.Size = new System.Drawing.Size(388, 39);
             this.lblIntro.TabIndex = 22;
             this.lblIntro.Text = "This is a tool to monitor found pairs using downloaded and processed stock data.\r" +
-    "\n\r\nBrowse for a folder containing the data.\r\n";
+    "\n\r\nBrowse for a folder containing the data to be monitored.\r\n";
             // 
             // chart1
             // 
+            this.chart1.BackColor = System.Drawing.SystemColors.Control;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(91, 149);
+            this.chart1.Location = new System.Drawing.Point(272, 252);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
+            this.chart1.Size = new System.Drawing.Size(606, 235);
             this.chart1.TabIndex = 27;
             this.chart1.Text = "chart1";
+            // 
+            // btnMonitor
+            // 
+            this.btnMonitor.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnMonitor.Location = new System.Drawing.Point(15, 223);
+            this.btnMonitor.Name = "btnMonitor";
+            this.btnMonitor.Size = new System.Drawing.Size(220, 23);
+            this.btnMonitor.TabIndex = 32;
+            this.btnMonitor.Text = "Monitor";
+            this.btnMonitor.UseVisualStyleBackColor = false;
+            this.btnMonitor.Visible = false;
+            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
+            // lblSecondStock
+            // 
+            this.lblSecondStock.AutoSize = true;
+            this.lblSecondStock.Location = new System.Drawing.Point(12, 144);
+            this.lblSecondStock.Name = "lblSecondStock";
+            this.lblSecondStock.Size = new System.Drawing.Size(51, 13);
+            this.lblSecondStock.TabIndex = 31;
+            this.lblSecondStock.Text = "Stock #2";
+            this.lblSecondStock.Visible = false;
+            // 
+            // lblFirstStock
+            // 
+            this.lblFirstStock.AutoSize = true;
+            this.lblFirstStock.Location = new System.Drawing.Point(12, 118);
+            this.lblFirstStock.Name = "lblFirstStock";
+            this.lblFirstStock.Size = new System.Drawing.Size(51, 13);
+            this.lblFirstStock.TabIndex = 30;
+            this.lblFirstStock.Text = "Stock #1";
+            this.lblFirstStock.Visible = false;
+            // 
+            // txtSecondStock
+            // 
+            this.txtSecondStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.txtSecondStock.Location = new System.Drawing.Point(69, 141);
+            this.txtSecondStock.Name = "txtSecondStock";
+            this.txtSecondStock.Size = new System.Drawing.Size(100, 20);
+            this.txtSecondStock.TabIndex = 29;
+            this.txtSecondStock.Text = "1";
+            this.txtSecondStock.Visible = false;
+            // 
+            // txtFirstStock
+            // 
+            this.txtFirstStock.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.txtFirstStock.Location = new System.Drawing.Point(69, 118);
+            this.txtFirstStock.Name = "txtFirstStock";
+            this.txtFirstStock.Size = new System.Drawing.Size(100, 20);
+            this.txtFirstStock.TabIndex = 28;
+            this.txtFirstStock.Text = "0";
+            this.txtFirstStock.Visible = false;
+            // 
+            // datePickerFirst
+            // 
+            this.datePickerFirst.Location = new System.Drawing.Point(179, 164);
+            this.datePickerFirst.Name = "datePickerFirst";
+            this.datePickerFirst.Size = new System.Drawing.Size(200, 20);
+            this.datePickerFirst.TabIndex = 36;
+            this.datePickerFirst.Visible = false;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(144, 197);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(29, 13);
+            this.lblDate.TabIndex = 35;
+            this.lblDate.Text = "And ";
+            this.lblDate.Visible = false;
+            // 
+            // datePickerSecond
+            // 
+            this.datePickerSecond.Location = new System.Drawing.Point(179, 197);
+            this.datePickerSecond.Name = "datePickerSecond";
+            this.datePickerSecond.Size = new System.Drawing.Size(200, 20);
+            this.datePickerSecond.TabIndex = 34;
+            this.datePickerSecond.Visible = false;
+            // 
+            // lblDays
+            // 
+            this.lblDays.AutoSize = true;
+            this.lblDays.Location = new System.Drawing.Point(12, 164);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(161, 13);
+            this.lblDays.TabIndex = 33;
+            this.lblDays.Text = "Create data from dates between \r\n";
+            this.lblDays.Visible = false;
             // 
             // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 499);
+            this.Controls.Add(this.datePickerFirst);
+            this.Controls.Add(this.lblDate);
+            this.Controls.Add(this.datePickerSecond);
+            this.Controls.Add(this.lblDays);
+            this.Controls.Add(this.btnMonitor);
+            this.Controls.Add(this.lblSecondStock);
+            this.Controls.Add(this.lblFirstStock);
+            this.Controls.Add(this.txtSecondStock);
+            this.Controls.Add(this.txtFirstStock);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblIntro);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Monitor";
             this.Text = "Monitor";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -133,5 +237,14 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Label lblIntro;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button btnMonitor;
+        private System.Windows.Forms.Label lblSecondStock;
+        private System.Windows.Forms.Label lblFirstStock;
+        private System.Windows.Forms.TextBox txtSecondStock;
+        private System.Windows.Forms.TextBox txtFirstStock;
+        private System.Windows.Forms.DateTimePicker datePickerFirst;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.DateTimePicker datePickerSecond;
+        private System.Windows.Forms.Label lblDays;
     }
 }

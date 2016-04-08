@@ -63,6 +63,8 @@ namespace Pairs_Trading.Forms
 
         #endregion
 
+        #region ' Event Handlers '
+
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
@@ -76,25 +78,92 @@ namespace Pairs_Trading.Forms
 
             _stockNames = Directory.GetFiles(_pathName);
             // Maybe filer out non-csv files?
-            
+
             _stockCount = _stockNames.Count();
 
-            Series series1;
-            string[] typeArray = { "01.01.2011", "02.01.2011", "03.01.2011", "04.01.2011", "05.01.2011" };
+            /* This is how we will plot points on the chart */
+            //chart1.Series["Series1"].ChartType = SeriesChartType.Line;
+            //chart1.Series["Series1"].Points.AddXY(50, 50);
+            //chart1.Series["Series1"].Points.AddXY(60, 70);
+            //chart1.Series["Series1"].Points.AddXY(80, 30);
 
-            int[] pointsArray = { 1, 3, 9, 4, 2 };
-            int i = 5;
-            while (i > 0)
-            {
-                i--;
-                series1 = this.chart1.Series.Add(typeArray[i]);
-                series1.Points.AddXY("Dates", pointsArray[i]);
-                series1.ChartType = SeriesChartType.Line; // THIS LINE DOES NOT WORK
+            lblStockCount.Text = _stockCount.ToString();
+            lblStockCount.Visible = true;
+            lblLineCountIntro.Visible = true;
+            lblFirstStock.Visible = true;
+            lblSecondStock.Visible = true;
+            txtFirstStock.Visible = true;
+            txtSecondStock.Visible = true;
+            btnMonitor.Visible = true;
 
-            }
         }
 
-        #region ' Event Handlers '
+        private void btnMonitor_Click(object sender, EventArgs e)
+        {
+            string line1, line2;
+            int firstStock = Int32.Parse(txtFirstStock.Text);
+            int secondStock = Int32.Parse(txtSecondStock.Text);
+            List<List<double>> stockPrices = new List<List<double>>();
+            StreamReader strReader1 = new StreamReader(_stockNames[firstStock]);
+            StreamReader strReader2 = new StreamReader(_stockNames[secondStock]);
+            line1 = strReader1.ReadLine();
+            line2 = strReader2.ReadLine();
+
+            stockPrices.Add(new List<double>());
+            stockPrices.Add(new List<double>());
+            while (!strReader1.EndOfStream && !strReader2.EndOfStream)
+            {
+                line1 = strReader1.ReadLine();
+                line2 = strReader2.ReadLine();
+                try
+                {
+                    DateTime dt1 = Convert.ToDateTime(line1.Split(',')[0]);
+                    DateTime dt2 = Convert.ToDateTime(line2.Split(',')[0]);
+                    while (dt1.Date != dt2.Date && !strReader1.EndOfStream && !strReader2.EndOfStream)
+                    {
+                        while (dt1.Date > dt2.Date && !strReader1.EndOfStream)
+                        {
+                            line1 = strReader1.ReadLine();
+                            dt1 = Convert.ToDateTime(line1.Split(',')[0]);
+                        }
+                        while (dt1.Date < dt2.Date && !strReader2.EndOfStream)
+                        {
+                            line2 = strReader2.ReadLine();
+                            dt2 = Convert.ToDateTime(line2.Split(',')[0]);
+                        }
+                    }
+                    if (dt1.Date == dt2.Date)
+                    {
+                        stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
+                        stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[4]));
+                    }
+                }
+                catch (Exception)
+                {
+
+                    continue;
+                }
+            }
+
+            string stockName0 = _stockNames[firstStock].Substring(_stockNames[firstStock].LastIndexOf("\\") + 1);
+            stockName0 = stockName0.Substring(0, stockName0.LastIndexOf(".csv"));
+            string stockName1 = _stockNames[secondStock].Substring(_stockNames[secondStock].LastIndexOf("\\") + 1);
+            stockName1 = stockName1.Substring(0, stockName1.LastIndexOf(".csv"));
+
+            chart1.Series.Clear();
+
+            chart1.Series.Add(stockName0);
+            chart1.Series.Add(stockName1);
+
+            chart1.Series[stockName0].ChartType = SeriesChartType.Line;
+            chart1.Series[stockName1].ChartType = SeriesChartType.Line;
+
+            for (int i = 0; i < stockPrices[0].Count; i++)
+            {
+                chart1.Series[stockName0].Points.AddY(stockPrices[0][i]);
+                chart1.Series[stockName1].Points.AddY(stockPrices[1][i]);
+            }
+        }
 
         #endregion
 
