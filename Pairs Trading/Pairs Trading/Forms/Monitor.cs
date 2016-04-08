@@ -165,11 +165,49 @@ namespace Pairs_Trading.Forms
                 chart1.Series[stockName0].Points.AddY(stockPrices[0][i]);
                 chart1.Series[stockName1].Points.AddY(stockPrices[1][i]);
             }
+
+            for (int i = (int)numDays.Value; i < stockPrices[0].Count; i++)
+            {
+                double correlation = Correlation(stockPrices[0], stockPrices[1], i);
+                double lol = correlation / 2;
+                chart1.Series[stockName0].Points.AddY(stockPrices[0][i]);
+                chart1.Series[stockName1].Points.AddY(stockPrices[1][i]);
+            }
         }
 
         #endregion
 
         #region ' Support Methods '
+
+        private double Correlation(List<double> stock1, List<double> stock2, int days)
+        {
+            return Covariance(stock1, stock2, days) / (Std(stock1, days) * Std(stock2, days));
+        }
+
+        private double Covariance(List<double> stock1, List<double> stock2, int days)
+        {
+            double sum = 0;
+            double mean1 = Mean(stock1, days), mean2 = Mean(stock2, days);
+            for (int i = 0; i < stock1.Count && i < days; i++)
+                sum += (stock1[i] - mean1) * (stock2[i] - mean2);
+            return sum / (stock1.Count - 1);
+        }
+
+        private double Std(List<double> stock, int days)
+        {
+            double sum = 0, mean = Mean(stock, days); ;
+            for (int i = 0; i < stock.Count && i < days; i++)
+                sum += (stock[i] - mean) * (stock[i] - mean);
+            return Math.Sqrt(sum / (stock.Count - 1));
+        }
+
+        private double Mean(List<double> stock, int days)
+        {
+            double sum = 0;
+            for (int i = 0; i < stock.Count && i < days; i++)
+                sum += stock[i];
+            return sum / stock.Count;
+        }
 
         #endregion
 
