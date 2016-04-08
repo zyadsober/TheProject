@@ -51,6 +51,10 @@ namespace Pairs_Trading.Forms
         private string _apiKey;
         private int _activeWorkers;
         private List<string> _stocks;
+        List<List<double>> _stockPrices;
+        string _stockName0;
+        string _stockName1;
+        int _currentDay;
 
         #endregion
 
@@ -59,6 +63,17 @@ namespace Pairs_Trading.Forms
         public Monitor()
         {
             InitializeComponent();
+
+            // Initial variables.
+            _fileName = string.Empty;
+            _pathName = string.Empty;
+            _stockCount = 0;
+            _activeWorkers = 0;
+            _stockName0 = string.Empty;
+            _stockName1 = string.Empty;
+            _currentDay = 0;
+            
+            UISync.Init(this);
         }
 
         #endregion
@@ -96,6 +111,8 @@ namespace Pairs_Trading.Forms
             txtSecondStock.Visible = true;
             lblDays.Visible = true;
             numDays.Visible = true;
+            lblThreshold.Visible = true;
+            numThreshold.Visible = true;
             btnMonitor.Visible = true;
 
         }
@@ -105,14 +122,16 @@ namespace Pairs_Trading.Forms
             string line1, line2;
             int firstStock = Int32.Parse(txtFirstStock.Text);
             int secondStock = Int32.Parse(txtSecondStock.Text);
-            List<List<double>> stockPrices = new List<List<double>>();
+
+            _stockPrices = new List<List<double>>();
+
             StreamReader strReader1 = new StreamReader(_stockNames[firstStock]);
             StreamReader strReader2 = new StreamReader(_stockNames[secondStock]);
             line1 = strReader1.ReadLine();
             line2 = strReader2.ReadLine();
 
-            stockPrices.Add(new List<double>());
-            stockPrices.Add(new List<double>());
+            _stockPrices.Add(new List<double>());
+            _stockPrices.Add(new List<double>());
             while (!strReader1.EndOfStream && !strReader2.EndOfStream)
             {
                 line1 = strReader1.ReadLine();
@@ -136,8 +155,8 @@ namespace Pairs_Trading.Forms
                     }
                     if (dt1.Date == dt2.Date)
                     {
-                        stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
-                        stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[4]));
+                        _stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
+                        _stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[4]));
                     }
                 }
                 catch (Exception)
@@ -147,31 +166,52 @@ namespace Pairs_Trading.Forms
                 }
             }
 
-            string stockName0 = _stockNames[firstStock].Substring(_stockNames[firstStock].LastIndexOf("\\") + 1);
-            stockName0 = stockName0.Substring(0, stockName0.LastIndexOf(".csv"));
-            string stockName1 = _stockNames[secondStock].Substring(_stockNames[secondStock].LastIndexOf("\\") + 1);
-            stockName1 = stockName1.Substring(0, stockName1.LastIndexOf(".csv"));
+            _stockName0 = _stockNames[firstStock].Substring(_stockNames[firstStock].LastIndexOf("\\") + 1);
+            _stockName0 = _stockName0.Substring(0, _stockName0.LastIndexOf(".csv"));
+
+            _stockName1 = _stockNames[secondStock].Substring(_stockNames[secondStock].LastIndexOf("\\") + 1);
+            _stockName1 = _stockName1.Substring(0, _stockName1.LastIndexOf(".csv"));
 
             chart1.Series.Clear();
 
-            chart1.Series.Add(stockName0);
-            chart1.Series.Add(stockName1);
+            chart1.Series.Add(_stockName0);
+            chart1.Series.Add(_stockName1);
 
-            chart1.Series[stockName0].ChartType = SeriesChartType.Line;
-            chart1.Series[stockName1].ChartType = SeriesChartType.Line;
+            chart1.Series[_stockName0].ChartType = SeriesChartType.Line;
+            chart1.Series[_stockName1].ChartType = SeriesChartType.Line;
 
-            for (int i = 0; i < stockPrices[0].Count && i < numDays.Value; i++)
-            {
-                chart1.Series[stockName0].Points.AddY(stockPrices[0][i]);
-                chart1.Series[stockName1].Points.AddY(stockPrices[1][i]);
+            _currentDay = 0;
+
+            timerMonitor.Start();
+
+        }
+
+        private void timerMonitor_Tick(object sender, EventArgs e)
+        {
+            // Plot the days up until the selected number of days.
+            if(_currentDay <_stockPrices[0].Count && _currentDay < numDays.Value){
+                chart1.Series[_stockName0].Points.AddY(_stockPrices[0][_currentDay]);
+                chart1.Series[_stockName1].Points.AddY(_stockPrices[1][_currentDay]);
+                _currentDay++;
             }
 
-            for (int i = (int)numDays.Value; i < stockPrices[0].Count; i++)
+            // Now increment daily and check the correlation.
+            else if (_currentDay < _stockPrices[0].Count)
             {
-                double correlation = Correlation(stockPrices[0], stockPrices[1], i);
-                double lol = correlation / 2;
-                chart1.Series[stockName0].Points.AddY(stockPrices[0][i]);
-                chart1.Series[stockName1].Points.AddY(stockPrices[1][i]);
+                double correlation = Correlation(_stockPrices[0], _stockPrices[1], _currentDay);
+                chart1.Series[_stockName0].Points.AddY(_stockPrices[0][_currentDay]);
+                chart1.Series[_stockName1].Points.AddY(_stockPrices[1][_currentDay]);
+                if (correlation < (double)numThreshold.Value)
+                {
+                    timerMonitor.Stop();
+                    MessageBox.Show("Correlation is " + correlation);
+                    timerMonitor.Start();
+                }
+                _currentDay++;
+            }
+            else
+            {
+                timerMonitor.Stop();
             }
         }
 
