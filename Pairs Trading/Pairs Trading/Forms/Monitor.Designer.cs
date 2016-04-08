@@ -42,11 +42,10 @@
             this.lblFirstStock = new System.Windows.Forms.Label();
             this.txtSecondStock = new System.Windows.Forms.TextBox();
             this.txtFirstStock = new System.Windows.Forms.TextBox();
-            this.datePickerFirst = new System.Windows.Forms.DateTimePicker();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.datePickerSecond = new System.Windows.Forms.DateTimePicker();
+            this.numDays = new System.Windows.Forms.NumericUpDown();
             this.lblDays = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStockCount
@@ -115,7 +114,7 @@
             // btnMonitor
             // 
             this.btnMonitor.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnMonitor.Location = new System.Drawing.Point(15, 223);
+            this.btnMonitor.Location = new System.Drawing.Point(15, 199);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(220, 23);
             this.btnMonitor.TabIndex = 32;
@@ -164,40 +163,37 @@
             this.txtFirstStock.Text = "0";
             this.txtFirstStock.Visible = false;
             // 
-            // datePickerFirst
+            // numDays
             // 
-            this.datePickerFirst.Location = new System.Drawing.Point(179, 164);
-            this.datePickerFirst.Name = "datePickerFirst";
-            this.datePickerFirst.Size = new System.Drawing.Size(200, 20);
-            this.datePickerFirst.TabIndex = 36;
-            this.datePickerFirst.Visible = false;
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(144, 197);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(29, 13);
-            this.lblDate.TabIndex = 35;
-            this.lblDate.Text = "And ";
-            this.lblDate.Visible = false;
-            // 
-            // datePickerSecond
-            // 
-            this.datePickerSecond.Location = new System.Drawing.Point(179, 197);
-            this.datePickerSecond.Name = "datePickerSecond";
-            this.datePickerSecond.Size = new System.Drawing.Size(200, 20);
-            this.datePickerSecond.TabIndex = 34;
-            this.datePickerSecond.Visible = false;
+            this.numDays.Location = new System.Drawing.Point(201, 173);
+            this.numDays.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numDays.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDays.Name = "numDays";
+            this.numDays.Size = new System.Drawing.Size(55, 20);
+            this.numDays.TabIndex = 50;
+            this.numDays.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDays.Visible = false;
             // 
             // lblDays
             // 
             this.lblDays.AutoSize = true;
-            this.lblDays.Location = new System.Drawing.Point(12, 164);
+            this.lblDays.Location = new System.Drawing.Point(12, 173);
             this.lblDays.Name = "lblDays";
-            this.lblDays.Size = new System.Drawing.Size(161, 13);
-            this.lblDays.TabIndex = 33;
-            this.lblDays.Text = "Create data from dates between \r\n";
+            this.lblDays.Size = new System.Drawing.Size(183, 13);
+            this.lblDays.TabIndex = 49;
+            this.lblDays.Text = "Start Monitoring after this many days: \r\n";
             this.lblDays.Visible = false;
             // 
             // Monitor
@@ -205,9 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 499);
-            this.Controls.Add(this.datePickerFirst);
-            this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.datePickerSecond);
+            this.Controls.Add(this.numDays);
             this.Controls.Add(this.lblDays);
             this.Controls.Add(this.btnMonitor);
             this.Controls.Add(this.lblSecondStock);
@@ -224,6 +218,7 @@
             this.Name = "Monitor";
             this.Text = "Monitor";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,9 +237,7 @@
         private System.Windows.Forms.Label lblFirstStock;
         private System.Windows.Forms.TextBox txtSecondStock;
         private System.Windows.Forms.TextBox txtFirstStock;
-        private System.Windows.Forms.DateTimePicker datePickerFirst;
-        private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.DateTimePicker datePickerSecond;
+        private System.Windows.Forms.NumericUpDown numDays;
         private System.Windows.Forms.Label lblDays;
     }
 }

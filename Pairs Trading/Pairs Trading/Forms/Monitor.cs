@@ -94,6 +94,8 @@ namespace Pairs_Trading.Forms
             lblSecondStock.Visible = true;
             txtFirstStock.Visible = true;
             txtSecondStock.Visible = true;
+            lblDays.Visible = true;
+            numDays.Visible = true;
             btnMonitor.Visible = true;
 
         }
@@ -158,7 +160,7 @@ namespace Pairs_Trading.Forms
             chart1.Series[stockName0].ChartType = SeriesChartType.Line;
             chart1.Series[stockName1].ChartType = SeriesChartType.Line;
 
-            for (int i = 0; i < stockPrices[0].Count; i++)
+            for (int i = 0; i < stockPrices[0].Count && i < numDays.Value; i++)
             {
                 chart1.Series[stockName0].Points.AddY(stockPrices[0][i]);
                 chart1.Series[stockName1].Points.AddY(stockPrices[1][i]);
