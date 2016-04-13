@@ -33,7 +33,9 @@ namespace Pairs_Trading.Forms
         /* _mode is an indicator of the distance measure in use.
          * _mode == -1: No mode set
          * _mode == 0 : DTW
-         * _mode == 1 : Euclidean */
+         * _mode == 1 : Euclidean
+         * This is in order to not use cross thread calls to the UI
+         * Thread from the mining thread.*/
         private short _mode;
 
         #endregion
@@ -44,6 +46,8 @@ namespace Pairs_Trading.Forms
         {
             InitializeComponent();
 
+            /* Set the initial height of the form.
+             * This will change later on successful file browse. */
             this.Height = 150;
 
             // Initial variables.
@@ -66,22 +70,36 @@ namespace Pairs_Trading.Forms
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
+            /* Create a folder browsing dialog.
+             * Show the dialog */
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             DialogResult result = folderDialog.ShowDialog();
+
+            // If the browsing return an invalid code, exit the method.
             if (result != DialogResult.OK)
             {
                 return;
             }
+
+            // Get the path.
             _pathName = folderDialog.SelectedPath;
+
+            // Display the path.
             txtBrowse.Text = _pathName;
 
+            // Get the names of files in the path.
             _stockNames = Directory.GetFiles(_pathName);
-            // Maybe filer out non-csv files?
             
+            // Count the number of stocks contained in the folder.
             _stockCount = _stockNames.Count();
+
+            // Display number of stocks.
+            lblStockCount.Text = _stockCount.ToString();
+
+            // Set progress bar max to stock count.
             pbProgress.Maximum = _stockCount;
 
-            lblStockCount.Text = _stockCount.ToString();
+            // Set the remaining controls to visible.
             lblStockCount.Visible = true;
             lblLineCountIntro.Visible = true;
             lblDistanceMeasure.Visible = true;
@@ -107,59 +125,75 @@ namespace Pairs_Trading.Forms
             txtNearestNeighbour.Visible = true;
             btnAllNearestNeighbors.Visible = true;
 
+            // Update the height of the form to fit the visible controls.
             this.Height = 564;
             
         }
 
         private void btnGetDistance_Click(object sender, EventArgs e)
         {
+            // Reset the progress bar.
             pbProgress.Visible = true;
             pbProgress.Value = 0;
+
+            // Update controls for state changes.
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
 
+            // Check which distance measurement method is selected.
             if (cboxDistanceMeasure.SelectedIndex == 0)
             {
+                // Dispaly DTW distance.
                 txtDistance.Text = GetDTWDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
             }
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
+                // Display Euclidean distance.
                 txtDistance.Text = GetEuclideanDistance(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
             }
-            
+
+            // Update controls for state changes.
             btnGetDistance.Enabled = true;
             btnNearestNeighbor.Enabled = true;
         }
 
         private void btnGetCorrelation_Click(object sender, EventArgs e)
         {
+            // Display the correlation.
             txtCorrelation.Text = GetCorrelation(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
         }
 
         private void btnNearestNeighbour_Click(object sender, EventArgs e)
         {
+            // Update controls for state changes.
             pbProgress.Visible = true;
             pbProgress.Value = 0;
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
 
+            // Get the selected stock.
             int stock = Int32.Parse(txtStock.Text);
+
+            // Check the selected distance measurement method.
             if (cboxDistanceMeasure.SelectedIndex == 0)
             {
+                // Set mode to DTW
                 _mode = 0;
-                _DistanceThread = new Thread(() => Work(stock, false));
-                _DistanceThread.Start();
             }
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
+                // set mode to Euclidean
                 _mode = 1;
-                _DistanceThread = new Thread(() => Work(stock, false));
-                _DistanceThread.Start();
             }
+
+            // Create and start the main mining thread.
+            _DistanceThread = new Thread(() => Work(stock, false));
+            _DistanceThread.Start();
         }
 
         private void btnGetAllNearestNeighbors_Click(object sender, EventArgs e)
         {
+            // Update controls for state changes.
             pbProgress.Visible = true;
             pbProgress.Value = 0;
             btnGetDistance.Enabled = false;
@@ -168,21 +202,28 @@ namespace Pairs_Trading.Forms
             btnGetCorrelation.Enabled = false;
             btnAllNearestNeighbors.Enabled = false;
 
+            // Check the selected distance measurement method.
             if (cboxDistanceMeasure.SelectedIndex == 0)
             {
+                // Set mode to DTW.
                 _mode = 0;
-                new Thread(() => AllManager()).Start();
+                
             }
             else if (cboxDistanceMeasure.SelectedIndex == 1)
             {
+                // Set mode to Euclidean.
                 _mode = 1;
                 new Thread(() => AllManager()).Start();
             }
+
+            // Start new manager thread.
+            new Thread(() => AllManager()).Start();
             
         }
 
         private void Miner_Load(object sender, EventArgs e)
         {
+            // Change selected index on load to DTW.
             cboxDistanceMeasure.SelectedIndex = 0;
         }
 
@@ -193,6 +234,7 @@ namespace Pairs_Trading.Forms
 
         private void cboxDistanceMeasure_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Change Interface to reflect selected distance measurement method.
             lblRetreiveDistance.Text = "Select two pairs to retrieve the " +
                 cboxDistanceMeasure.Text + " distance between them";
             btnGetDistance.Text = "Get " + cboxDistanceMeasure.Text + " Distance";
@@ -210,6 +252,7 @@ namespace Pairs_Trading.Forms
         {
             /* Check weather the date given is within the last given days */
             DateTime dtNow = DateTime.Now;
+
             if ((dtNow - dt).TotalDays <= days)
             {
                 return true;
@@ -219,21 +262,35 @@ namespace Pairs_Trading.Forms
 
         private double GetDTWDistance(int firstStock, int secondStock)
         {
+            // Define local variables.
             StreamReader strReader;
             string line;
-            List<List<double>> stockPrices = new List<List<double>>();;
+            List<List<double>> stockPrices = new List<List<double>>();
+
+            /* Get the stock prices for both stocks.
+             * i indicates the current stock, either first stock or second stock.
+             * i == 0: first stock.
+             * i == 1: second stock. */
             for (int i = 0; i < 2; i++)
             {
-
+                // Open the stock data file.
                 strReader = new StreamReader(_stockNames[(i==0?firstStock:secondStock)]);
+
+                // Read the first line containing the field's names.
                 line = strReader.ReadLine();
-                //stockPrices = new List<List<double>>();
+
+                // Add a new list for the comming stock data.
                 stockPrices.Add(new List<double>());
+
+                // Read the stock data from its file.
                 while (!strReader.EndOfStream)
                 {
+                    // Read a line.
                     line = strReader.ReadLine();
+
                     try
                     {
+                        // Convert the date from the read line to DateTime.
                         DateTime dt = Convert.ToDateTime(line.Split(',')[0]);
 
                         /* If the checkbox for stocks within the last given days is checked,
@@ -258,43 +315,57 @@ namespace Pairs_Trading.Forms
                 }
             }
 
-            //return DTW(stockPrices[0], stockPrices[1]);
             return DTW(stockPrices[0], stockPrices[1], (int)numDTWWindow.Value);
             
         }
 
         private double GetEuclideanDistance(int firstStock, int secondStock)
         {
+            // Define local variables.
             string line1, line2;
             List<List<double>> stockPrices = new List<List<double>>();
+
+            // Open the stock data files for both stocks.
             StreamReader strReader1 = new StreamReader(_stockNames[firstStock]);
             StreamReader strReader2 = new StreamReader(_stockNames[secondStock]);
+
+            // Read first line from each file containing the field's names.
             line1 = strReader1.ReadLine();
             line2 = strReader2.ReadLine();
 
+            // Create new lists for the comming data.
             stockPrices.Add(new List<double>());
             stockPrices.Add(new List<double>());
+
+            // Read stock data from the files.
             while (!strReader1.EndOfStream && !strReader2.EndOfStream)
             {
+                // Read a line from each stock.
                 line1 = strReader1.ReadLine();
                 line2 = strReader2.ReadLine();
                 try
                 {
+                    // Convert the dates from the files to DateTime.
                     DateTime dt1 = Convert.ToDateTime(line1.Split(',')[0]);
                     DateTime dt2 = Convert.ToDateTime(line2.Split(',')[0]);
+
+                    // If the dates are not equal, read from the older date.
                     while (dt1.Date != dt2.Date && !strReader1.EndOfStream && !strReader2.EndOfStream)
                     {
                         while (dt1.Date > dt2.Date && !strReader1.EndOfStream)
                         {
+                            // dt1 is older than dt2, read another line and get the new DateTime.
                             line1 = strReader1.ReadLine();
                             dt1 = Convert.ToDateTime(line1.Split(',')[0]);
                         }
                         while (dt1.Date < dt2.Date && !strReader2.EndOfStream)
                         {
+                            // dt2 is older than dt1, read another line and get the new DateTime.
                             line2 = strReader2.ReadLine();
                             dt2 = Convert.ToDateTime(line2.Split(',')[0]);
                         }
                     }
+                    // When the dates are equal, add the stock prices to our list.
                     if (dt1.Date == dt2.Date)
                     {
                         stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
@@ -307,42 +378,8 @@ namespace Pairs_Trading.Forms
                     continue;
                 }
             }
-
-            //return DTW(stockPrices[0], stockPrices[1]);
             return Euclidean(stockPrices[0], stockPrices[1]);
         }
-        
-        //private double DTW(List<double> stock1, List<double> stock2)
-        //{
-        //    double[,] grid = new double[stock1.Count + 1, stock2.Count + 1];
-        //    for (int i = 1; i < stock1.Count + 1; i++)
-        //        grid[i, 0] = double.PositiveInfinity;
-
-
-        //    for (int i = 1; i < stock2.Count + 1; i++)
-        //        grid[0, i] = double.PositiveInfinity;
-        //    grid[0, 0] = 0;
-        //    for (int i = 1; i < stock1.Count + 1; i++)
-        //    {
-        //        for (int j = 1; j < stock2.Count + 1; j++)
-        //        {
-        //            grid[i, j] = Distance(stock1[i - 1], stock2[j - 1]) + Math.Min(Math.Min(grid[i - 1, j], grid[i, j - 1]), grid[i - 1, j - 1]);
-        //        }
-        //    }
-        //    StreamWriter strw = new StreamWriter(_pathName+"\\Grid.txt");
-        //    for (int i = 0; i < stock1.Count; i++)
-        //    {
-        //        for (int j = 0; j < stock2.Count; j++)
-        //        {
-        //            strw.Write(grid[i, j] + "\t");
-        //        }
-        //        strw.Write("\n");
-        //    }
-        //    strw.Close();
-
-        //        return grid[stock1.Count, stock2.Count];
-        //}
-
         
         private double Distance(double x, double y)
         {
