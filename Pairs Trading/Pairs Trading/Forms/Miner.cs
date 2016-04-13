@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pairs_Trading.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,33 +15,6 @@ namespace Pairs_Trading.Forms
 {
     public partial class Miner : Form
     {
-
-        #region ' Custom Classes '
-
-        private class UISync
-        {
-            private static ISynchronizeInvoke _sync;
-
-            public static void Init(ISynchronizeInvoke sync)
-            {
-                _sync = sync;
-            }
-
-            public static void Execute(Action action)
-            {
-                try
-                {
-                    _sync.Invoke(action, null);
-                    //_sync.BeginInvoke(action, null);
-                }
-                catch
-                {
-                }
-            }
-        }
-
-        #endregion
-
         #region ' Member Variables '
 
         private string _fileName;

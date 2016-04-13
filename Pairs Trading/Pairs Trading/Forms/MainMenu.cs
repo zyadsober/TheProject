@@ -13,10 +13,16 @@ namespace Pairs_Trading
 {
     public partial class MainMenu : Form
     {
+        #region ' Constructors '
+
         public MainMenu()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region ' Event Handlers '
 
         private void btnLoader_Click(object sender, EventArgs e)
         {
@@ -42,5 +48,7 @@ namespace Pairs_Trading
         {
             new Preprocessor().ShowDialog();
         }
+
+        #endregion
     }
 }

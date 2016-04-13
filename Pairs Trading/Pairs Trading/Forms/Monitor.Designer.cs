@@ -45,17 +45,23 @@
             this.txtFirstStock = new System.Windows.Forms.TextBox();
             this.numDays = new System.Windows.Forms.NumericUpDown();
             this.lblDays = new System.Windows.Forms.Label();
-            this.numThreshold = new System.Windows.Forms.NumericUpDown();
+            this.numCorrelationThreshold = new System.Windows.Forms.NumericUpDown();
             this.lblThreshold = new System.Windows.Forms.Label();
             this.timerMonitor = new System.Windows.Forms.Timer(this.components);
             this.lblCurrentCorrelation = new System.Windows.Forms.Label();
             this.txtCurrentCorrelation = new System.Windows.Forms.TextBox();
             this.numWindow = new System.Windows.Forms.NumericUpDown();
             this.lblWindow = new System.Windows.Forms.Label();
+            this.lblSTDThreshold = new System.Windows.Forms.Label();
+            this.numSTDThreshold = new System.Windows.Forms.NumericUpDown();
+            this.txtCorrelation2 = new System.Windows.Forms.TextBox();
+            this.lblMonitorMethod = new System.Windows.Forms.Label();
+            this.cboxMonitorMethod = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSTDThreshold)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStockCount
@@ -206,29 +212,29 @@
             this.lblDays.Text = "Start Monitoring after this many days: \r\n";
             this.lblDays.Visible = false;
             // 
-            // numThreshold
+            // numCorrelationThreshold
             // 
-            this.numThreshold.DecimalPlaces = 2;
-            this.numThreshold.Increment = new decimal(new int[] {
+            this.numCorrelationThreshold.DecimalPlaces = 2;
+            this.numCorrelationThreshold.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numThreshold.Location = new System.Drawing.Point(201, 226);
-            this.numThreshold.Maximum = new decimal(new int[] {
+            this.numCorrelationThreshold.Location = new System.Drawing.Point(201, 226);
+            this.numCorrelationThreshold.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numThreshold.Minimum = new decimal(new int[] {
+            this.numCorrelationThreshold.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             -2147483648});
-            this.numThreshold.Name = "numThreshold";
-            this.numThreshold.Size = new System.Drawing.Size(55, 20);
-            this.numThreshold.TabIndex = 52;
-            this.numThreshold.Visible = false;
+            this.numCorrelationThreshold.Name = "numCorrelationThreshold";
+            this.numCorrelationThreshold.Size = new System.Drawing.Size(55, 20);
+            this.numCorrelationThreshold.TabIndex = 52;
+            this.numCorrelationThreshold.Visible = false;
             // 
             // lblThreshold
             // 
@@ -298,16 +304,88 @@
             this.lblWindow.Text = "Calculate correlation within this many days: ";
             this.lblWindow.Visible = false;
             // 
+            // lblSTDThreshold
+            // 
+            this.lblSTDThreshold.AutoSize = true;
+            this.lblSTDThreshold.Location = new System.Drawing.Point(301, 232);
+            this.lblSTDThreshold.Name = "lblSTDThreshold";
+            this.lblSTDThreshold.Size = new System.Drawing.Size(79, 13);
+            this.lblSTDThreshold.TabIndex = 57;
+            this.lblSTDThreshold.Text = "STD Threshold";
+            this.lblSTDThreshold.Visible = false;
+            // 
+            // numSTDThreshold
+            // 
+            this.numSTDThreshold.DecimalPlaces = 2;
+            this.numSTDThreshold.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numSTDThreshold.Location = new System.Drawing.Point(395, 230);
+            this.numSTDThreshold.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numSTDThreshold.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.numSTDThreshold.Name = "numSTDThreshold";
+            this.numSTDThreshold.Size = new System.Drawing.Size(55, 20);
+            this.numSTDThreshold.TabIndex = 58;
+            this.numSTDThreshold.Visible = false;
+            // 
+            // txtCorrelation2
+            // 
+            this.txtCorrelation2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.txtCorrelation2.Location = new System.Drawing.Point(118, 318);
+            this.txtCorrelation2.Name = "txtCorrelation2";
+            this.txtCorrelation2.Size = new System.Drawing.Size(100, 20);
+            this.txtCorrelation2.TabIndex = 59;
+            this.txtCorrelation2.Text = "0";
+            this.txtCorrelation2.Visible = false;
+            // 
+            // lblMonitorMethod
+            // 
+            this.lblMonitorMethod.AutoSize = true;
+            this.lblMonitorMethod.Location = new System.Drawing.Point(251, 98);
+            this.lblMonitorMethod.Name = "lblMonitorMethod";
+            this.lblMonitorMethod.Size = new System.Drawing.Size(141, 13);
+            this.lblMonitorMethod.TabIndex = 61;
+            this.lblMonitorMethod.Text = "Select a monitoring method: ";
+            this.lblMonitorMethod.Visible = false;
+            // 
+            // cboxMonitorMethod
+            // 
+            this.cboxMonitorMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxMonitorMethod.FormattingEnabled = true;
+            this.cboxMonitorMethod.Items.AddRange(new object[] {
+            "Correlation",
+            "STD"});
+            this.cboxMonitorMethod.Location = new System.Drawing.Point(398, 95);
+            this.cboxMonitorMethod.Name = "cboxMonitorMethod";
+            this.cboxMonitorMethod.Size = new System.Drawing.Size(121, 21);
+            this.cboxMonitorMethod.TabIndex = 60;
+            this.cboxMonitorMethod.Visible = false;
+            // 
             // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 499);
+            this.Controls.Add(this.lblMonitorMethod);
+            this.Controls.Add(this.cboxMonitorMethod);
+            this.Controls.Add(this.txtCorrelation2);
+            this.Controls.Add(this.numSTDThreshold);
+            this.Controls.Add(this.lblSTDThreshold);
             this.Controls.Add(this.numWindow);
             this.Controls.Add(this.lblWindow);
             this.Controls.Add(this.txtCurrentCorrelation);
             this.Controls.Add(this.lblCurrentCorrelation);
-            this.Controls.Add(this.numThreshold);
+            this.Controls.Add(this.numCorrelationThreshold);
             this.Controls.Add(this.lblThreshold);
             this.Controls.Add(this.numDays);
             this.Controls.Add(this.lblDays);
@@ -327,8 +405,9 @@
             this.Text = "Monitor";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numThreshold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSTDThreshold)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,12 +428,17 @@
         private System.Windows.Forms.TextBox txtFirstStock;
         private System.Windows.Forms.NumericUpDown numDays;
         private System.Windows.Forms.Label lblDays;
-        private System.Windows.Forms.NumericUpDown numThreshold;
+        private System.Windows.Forms.NumericUpDown numCorrelationThreshold;
         private System.Windows.Forms.Label lblThreshold;
         private System.Windows.Forms.Timer timerMonitor;
         private System.Windows.Forms.Label lblCurrentCorrelation;
         private System.Windows.Forms.TextBox txtCurrentCorrelation;
         private System.Windows.Forms.NumericUpDown numWindow;
         private System.Windows.Forms.Label lblWindow;
+        private System.Windows.Forms.Label lblSTDThreshold;
+        private System.Windows.Forms.NumericUpDown numSTDThreshold;
+        private System.Windows.Forms.TextBox txtCorrelation2;
+        private System.Windows.Forms.Label lblMonitorMethod;
+        private System.Windows.Forms.ComboBox cboxMonitorMethod;
     }
 }

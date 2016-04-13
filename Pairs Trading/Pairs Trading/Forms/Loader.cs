@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pairs_Trading.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,33 +17,6 @@ namespace Pairs_Trading.Forms
     public partial class Loader : Form
     {
         
-
-        #region ' Custom Classes '
-
-        private class UISync
-        {
-            private static ISynchronizeInvoke _sync;
-
-            public static void Init(ISynchronizeInvoke sync)
-            {
-                _sync = sync;
-            }
-
-            public static void Execute(Action action)
-            {
-                try
-                {
-                    _sync.Invoke(action, null);
-                    //_sync.BeginInvoke(action, null);
-                }
-                catch
-                {
-                }
-            }
-        }
-
-        #endregion
-
         #region ' Member Variables '
 
         private string _fileName;
@@ -210,7 +184,7 @@ namespace Pairs_Trading.Forms
                         client.DownloadFile(url, file);
                         break;
                     }
-                    catch(Exception e)
+                    catch
                     {
                         //Sleep for 500ms then try again
                         Thread.Sleep(500);
@@ -242,8 +216,6 @@ namespace Pairs_Trading.Forms
         
 
         #endregion
-
-       
 
     }
 }

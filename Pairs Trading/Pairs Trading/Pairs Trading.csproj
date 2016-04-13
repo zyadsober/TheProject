@@ -54,6 +54,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\UISync.cs" />
     <Compile Include="Forms\Loader.cs">
       <SubType>Form</SubType>
     </Compile>
