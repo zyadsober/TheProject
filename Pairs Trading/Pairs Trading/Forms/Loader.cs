@@ -153,6 +153,33 @@ namespace Pairs_Trading.Forms
 
         #region ' Support Methods '
 
+        private void ReverseFile(string path)
+        {
+            List<string> data = new List<string>();
+            StreamReader strReader = new StreamReader(path);
+            
+
+            while (!strReader.EndOfStream)
+            {
+                data.Add(strReader.ReadLine());
+                
+            }
+            strReader.Close();
+
+            StreamWriter strWriter = new StreamWriter(path);
+
+            strWriter.Write(data[0]);
+
+            for(int i = data.Count-1; i>0; i--)
+            {
+                strWriter.Write("\n");
+                strWriter.Write(data[i]);
+            }
+
+            strWriter.Close();
+            
+        }
+
         private void DownloadData()
         {
             // Reset variables.
@@ -230,6 +257,9 @@ namespace Pairs_Trading.Forms
                         Thread.Sleep(500);
                     }
 
+                // Reverse the stock data.
+                ReverseFile(file);
+
                 // Log our downloaded stock count.
                 _stockDownloadedCount++;
 
@@ -267,6 +297,8 @@ namespace Pairs_Trading.Forms
                 }
             }
         }
+
+        
         
         #endregion
 
