@@ -352,13 +352,13 @@ namespace Pairs_Trading.Forms
                     // If the dates are not equal, read from the older date.
                     while (dt1.Date != dt2.Date && !strReader1.EndOfStream && !strReader2.EndOfStream)
                     {
-                        while (dt1.Date > dt2.Date && !strReader1.EndOfStream)
+                        while (dt1.Date < dt2.Date && !strReader1.EndOfStream)
                         {
                             // dt1 is older than dt2, read another line and get the new DateTime.
                             line1 = strReader1.ReadLine();
                             dt1 = Convert.ToDateTime(line1.Split(',')[0]);
                         }
-                        while (dt1.Date < dt2.Date && !strReader2.EndOfStream)
+                        while (dt1.Date > dt2.Date && !strReader2.EndOfStream)
                         {
                             // dt2 is older than dt1, read another line and get the new DateTime.
                             line2 = strReader2.ReadLine();
