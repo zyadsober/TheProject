@@ -38,6 +38,10 @@ namespace Pairs_Trading.Forms
         {
             InitializeComponent();
 
+            /* Set the initial height of the form.
+            * This will change later on successful file browse. */
+            this.Height = 150;
+
             // Initial variables.
             _fileName = string.Empty;
             _pathName = string.Empty;
@@ -55,27 +59,33 @@ namespace Pairs_Trading.Forms
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
+            /* Create a folder browsing dialog.
+             * Show the dialog */
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             DialogResult result = folderDialog.ShowDialog();
+
+            // If the browsing return an invalid code, exit the method.
             if (result != DialogResult.OK)
             {
                 return;
             }
+
+            // Get the path.
             _pathName = folderDialog.SelectedPath;
+
+            // Display the path.
             txtBrowse.Text = _pathName;
 
+            // Get the names of files in the path.
             _stockNames = Directory.GetFiles(_pathName);
-            // Maybe filer out non-csv files?
+            
+            // Display number of stocks.
+            lblStockCount.Text = _stockCount.ToString();
 
+            // Count the number of stocks contained in the folder.
             _stockCount = _stockNames.Count();
 
-            /* This is how we will plot points on the chart */
-            //chart1.Series["Series1"].ChartType = SeriesChartType.Line;
-            //chart1.Series["Series1"].Points.AddXY(50, 50);
-            //chart1.Series["Series1"].Points.AddXY(60, 70);
-            //chart1.Series["Series1"].Points.AddXY(80, 30);
-
-            lblStockCount.Text = _stockCount.ToString();
+            // Set the remaining controls to visible.
             lblStockCount.Visible = true;
             lblLineCountIntro.Visible = true;
             lblMonitorMethod.Visible = true;
@@ -97,46 +107,60 @@ namespace Pairs_Trading.Forms
             txtCorrelation2.Visible = true;
             btnMonitor.Visible = true;
 
+            // Initialize the combobox selection.
             cboxMonitorMethod.SelectedIndex = 0;
+
+            // Update the height of the form to fit the visible controls.
+            this.Height = 538;
 
         }
 
         private void btnMonitor_Click(object sender, EventArgs e)
         {
+            // Define local variables.
             string line1, line2;
             int firstStock = Int32.Parse(txtFirstStock.Text);
             int secondStock = Int32.Parse(txtSecondStock.Text);
-
-            _stockPrices = new List<List<double>>();
-
             StreamReader strReader1 = new StreamReader(_stockNames[firstStock]);
             StreamReader strReader2 = new StreamReader(_stockNames[secondStock]);
+            
+            // Read the first lines containing the field's names.
             line1 = strReader1.ReadLine();
             line2 = strReader2.ReadLine();
 
+            // Create new vectors for the two stock's prices.
+            _stockPrices = new List<List<double>>();
             _stockPrices.Add(new List<double>());
             _stockPrices.Add(new List<double>());
+
+            // Read both files.
             while (!strReader1.EndOfStream && !strReader2.EndOfStream)
             {
+                // Read a line from each file.
                 line1 = strReader1.ReadLine();
                 line2 = strReader2.ReadLine();
                 try
                 {
+                    // Convert the date from the read line to DateTime.
                     DateTime dt1 = Convert.ToDateTime(line1.Split(',')[0]);
                     DateTime dt2 = Convert.ToDateTime(line2.Split(',')[0]);
+
+                    // Keep reading until the dates match.
                     while (dt1.Date != dt2.Date && !strReader1.EndOfStream && !strReader2.EndOfStream)
                     {
-                        while (dt1.Date > dt2.Date && !strReader1.EndOfStream)
+                        while (dt1.Date < dt2.Date && !strReader1.EndOfStream)
                         {
                             line1 = strReader1.ReadLine();
                             dt1 = Convert.ToDateTime(line1.Split(',')[0]);
                         }
-                        while (dt1.Date < dt2.Date && !strReader2.EndOfStream)
+                        while (dt1.Date > dt2.Date && !strReader2.EndOfStream)
                         {
                             line2 = strReader2.ReadLine();
                             dt2 = Convert.ToDateTime(line2.Split(',')[0]);
                         }
                     }
+
+                    // On a match, take the prices of both stocks.
                     if (dt1.Date == dt2.Date)
                     {
                         _stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
@@ -150,31 +174,33 @@ namespace Pairs_Trading.Forms
                 }
             }
 
+            // Free our writing lock on the stock files.
+            strReader1.Close();
+            strReader2.Close();
+
+            // Get the stock name for both stocks.
             _stockName0 = _stockNames[firstStock].Substring(_stockNames[firstStock].LastIndexOf("\\") + 1);
             _stockName0 = _stockName0.Substring(0, _stockName0.LastIndexOf(".csv"));
 
             _stockName1 = _stockNames[secondStock].Substring(_stockNames[secondStock].LastIndexOf("\\") + 1);
             _stockName1 = _stockName1.Substring(0, _stockName1.LastIndexOf(".csv"));
-
+            
+            // Clear our chart for new stocks.
             chart1.Series.Clear();
 
+            // Add the stocks to the chart series.
             chart1.Series.Add(_stockName0);
             chart1.Series.Add(_stockName1);
 
+            // Change the chart type of our series to Line.
             chart1.Series[_stockName0].ChartType = SeriesChartType.Line;
             chart1.Series[_stockName1].ChartType = SeriesChartType.Line;
 
+            // Reset the current day count.
             _currentDay = 0;
-
-
             
-            //_increasingDivergenceThreshold = CoMean(_stockPrices[0], _stockPrices[1], (int)numWindow.Value, (int)numWindow.Value) +
-            //    CoStd(_stockPrices[0], _stockPrices[1], (int)numWindow.Value, (int)numWindow.Value) * (double)numSTDThreshold.Value;
-            //_decreasingDivergenceThreshold = CoMean(_stockPrices[0], _stockPrices[1], (int)numWindow.Value, (int)numWindow.Value) -
-            //    CoStd(_stockPrices[0], _stockPrices[1], (int)numWindow.Value, (int)numWindow.Value) * (double)numSTDThreshold.Value;
-
+            // Start our time monitoring ticking.
             timerMonitor.Start();
-
         }
 
         private void timerMonitor_Tick(object sender, EventArgs e)

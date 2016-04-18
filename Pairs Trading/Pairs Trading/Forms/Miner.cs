@@ -50,7 +50,7 @@ namespace Pairs_Trading.Forms
              * This will change later on successful file browse. */
             this.Height = 150;
 
-            // Initial variables.
+            // Initialize variables.
             _fileName = string.Empty;
             _pathName = string.Empty;
             _stockCount = 0;
@@ -304,8 +304,6 @@ namespace Pairs_Trading.Forms
                         {
                             break;
                         }
-                        
-
                     }
                     catch (Exception)
                     {
@@ -313,6 +311,8 @@ namespace Pairs_Trading.Forms
                         continue;
                     }
                 }
+                // Free our writing lock on the file.
+                strReader.Close();
             }
 
             return DTW(stockPrices[0], stockPrices[1], (int)numDTWWindow.Value);

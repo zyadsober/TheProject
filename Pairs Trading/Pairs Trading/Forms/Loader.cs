@@ -164,6 +164,7 @@ namespace Pairs_Trading.Forms
                 data.Add(strReader.ReadLine());
                 
             }
+            // Free our writing lock on the file.
             strReader.Close();
 
             StreamWriter strWriter = new StreamWriter(path);
@@ -176,6 +177,7 @@ namespace Pairs_Trading.Forms
                 strWriter.Write(data[i]);
             }
 
+            // Free our writing lock on the file.
             strWriter.Close();
             
         }

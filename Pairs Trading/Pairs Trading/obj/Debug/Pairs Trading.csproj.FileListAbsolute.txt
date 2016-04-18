@@ -1,13 +1,12 @@
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\bin\Debug\Pairs Trading.exe.config
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\bin\Debug\Pairs Trading.exe
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\bin\Debug\Pairs Trading.pdb
-C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.csprojResolveAssemblyReference.cache
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Loader.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.MainMenu.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Miner.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Monitor.resources
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Preprocessor.resources
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Properties.Resources.resources
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.csproj.GenerateResource.Cache
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.exe
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.pdb
-C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.MainMenu.resources
-C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Loader.resources
-C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Miner.resources
-C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Preprocessor.resources
-C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Monitor.resources
