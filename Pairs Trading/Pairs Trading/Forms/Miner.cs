@@ -139,6 +139,8 @@ namespace Pairs_Trading.Forms
             // Update controls for state changes.
             btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
+            btnGetCorrelation.Enabled = false;
+            btnAllNearestNeighbors.Enabled = false;
 
             // Check which distance measurement method is selected.
             if (cboxDistanceMeasure.SelectedIndex == 0)
@@ -153,14 +155,24 @@ namespace Pairs_Trading.Forms
             }
 
             // Update controls for state changes.
-            btnGetDistance.Enabled = true;
             btnNearestNeighbor.Enabled = true;
+            btnGetDistance.Enabled = true;
+            btnGetCorrelation.Enabled = true;
+            btnAllNearestNeighbors.Enabled = true;
         }
 
         private void btnGetCorrelation_Click(object sender, EventArgs e)
         {
             // Display the correlation.
+            btnNearestNeighbor.Enabled = false;
+            btnGetDistance.Enabled = false;
+            btnGetCorrelation.Enabled = false;
+            btnAllNearestNeighbors.Enabled = false;
             txtCorrelation.Text = GetCorrelation(Int32.Parse(txtFirstStock.Text), Int32.Parse(txtSecondStock.Text)).ToString();
+            btnGetDistance.Enabled = true;
+            btnNearestNeighbor.Enabled = true;
+            btnGetCorrelation.Enabled = true;
+            btnAllNearestNeighbors.Enabled = true;
         }
 
         private void btnNearestNeighbour_Click(object sender, EventArgs e)
@@ -168,8 +180,10 @@ namespace Pairs_Trading.Forms
             // Update controls for state changes.
             pbProgress.Visible = true;
             pbProgress.Value = 0;
-            btnGetDistance.Enabled = false;
             btnNearestNeighbor.Enabled = false;
+            btnGetDistance.Enabled = false;
+            btnGetCorrelation.Enabled = false;
+            btnAllNearestNeighbors.Enabled = false;
 
             // Get the selected stock.
             int stock = Int32.Parse(txtStock.Text);
@@ -388,9 +402,10 @@ namespace Pairs_Trading.Forms
 
         private void AllManager()
         {
-            //StreamWriter strw = new StreamWriter(_pathName + "\\Pairs.csv", false);
-            //strw.WriteLine("Stock #1,Stock #2,Distance");
-            //strw.Close();
+            string _newPath = _pathName.Substring(0, _pathName.LastIndexOf('\\'));
+            StreamWriter strw = new StreamWriter(_newPath + "\\Pairs.csv", false);
+            strw.WriteLine("Stock #1,Stock #2,Distance");
+            strw.Close();
             for (int i = 0; i < _stockCount; i++)
             {
                 _DistanceThread = new Thread(() => Work(i, true));
@@ -610,9 +625,10 @@ namespace Pairs_Trading.Forms
             // Create directory if it does not exist.
             //System.IO.Directory.CreateDirectory(_pathName + @"\Pairs");
 
-            //StreamWriter strw = new StreamWriter(_pathName + "\\Pairs\\Pairs.csv", true);
-            //strw.WriteLine(firstStock.ToString() + "," + txtNearestNeighbour.Text + "," + _minDistance);
-            //strw.Close();
+            string _newPath = _pathName.Substring(0, _pathName.LastIndexOf('\\'));
+            StreamWriter strw = new StreamWriter(_newPath + "\\Pairs.csv", true);
+            strw.WriteLine(firstStock.ToString() + "," + txtNearestNeighbour.Text + "," + _minDistance);
+            strw.Close();
             _neighborThreadAlive = false;
         }
 
