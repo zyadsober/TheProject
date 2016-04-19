@@ -98,13 +98,13 @@ namespace Pairs_Trading.Forms
             numWindow.Visible = true;
             lblDays.Visible = true;
             numDays.Visible = true;
-            lblThreshold.Visible = true;
+            lblCorrelationThreshold.Visible = true;
             numCorrelationThreshold.Visible = true;
             lblSTDThreshold.Visible = true;
             numSTDThreshold.Visible = true;
-            lblCurrentCorrelation.Visible = true;
-            txtCurrentCorrelation.Visible = true;
-            txtCorrelation2.Visible = true;
+            lblOutput.Visible = true;
+            txtOutput1.Visible = true;
+            txtOutput2.Visible = true;
             btnMonitor.Visible = true;
 
             // Initialize the combobox selection.
@@ -277,7 +277,7 @@ namespace Pairs_Trading.Forms
             {
                 double correlation = Correlation(_stockPrices[0], _stockPrices[1], _currentDay, (int)numWindow.Value);
 
-                txtCurrentCorrelation.Text = correlation.ToString();
+                txtOutput1.Text = correlation.ToString();
 
                 chart1.Series[_stockName0].Points.AddY(_stockPrices[0][_currentDay]);
                 chart1.Series[_stockName1].Points.AddY(_stockPrices[1][_currentDay]);
@@ -319,14 +319,14 @@ namespace Pairs_Trading.Forms
                 {
                     timerMonitor.Stop();
                     //MessageBox.Show(_stockName0 + " Is divering");
-                    txtCurrentCorrelation.Text = _stockName0 + " Is diverging" + _currentDay;
+                    txtOutput1.Text = _stockName0 + " Is diverging" + _currentDay;
                     timerMonitor.Start();
                 }
                 if (_stockPrices[1][_currentDay] >= _increasingDivergenceThreshold ||
                     _stockPrices[1][_currentDay] <= _decreasingDivergenceThreshold)
                 {
                     timerMonitor.Stop();
-                    txtCorrelation2.Text = _stockName1 + " Is diverging" + _currentDay;
+                    txtOutput2.Text = _stockName1 + " Is diverging" + _currentDay;
                     timerMonitor.Start();
                 }
                 _currentDay++;
@@ -340,5 +340,36 @@ namespace Pairs_Trading.Forms
 
         #endregion
 
+        private void cboxMonitorMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboxMonitorMethod.SelectedIndex == 0)
+            {
+                lblDays.Visible = true;
+                numDays.Visible = true;
+                lblCorrelationThreshold.Visible = true;
+                numCorrelationThreshold.Visible = true;
+                lblSTDThreshold.Visible = false;
+                numSTDThreshold.Visible = false;
+                txtOutput2.Visible = false;
+                lblMean.Visible = false;
+                txtMean.Visible = false;
+
+                lblOutput.Text = "Current Correlation: ";
+            }
+            else if(cboxMonitorMethod.SelectedIndex == 1)
+            {
+                lblDays.Visible = false;
+                numDays.Visible = false;
+                lblCorrelationThreshold.Visible = false;
+                numCorrelationThreshold.Visible = false;
+                lblSTDThreshold.Visible = true;
+                numSTDThreshold.Visible = true;
+                txtOutput2.Visible = true;
+                lblMean.Visible = true;
+                txtMean.Visible = true;
+
+                lblOutput.Text = "Current STD divergance: ";
+            }
+        }
     }
 }
