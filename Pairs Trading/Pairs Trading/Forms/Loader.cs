@@ -164,12 +164,14 @@ namespace Pairs_Trading.Forms
 
             StreamWriter strWriter = new StreamWriter(path);
 
-            strWriter.Write(data[0]);
+            string[] splitData = data[0].Split(',');
+            strWriter.Write(splitData[0] + "," + splitData[4]);
 
             for(int i = data.Count-1; i>0; i--)
             {
                 strWriter.Write("\n");
-                strWriter.Write(data[i]);
+                splitData = data[i].Split(',');
+                strWriter.Write(splitData[0] + "," + splitData[4]);
             }
 
             // Free our writing lock on the file.

@@ -309,7 +309,7 @@ namespace Pairs_Trading.Forms
                          * If the checkbox is not checked, use all the stocks*/
                         if (!chkStockDays.Checked || StockIsInLastDays(dt, Int32.Parse(numStockDays.Value.ToString())))
                         {
-                            stockPrices[i].Add(Convert.ToDouble((line.Split(','))[4]));
+                            stockPrices[i].Add(Convert.ToDouble((line.Split(','))[1]));
                         }
                         else
                         {
@@ -379,8 +379,8 @@ namespace Pairs_Trading.Forms
                     // When the dates are equal, add the stock prices to our list.
                     if (dt1.Date == dt2.Date)
                     {
-                        stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
-                        stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[4]));
+                        stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[1]));
+                        stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[1]));
                     }
                 }
                 catch (Exception)
@@ -487,7 +487,7 @@ namespace Pairs_Trading.Forms
                          * If the checkbox is not checked, use all the stocks*/
                         if (!chkStockDays.Checked || StockIsInLastDays(dt, Int32.Parse(numStockDays.Value.ToString())))
                         {
-                            stockPrices[i].Add(Convert.ToDouble((line.Split(','))[4]));
+                            stockPrices[i].Add(Convert.ToDouble((line.Split(','))[1]));
                             lineCount[i]++;
                         }
                         else

@@ -137,8 +137,8 @@ namespace Pairs_Trading.Forms
             StreamWriter strw1 = new StreamWriter(newPath + "\\" + (_stockCount - 2).ToString() + ".csv");
             StreamWriter strw2 = new StreamWriter(newPath + "\\" + (_stockCount - 1).ToString() + ".csv");
 
-            strw1.Write("Date,Open,High,Low,Close,Volume,Ex-Dividend,Split Ratio,Adj. Open,Adj. High,Adj. Low,Adj. Close,Adj. Volume");
-            strw2.Write("Date,Open,High,Low,Close,Volume,Ex-Dividend,Split Ratio,Adj. Open,Adj. High,Adj. Low,Adj. Close,Adj. Volume");
+            strw1.Write("Date,Close");
+            strw2.Write("Date,Close");
 
             while (dt1 <= dt2)
             {
@@ -234,10 +234,10 @@ namespace Pairs_Trading.Forms
                 }
 
                 strw1.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
-                    ",0,0,0," + stocks[0][currentDay] + ",0,0,0,0,0,0,0,0");
+                    "," + stocks[0][currentDay]);
 
                 strw2.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
-                    ",0,0,0," + stocks[1][currentDay] + ",0,0,0,0,0,0,0,0");
+                    "," + stocks[1][currentDay]);
 
                 chartStocks.Series[(_stockCount - 2).ToString()].Points.AddY(stocks[0][currentDay]);
                 chartStocks.Series[(_stockCount - 1).ToString()].Points.AddY(stocks[1][currentDay]);

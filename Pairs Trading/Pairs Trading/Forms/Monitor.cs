@@ -167,8 +167,8 @@ namespace Pairs_Trading.Forms
                     // On a match, take the prices of both stocks.
                     if (dt1.Date == dt2.Date)
                     {
-                        _stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[4]));
-                        _stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[4]));
+                        _stockPrices[0].Add(Convert.ToDouble((line1.Split(','))[1]));
+                        _stockPrices[1].Add(Convert.ToDouble((line2.Split(','))[1]));
                     }
                 }
                 catch (Exception)

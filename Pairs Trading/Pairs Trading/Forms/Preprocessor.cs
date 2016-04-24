@@ -214,7 +214,7 @@ namespace Pairs_Trading.Forms
             for (int i = 0; i < _stockNames.Count(); i++)
             {
                 if ((double)stockLineCount[i] / (double)maxLineCount < minPercentage
-                    || lineCount < 1)
+                    || stockLineCount[i] < 1)
                 {
                     string newStockName = _stockNames[i].Substring(_stockNames[i].LastIndexOf("\\"));
                     File.Delete(txtNewDirectory.Text + newStockName);
