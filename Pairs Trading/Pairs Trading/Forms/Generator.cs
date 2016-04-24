@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -234,7 +228,6 @@ namespace Pairs_Trading.Forms
 
                         stocks[1].Add(stocks[1][currentDay - 1] + randomValue + biasToCoMean);
                     }
-
                 }
 
                 strw1.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
