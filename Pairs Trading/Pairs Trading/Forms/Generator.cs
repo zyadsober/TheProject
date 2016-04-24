@@ -18,6 +18,7 @@ namespace Pairs_Trading.Forms
         private bool _firstStockConverging;
         private bool _secondStockConverging;
         private int _daysSinceChange;
+        private int _stockCount;
 
         #endregion
 
@@ -89,6 +90,8 @@ namespace Pairs_Trading.Forms
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            _stockCount += 2;
+
             string newPath = _pathName + "\\Stocks_Generated-" + datePickerFirst.Value.Day + "-" + datePickerFirst.Value.Month
                 + "-" + datePickerFirst.Value.Year + "-to-"
                 + datePickerSecond.Value.Day + "-" + datePickerSecond.Value.Month + "-" + datePickerSecond.Value.Year;
@@ -121,18 +124,18 @@ namespace Pairs_Trading.Forms
             chartStocks.Series.Clear();
 
             // Add the stocks to the chart series.
-            chartStocks.Series.Add("0");
-            chartStocks.Series.Add("1");
+            chartStocks.Series.Add((_stockCount-2).ToString());
+            chartStocks.Series.Add((_stockCount-1).ToString());
 
             // Change the chart type of our series to Line.
-            chartStocks.Series["0"].ChartType = SeriesChartType.Line;
-            chartStocks.Series["1"].ChartType = SeriesChartType.Line;
+            chartStocks.Series[(_stockCount - 2).ToString()].ChartType = SeriesChartType.Line;
+            chartStocks.Series[(_stockCount - 1).ToString()].ChartType = SeriesChartType.Line;
 
             // Create directory if it does not exist.
             System.IO.Directory.CreateDirectory(newPath);
 
-            StreamWriter strw1 = new StreamWriter(newPath + "\\0.csv");
-            StreamWriter strw2 = new StreamWriter(newPath + "\\1.csv");
+            StreamWriter strw1 = new StreamWriter(newPath + "\\" + (_stockCount - 2).ToString() + ".csv");
+            StreamWriter strw2 = new StreamWriter(newPath + "\\" + (_stockCount - 1).ToString() + ".csv");
 
             strw1.Write("Date,Open,High,Low,Close,Volume,Ex-Dividend,Split Ratio,Adj. Open,Adj. High,Adj. Low,Adj. Close,Adj. Volume");
             strw2.Write("Date,Open,High,Low,Close,Volume,Ex-Dividend,Split Ratio,Adj. Open,Adj. High,Adj. Low,Adj. Close,Adj. Volume");
@@ -236,8 +239,8 @@ namespace Pairs_Trading.Forms
                 strw2.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
                     ",0,0,0," + stocks[1][currentDay] + ",0,0,0,0,0,0,0,0");
 
-                chartStocks.Series["0"].Points.AddY(stocks[0][currentDay]);
-                chartStocks.Series["1"].Points.AddY(stocks[1][currentDay]);
+                chartStocks.Series[(_stockCount - 2).ToString()].Points.AddY(stocks[0][currentDay]);
+                chartStocks.Series[(_stockCount - 1).ToString()].Points.AddY(stocks[1][currentDay]);
 
                 if (_daysSinceChange >= (int)numDivergeRate.Value &&
                     _firstStockDiverging == false &&
