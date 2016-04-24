@@ -41,9 +41,10 @@ namespace Pairs_Trading.Forms
         {
             InitializeComponent();
 
-            /* Set the initial height of the form.
+            /* Set the initial height and width of the form.
              * This will change later on successful file browse. */
             this.Height = 150;
+            this.Width = 554;
 
             // Initialize variables.
             _fileName = string.Empty;
@@ -120,8 +121,9 @@ namespace Pairs_Trading.Forms
             txtNearestNeighbour.Visible = true;
             btnAllNearestNeighbors.Visible = true;
 
-            // Update the height of the form to fit the visible controls.
+            // Update the height and width of the form to fit the visible controls.
             this.Height = 564;
+            this.Width = 824;
             
         }
 
