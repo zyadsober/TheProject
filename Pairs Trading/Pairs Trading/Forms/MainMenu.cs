@@ -22,16 +22,6 @@ namespace Pairs_Trading
             new Loader().ShowDialog();
         }
 
-        private void btnMiner_Click(object sender, EventArgs e)
-        {
-            new Miner().ShowDialog();
-        }
-
-        private void btnMonitor_Click(object sender, EventArgs e)
-        {
-            new Monitor().ShowDialog();
-        }
-
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             new Generator().ShowDialog();
@@ -42,8 +32,17 @@ namespace Pairs_Trading
             new Preprocessor().ShowDialog();
         }
 
-        #endregion
+        private void btnMiner_Click(object sender, EventArgs e)
+        {
+            new Miner().ShowDialog();
+        }
 
+        private void btnMonitor_Click(object sender, EventArgs e)
+        {
+            new Monitor().ShowDialog();
+        }
+        
+        #endregion
         
     }
 }
