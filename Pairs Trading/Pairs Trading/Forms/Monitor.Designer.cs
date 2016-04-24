@@ -118,7 +118,7 @@
             // 
             // chartStocks
             // 
-            this.chartStocks.BackColor = System.Drawing.SystemColors.Control;
+            this.chartStocks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             chartArea1.Name = "ChartArea1";
             this.chartStocks.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -184,6 +184,7 @@
             // 
             // numDays
             // 
+            this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numDays.Location = new System.Drawing.Point(230, 196);
             this.numDays.Maximum = new decimal(new int[] {
             1000,
@@ -217,6 +218,7 @@
             // 
             // numCorrelationThreshold
             // 
+            this.numCorrelationThreshold.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numCorrelationThreshold.DecimalPlaces = 2;
             this.numCorrelationThreshold.Increment = new decimal(new int[] {
             1,
@@ -276,6 +278,7 @@
             // 
             // numWindow
             // 
+            this.numWindow.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numWindow.Location = new System.Drawing.Point(230, 221);
             this.numWindow.Maximum = new decimal(new int[] {
             10000,
@@ -319,6 +322,7 @@
             // 
             // numSTDThreshold
             // 
+            this.numSTDThreshold.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numSTDThreshold.DecimalPlaces = 2;
             this.numSTDThreshold.Increment = new decimal(new int[] {
             1,
@@ -363,6 +367,7 @@
             // 
             // cboxMonitorMethod
             // 
+            this.cboxMonitorMethod.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.cboxMonitorMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxMonitorMethod.FormattingEnabled = true;
             this.cboxMonitorMethod.Items.AddRange(new object[] {
@@ -399,6 +404,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(1090, 499);
             this.Controls.Add(this.txtMean);
             this.Controls.Add(this.lblMean);
@@ -427,7 +433,9 @@
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.lblIntro);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Monitor";
+            this.ShowInTaskbar = false;
             this.Text = "Monitor";
             ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();

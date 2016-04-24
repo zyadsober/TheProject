@@ -48,10 +48,16 @@
             this.numDivergePeriod = new System.Windows.Forms.NumericUpDown();
             this.lblDivergePeriod = new System.Windows.Forms.Label();
             this.chartStocks = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.numFactorInitial = new System.Windows.Forms.NumericUpDown();
+            this.lblFactorInitial = new System.Windows.Forms.Label();
+            this.numFactor = new System.Windows.Forms.NumericUpDown();
+            this.lblFactor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numInitialPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivergeRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivergePeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFactorInitial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFactor)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIntro
@@ -87,7 +93,7 @@
             // btnGenerate
             // 
             this.btnGenerate.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnGenerate.Location = new System.Drawing.Point(12, 251);
+            this.btnGenerate.Location = new System.Drawing.Point(15, 310);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(113, 23);
             this.btnGenerate.TabIndex = 44;
@@ -134,9 +140,11 @@
             // 
             // numInitialPrice
             // 
+            this.numInitialPrice.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numInitialPrice.DecimalPlaces = 2;
             this.numInitialPrice.Location = new System.Drawing.Point(122, 159);
             this.numInitialPrice.Maximum = new decimal(new int[] {
-            1000,
+            1000000,
             0,
             0,
             0});
@@ -146,10 +154,10 @@
             0,
             0});
             this.numInitialPrice.Name = "numInitialPrice";
-            this.numInitialPrice.Size = new System.Drawing.Size(55, 20);
+            this.numInitialPrice.Size = new System.Drawing.Size(73, 20);
             this.numInitialPrice.TabIndex = 53;
             this.numInitialPrice.Value = new decimal(new int[] {
-            1,
+            250,
             0,
             0,
             0});
@@ -162,12 +170,13 @@
             this.lblInitialPrice.Name = "lblInitialPrice";
             this.lblInitialPrice.Size = new System.Drawing.Size(104, 13);
             this.lblInitialPrice.TabIndex = 52;
-            this.lblInitialPrice.Text = "Stock prices start at:\r\n";
+            this.lblInitialPrice.Text = "Stock prices start at \n";
             this.lblInitialPrice.Visible = false;
             // 
             // numDivergeRate
             // 
-            this.numDivergeRate.Location = new System.Drawing.Point(91, 193);
+            this.numDivergeRate.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numDivergeRate.Location = new System.Drawing.Point(91, 252);
             this.numDivergeRate.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -182,7 +191,7 @@
             this.numDivergeRate.Size = new System.Drawing.Size(55, 20);
             this.numDivergeRate.TabIndex = 55;
             this.numDivergeRate.Value = new decimal(new int[] {
-            1,
+            21,
             0,
             0,
             0});
@@ -191,7 +200,7 @@
             // lblDivergeRate
             // 
             this.lblDivergeRate.AutoSize = true;
-            this.lblDivergeRate.Location = new System.Drawing.Point(12, 193);
+            this.lblDivergeRate.Location = new System.Drawing.Point(12, 252);
             this.lblDivergeRate.Name = "lblDivergeRate";
             this.lblDivergeRate.Size = new System.Drawing.Size(73, 13);
             this.lblDivergeRate.TabIndex = 54;
@@ -201,7 +210,7 @@
             // lblDivergeRateDays
             // 
             this.lblDivergeRateDays.AutoSize = true;
-            this.lblDivergeRateDays.Location = new System.Drawing.Point(152, 195);
+            this.lblDivergeRateDays.Location = new System.Drawing.Point(152, 254);
             this.lblDivergeRateDays.Name = "lblDivergeRateDays";
             this.lblDivergeRateDays.Size = new System.Drawing.Size(31, 13);
             this.lblDivergeRateDays.TabIndex = 56;
@@ -211,7 +220,7 @@
             // lblDivergePeriodDays
             // 
             this.lblDivergePeriodDays.AutoSize = true;
-            this.lblDivergePeriodDays.Location = new System.Drawing.Point(152, 227);
+            this.lblDivergePeriodDays.Location = new System.Drawing.Point(152, 286);
             this.lblDivergePeriodDays.Name = "lblDivergePeriodDays";
             this.lblDivergePeriodDays.Size = new System.Drawing.Size(31, 13);
             this.lblDivergePeriodDays.TabIndex = 59;
@@ -220,7 +229,8 @@
             // 
             // numDivergePeriod
             // 
-            this.numDivergePeriod.Location = new System.Drawing.Point(91, 225);
+            this.numDivergePeriod.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numDivergePeriod.Location = new System.Drawing.Point(91, 284);
             this.numDivergePeriod.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -235,7 +245,7 @@
             this.numDivergePeriod.Size = new System.Drawing.Size(55, 20);
             this.numDivergePeriod.TabIndex = 58;
             this.numDivergePeriod.Value = new decimal(new int[] {
-            1,
+            7,
             0,
             0,
             0});
@@ -244,7 +254,7 @@
             // lblDivergePeriod
             // 
             this.lblDivergePeriod.AutoSize = true;
-            this.lblDivergePeriod.Location = new System.Drawing.Point(12, 225);
+            this.lblDivergePeriod.Location = new System.Drawing.Point(12, 284);
             this.lblDivergePeriod.Name = "lblDivergePeriod";
             this.lblDivergePeriod.Size = new System.Drawing.Size(62, 13);
             this.lblDivergePeriod.TabIndex = 57;
@@ -253,23 +263,108 @@
             // 
             // chartStocks
             // 
-            this.chartStocks.BackColor = System.Drawing.SystemColors.Control;
+            this.chartStocks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             chartArea1.Name = "ChartArea1";
             this.chartStocks.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartStocks.Legends.Add(legend1);
-            this.chartStocks.Location = new System.Drawing.Point(200, 193);
+            this.chartStocks.Location = new System.Drawing.Point(271, 193);
             this.chartStocks.Name = "chartStocks";
-            this.chartStocks.Size = new System.Drawing.Size(606, 299);
+            this.chartStocks.Size = new System.Drawing.Size(643, 299);
             this.chartStocks.TabIndex = 60;
             this.chartStocks.Text = "chart1";
             this.chartStocks.Visible = false;
+            // 
+            // numFactorInitial
+            // 
+            this.numFactorInitial.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numFactorInitial.DecimalPlaces = 2;
+            this.numFactorInitial.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numFactorInitial.Location = new System.Drawing.Point(201, 193);
+            this.numFactorInitial.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numFactorInitial.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numFactorInitial.Name = "numFactorInitial";
+            this.numFactorInitial.Size = new System.Drawing.Size(55, 20);
+            this.numFactorInitial.TabIndex = 62;
+            this.numFactorInitial.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numFactorInitial.Visible = false;
+            // 
+            // lblFactorInitial
+            // 
+            this.lblFactorInitial.AutoSize = true;
+            this.lblFactorInitial.Location = new System.Drawing.Point(12, 193);
+            this.lblFactorInitial.Name = "lblFactorInitial";
+            this.lblFactorInitial.Size = new System.Drawing.Size(183, 13);
+            this.lblFactorInitial.TabIndex = 61;
+            this.lblFactorInitial.Text = "Factor of Initial spread from start price";
+            this.lblFactorInitial.Visible = false;
+            // 
+            // numFactor
+            // 
+            this.numFactor.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.numFactor.DecimalPlaces = 2;
+            this.numFactor.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numFactor.Location = new System.Drawing.Point(201, 220);
+            this.numFactor.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numFactor.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numFactor.Name = "numFactor";
+            this.numFactor.Size = new System.Drawing.Size(55, 20);
+            this.numFactor.TabIndex = 64;
+            this.numFactor.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.numFactor.Visible = false;
+            // 
+            // lblFactor
+            // 
+            this.lblFactor.AutoSize = true;
+            this.lblFactor.Location = new System.Drawing.Point(12, 220);
+            this.lblFactor.Name = "lblFactor";
+            this.lblFactor.Size = new System.Drawing.Size(152, 13);
+            this.lblFactor.TabIndex = 63;
+            this.lblFactor.Text = "Factor of spread from last price";
+            this.lblFactor.Visible = false;
             // 
             // Generator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 504);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.ClientSize = new System.Drawing.Size(926, 504);
+            this.Controls.Add(this.numFactor);
+            this.Controls.Add(this.lblFactor);
+            this.Controls.Add(this.numFactorInitial);
+            this.Controls.Add(this.lblFactorInitial);
             this.Controls.Add(this.chartStocks);
             this.Controls.Add(this.lblDivergePeriodDays);
             this.Controls.Add(this.numDivergePeriod);
@@ -288,12 +383,16 @@
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Generator";
+            this.ShowInTaskbar = false;
             this.Text = "Generator";
             ((System.ComponentModel.ISupportInitialize)(this.numInitialPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivergeRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivergePeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFactorInitial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFactor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,5 +417,9 @@
         private System.Windows.Forms.NumericUpDown numDivergePeriod;
         private System.Windows.Forms.Label lblDivergePeriod;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartStocks;
+        private System.Windows.Forms.NumericUpDown numFactorInitial;
+        private System.Windows.Forms.Label lblFactorInitial;
+        private System.Windows.Forms.NumericUpDown numFactor;
+        private System.Windows.Forms.Label lblFactor;
     }
 }

@@ -66,7 +66,7 @@ namespace Pairs_Trading.Forms
             lblStockCount.Text = _stockCount.ToString();
 
             // Set progress bar max to stock count.
-            pbProgress.Maximum = _stockCount*2;
+            pbProgress.Maximum = _stockCount;
 
             // Set the remaining controls to visible.
             lblStockCount.Visible = true;
@@ -206,6 +206,9 @@ namespace Pairs_Trading.Forms
                 // Update our progress.
                 pbProgress.Value++;
             }
+
+            // Reset
+            pbProgress.Value = 0;
             
             /* Remove files which have less than the minimum percentage of
              * records with respect to the largest file. Also delete empty

@@ -264,6 +264,7 @@
             // 
             // numStockDays
             // 
+            this.numStockDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numStockDays.Location = new System.Drawing.Point(157, 136);
             this.numStockDays.Maximum = new decimal(new int[] {
             10000,
@@ -314,6 +315,7 @@
             // 
             // numWorkers
             // 
+            this.numWorkers.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numWorkers.Location = new System.Drawing.Point(157, 163);
             this.numWorkers.Maximum = new decimal(new int[] {
             1000,
@@ -345,6 +347,7 @@
             // 
             // cboxDistanceMeasure
             // 
+            this.cboxDistanceMeasure.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.cboxDistanceMeasure.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxDistanceMeasure.FormattingEnabled = true;
             this.cboxDistanceMeasure.Items.AddRange(new object[] {
@@ -379,6 +382,7 @@
             // 
             // numDTWWindow
             // 
+            this.numDTWWindow.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numDTWWindow.Location = new System.Drawing.Point(449, 106);
             this.numDTWWindow.Maximum = new decimal(new int[] {
             1000,
@@ -448,6 +452,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(808, 525);
             this.Controls.Add(this.btnAllNearestNeighbors);
             this.Controls.Add(this.txtCorrelation);

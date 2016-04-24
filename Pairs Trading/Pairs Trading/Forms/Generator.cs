@@ -74,6 +74,10 @@ namespace Pairs_Trading.Forms
             datePickerSecond.Visible = true;
             lblInitialPrice.Visible = true;
             numInitialPrice.Visible = true;
+            lblFactor.Visible = true;
+            numFactor.Visible = true;
+            lblFactorInitial.Visible = true;
+            numFactorInitial.Visible = true;
             lblDivergeRate.Visible = true;
             lblDivergeRateDays.Visible = true;
             numDivergeRate.Visible = true;
@@ -85,14 +89,14 @@ namespace Pairs_Trading.Forms
 
             // Update the height and width of the form to fit the visible controls.
             this.Height = 543;
-            this.Width = 834;
+            this.Width = 942;
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
             _stockCount += 2;
 
-            string newPath = _pathName + "\\Stocks_Generated-" + datePickerFirst.Value.Day + "-" + datePickerFirst.Value.Month
+            string newPath = _pathName + "Stocks_Generated-" + datePickerFirst.Value.Day + "-" + datePickerFirst.Value.Month
                 + "-" + datePickerFirst.Value.Year + "-to-"
                 + datePickerSecond.Value.Day + "-" + datePickerSecond.Value.Month + "-" + datePickerSecond.Value.Year;
 
@@ -112,10 +116,10 @@ namespace Pairs_Trading.Forms
             _secondStockDiverging = false;
             _secondStockConverging = false;
 
-            double rangeMin = 0.0 - (double)numInitialPrice.Value / 40.0;
-            double rangeMinInitial = 0.0 - (double)numInitialPrice.Value / 100.0;
-            double rangeMax = 0.0 + (double)numInitialPrice.Value / 40.0;
-            double rangeMaxInitial = 0.0 + (double)numInitialPrice.Value / 100.0;
+            double rangeMin = 0.0 - (double)numInitialPrice.Value / (double)numFactor.Value;
+            double rangeMinInitial = 0.0 - (double)numInitialPrice.Value / (double)numFactorInitial.Value;
+            double rangeMax = 0.0 + (double)numInitialPrice.Value / (double)numFactor.Value;
+            double rangeMaxInitial = 0.0 + (double)numInitialPrice.Value / (double)numFactorInitial.Value;
             double randomValue = 0;
 
             double stockCoMean = 0;

@@ -207,6 +207,7 @@
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Loader";
             this.ShowInTaskbar = false;
             this.Text = "Loader";

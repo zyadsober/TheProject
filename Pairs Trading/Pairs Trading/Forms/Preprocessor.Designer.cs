@@ -195,6 +195,7 @@
             // 
             // numPercentage
             // 
+            this.numPercentage.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numPercentage.Location = new System.Drawing.Point(242, 247);
             this.numPercentage.Minimum = new decimal(new int[] {
             1,
@@ -223,6 +224,7 @@
             // 
             // numDays
             // 
+            this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numDays.Location = new System.Drawing.Point(130, 271);
             this.numDays.Maximum = new decimal(new int[] {
             1000,
@@ -256,6 +258,7 @@
             // 
             // numRecordsPercentage
             // 
+            this.numRecordsPercentage.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.numRecordsPercentage.Location = new System.Drawing.Point(377, 297);
             this.numRecordsPercentage.Maximum = new decimal(new int[] {
             1000,
@@ -286,6 +289,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(528, 392);
             this.Controls.Add(this.numRecordsPercentage);
             this.Controls.Add(this.lblRecordsPercentage);
@@ -308,7 +312,9 @@
             this.Controls.Add(this.txtBrowse);
             this.Controls.Add(this.btnBrowse);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Preprocessor";
+            this.ShowInTaskbar = false;
             this.Text = "Preprocessor";
             ((System.ComponentModel.ISupportInitialize)(this.numPercentage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
