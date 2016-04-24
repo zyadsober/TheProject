@@ -39,9 +39,9 @@ namespace Pairs_Trading
             new Monitor().ShowDialog();
         }
 
-        private void btnStats_Click(object sender, EventArgs e)
+        private void btnGenerate_Click(object sender, EventArgs e)
         {
-
+            new Generator().ShowDialog();
         }
 
         private void btnPreprocessor_Click(object sender, EventArgs e)
@@ -50,5 +50,7 @@ namespace Pairs_Trading
         }
 
         #endregion
+
+        
     }
 }

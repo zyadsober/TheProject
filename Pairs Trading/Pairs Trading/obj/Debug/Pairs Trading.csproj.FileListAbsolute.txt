@@ -11,3 +11,4 @@ C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.exe
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.pdb
 C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs Trading.csprojResolveAssemblyReference.cache
+C:\Users\zyad\Documents\GitHub\TheProject\Pairs Trading\Pairs Trading\obj\Debug\Pairs_Trading.Forms.Generator.resources

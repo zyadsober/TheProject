@@ -40,16 +40,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnMonitor = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnStats = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnPreprocessor = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +88,7 @@
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnLoader);
+            this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Location = new System.Drawing.Point(5, 57);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(277, 85);
@@ -100,12 +100,12 @@
             // 
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.btnMiner);
-            this.groupBox2.Location = new System.Drawing.Point(5, 239);
+            this.groupBox2.Location = new System.Drawing.Point(5, 322);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(277, 85);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "3- Pairs Miner";
+            this.groupBox2.Text = "4- Pairs Miner";
             // 
             // label3
             // 
@@ -133,12 +133,12 @@
             // 
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.btnMonitor);
-            this.groupBox3.Location = new System.Drawing.Point(5, 330);
+            this.groupBox3.Location = new System.Drawing.Point(5, 413);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(277, 85);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "4- Pairs Monitor";
+            this.groupBox3.Text = "5- Pairs Monitor";
             // 
             // label4
             // 
@@ -164,43 +164,18 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.btnStats);
-            this.groupBox4.Location = new System.Drawing.Point(5, 421);
+            this.groupBox4.Location = new System.Drawing.Point(0, 74);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(277, 94);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "5- Statistics and Information";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 29);
-            this.label5.MaximumSize = new System.Drawing.Size(280, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(268, 26);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "This tool will display statistics and information about the pairs";
-            // 
-            // btnStats
-            // 
-            this.btnStats.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnStats.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStats.Enabled = false;
-            this.btnStats.Location = new System.Drawing.Point(9, 58);
-            this.btnStats.Name = "btnStats";
-            this.btnStats.Size = new System.Drawing.Size(265, 23);
-            this.btnStats.TabIndex = 0;
-            this.btnStats.Text = "Statistics and Information";
-            this.btnStats.UseVisualStyleBackColor = false;
-            this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
+            this.groupBox4.Text = "2- Data Generator";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.DarkGray;
-            this.label6.Location = new System.Drawing.Point(13, 527);
+            this.label6.Location = new System.Drawing.Point(12, 501);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(259, 13);
             this.label6.TabIndex = 7;
@@ -210,12 +185,12 @@
             // 
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.btnPreprocessor);
-            this.groupBox5.Location = new System.Drawing.Point(5, 148);
+            this.groupBox5.Location = new System.Drawing.Point(5, 231);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(277, 85);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "2- Stock Data Preprocessor";
+            this.groupBox5.Text = "3- Stock Data Preprocessor";
             // 
             // label7
             // 
@@ -223,9 +198,9 @@
             this.label7.Location = new System.Drawing.Point(6, 16);
             this.label7.MaximumSize = new System.Drawing.Size(280, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(261, 26);
+            this.label7.Size = new System.Drawing.Size(165, 26);
             this.label7.TabIndex = 2;
-            this.label7.Text = "\r\nUse this to preprocess the data obtained from Quandl.";
+            this.label7.Text = "\r\nUse this to preprocess stock data";
             // 
             // btnPreprocessor
             // 
@@ -239,15 +214,38 @@
             this.btnPreprocessor.UseVisualStyleBackColor = false;
             this.btnPreprocessor.Click += new System.EventHandler(this.btnPreprocessor_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 147);
+            this.label8.MaximumSize = new System.Drawing.Size(280, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(175, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Use this tool to generate stock data";
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate.Location = new System.Drawing.Point(11, 176);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(265, 23);
+            this.btnGenerate.TabIndex = 3;
+            this.btnGenerate.Text = "Stock Data Generator";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(294, 538);
+            this.ClientSize = new System.Drawing.Size(294, 522);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -264,8 +262,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
@@ -286,12 +282,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnMonitor;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnStats;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnPreprocessor;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnGenerate;
     }
 }
 

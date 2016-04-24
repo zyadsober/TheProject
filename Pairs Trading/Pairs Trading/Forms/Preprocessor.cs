@@ -14,9 +14,7 @@ namespace Pairs_Trading.Forms
     public partial class Preprocessor : Form
     {
         #region ' Member Variables '
-
         
-
         private string _pathName;
         private int _stockCount;
         private string[] _stockNames;
@@ -118,8 +116,7 @@ namespace Pairs_Trading.Forms
             // Generate the new folder path for newly generated files.
             UpdateDirectory();
         }
-
-
+        
         private void btnProcess_Click(object sender, EventArgs e)
         {
             // Define local variables.

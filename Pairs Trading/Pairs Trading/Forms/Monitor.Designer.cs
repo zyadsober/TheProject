@@ -37,7 +37,7 @@
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lblIntro = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartStocks = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnMonitor = new System.Windows.Forms.Button();
             this.lblSecondStock = new System.Windows.Forms.Label();
             this.lblFirstStock = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.cboxMonitorMethod = new System.Windows.Forms.ComboBox();
             this.txtMean = new System.Windows.Forms.TextBox();
             this.lblMean = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).BeginInit();
@@ -116,18 +116,19 @@
             this.lblIntro.Text = "This is a tool to monitor found pairs using downloaded and processed stock data.\r" +
     "\n\r\nBrowse for a folder containing the data to be monitored.\r\n";
             // 
-            // chart1
+            // chartStocks
             // 
-            this.chart1.BackColor = System.Drawing.SystemColors.Control;
+            this.chartStocks.BackColor = System.Drawing.SystemColors.Control;
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chartStocks.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(288, 252);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(606, 235);
-            this.chart1.TabIndex = 27;
-            this.chart1.Text = "chart1";
+            this.chartStocks.Legends.Add(legend1);
+            this.chartStocks.Location = new System.Drawing.Point(287, 112);
+            this.chartStocks.Name = "chartStocks";
+            this.chartStocks.Size = new System.Drawing.Size(669, 375);
+            this.chartStocks.TabIndex = 27;
+            this.chartStocks.Text = "chart1";
+            this.chartStocks.Visible = false;
             // 
             // btnMonitor
             // 
@@ -183,7 +184,7 @@
             // 
             // numDays
             // 
-            this.numDays.Location = new System.Drawing.Point(226, 196);
+            this.numDays.Location = new System.Drawing.Point(230, 196);
             this.numDays.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -398,7 +399,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 499);
+            this.ClientSize = new System.Drawing.Size(1090, 499);
             this.Controls.Add(this.txtMean);
             this.Controls.Add(this.lblMean);
             this.Controls.Add(this.lblMonitorMethod);
@@ -419,7 +420,7 @@
             this.Controls.Add(this.lblFirstStock);
             this.Controls.Add(this.txtSecondStock);
             this.Controls.Add(this.txtFirstStock);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chartStocks);
             this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.lblLineCountIntro);
             this.Controls.Add(this.txtBrowse);
@@ -428,7 +429,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Monitor";
             this.Text = "Monitor";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).EndInit();
@@ -445,7 +446,7 @@
         private System.Windows.Forms.TextBox txtBrowse;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Label lblIntro;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartStocks;
         private System.Windows.Forms.Button btnMonitor;
         private System.Windows.Forms.Label lblSecondStock;
         private System.Windows.Forms.Label lblFirstStock;
