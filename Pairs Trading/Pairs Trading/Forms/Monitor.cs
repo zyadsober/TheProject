@@ -111,8 +111,6 @@ namespace Pairs_Trading.Forms
             numDays.Visible = true;
             lblCorrelationThreshold.Visible = true;
             numCorrelationThreshold.Visible = true;
-            lblSTDThreshold.Visible = true;
-            numSTDThreshold.Visible = true;
             lblOutput.Visible = true;
             txtOutput1.Visible = true;
             txtOutput2.Visible = true;
