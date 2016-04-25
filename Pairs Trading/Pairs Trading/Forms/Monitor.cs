@@ -294,7 +294,7 @@ namespace Pairs_Trading.Forms
             double sum = 0, mean = CoMean(stock1, stock2, Lastday, numberOfDays);
             for (int i = Lastday - numberOfDays; i < stock1.Count && i < Lastday; i++)
                 sum += (stock1[i] - mean) * (stock1[i] - mean) + (stock2[i] - mean) * (stock2[i] - mean);
-            return Math.Sqrt(sum / (stock1.Count - 1));
+            return Math.Sqrt(sum / (numberOfDays - 1));
         }
 
         private double CoMean(List<double> stock1, List<double> stock2, int Lastday, int numberOfDays)
