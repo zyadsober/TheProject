@@ -96,7 +96,7 @@ namespace Pairs_Trading.Forms
         {
             _stockCount += 2;
 
-            string newPath = _pathName + "Stocks_Generated-" + datePickerFirst.Value.Day + "-" + datePickerFirst.Value.Month
+            string newPath = _pathName + "\\Stocks_Generated-" + datePickerFirst.Value.Day + "-" + datePickerFirst.Value.Month
                 + "-" + datePickerFirst.Value.Year + "-to-"
                 + datePickerSecond.Value.Day + "-" + datePickerSecond.Value.Month + "-" + datePickerSecond.Value.Year;
 

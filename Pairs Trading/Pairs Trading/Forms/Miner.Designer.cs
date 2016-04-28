@@ -307,16 +307,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 160);
+            this.label1.Location = new System.Drawing.Point(337, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 13);
             this.label1.TabIndex = 40;
             this.label1.Text = "Number of threads to use: ";
+            this.label1.Visible = false;
             // 
             // numWorkers
             // 
             this.numWorkers.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numWorkers.Location = new System.Drawing.Point(157, 163);
+            this.numWorkers.Location = new System.Drawing.Point(482, 146);
             this.numWorkers.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -335,6 +336,7 @@
             0,
             0,
             0});
+            this.numWorkers.Visible = false;
             // 
             // pbProgress
             // 
@@ -373,7 +375,7 @@
             // lblDTWWindow
             // 
             this.lblDTWWindow.AutoSize = true;
-            this.lblDTWWindow.Location = new System.Drawing.Point(344, 109);
+            this.lblDTWWindow.Location = new System.Drawing.Point(12, 162);
             this.lblDTWWindow.Name = "lblDTWWindow";
             this.lblDTWWindow.Size = new System.Drawing.Size(99, 13);
             this.lblDTWWindow.TabIndex = 45;
@@ -383,7 +385,7 @@
             // numDTWWindow
             // 
             this.numDTWWindow.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numDTWWindow.Location = new System.Drawing.Point(449, 106);
+            this.numDTWWindow.Location = new System.Drawing.Point(157, 160);
             this.numDTWWindow.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -453,7 +455,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(808, 525);
+            this.ClientSize = new System.Drawing.Size(615, 525);
             this.Controls.Add(this.btnAllNearestNeighbors);
             this.Controls.Add(this.txtCorrelation);
             this.Controls.Add(this.lblCorrelation);

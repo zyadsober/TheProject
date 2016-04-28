@@ -43,8 +43,6 @@
             this.lblFirstStock = new System.Windows.Forms.Label();
             this.txtSecondStock = new System.Windows.Forms.TextBox();
             this.txtFirstStock = new System.Windows.Forms.TextBox();
-            this.numDays = new System.Windows.Forms.NumericUpDown();
-            this.lblDays = new System.Windows.Forms.Label();
             this.numCorrelationThreshold = new System.Windows.Forms.NumericUpDown();
             this.lblCorrelationThreshold = new System.Windows.Forms.Label();
             this.timerMonitor = new System.Windows.Forms.Timer(this.components);
@@ -60,7 +58,6 @@
             this.txtMean = new System.Windows.Forms.TextBox();
             this.lblMean = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSTDThreshold)).BeginInit();
@@ -133,7 +130,7 @@
             // btnMonitor
             // 
             this.btnMonitor.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnMonitor.Location = new System.Drawing.Point(16, 275);
+            this.btnMonitor.Location = new System.Drawing.Point(16, 250);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(220, 23);
             this.btnMonitor.TabIndex = 32;
@@ -182,40 +179,6 @@
             this.txtFirstStock.Text = "0";
             this.txtFirstStock.Visible = false;
             // 
-            // numDays
-            // 
-            this.numDays.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numDays.Location = new System.Drawing.Point(230, 196);
-            this.numDays.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numDays.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numDays.Name = "numDays";
-            this.numDays.Size = new System.Drawing.Size(55, 20);
-            this.numDays.TabIndex = 50;
-            this.numDays.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numDays.Visible = false;
-            // 
-            // lblDays
-            // 
-            this.lblDays.AutoSize = true;
-            this.lblDays.Location = new System.Drawing.Point(13, 196);
-            this.lblDays.Name = "lblDays";
-            this.lblDays.Size = new System.Drawing.Size(207, 13);
-            this.lblDays.TabIndex = 49;
-            this.lblDays.Text = "Monitor using with a window size(days) of: ";
-            this.lblDays.Visible = false;
-            // 
             // numCorrelationThreshold
             // 
             this.numCorrelationThreshold.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -225,7 +188,7 @@
             0,
             0,
             131072});
-            this.numCorrelationThreshold.Location = new System.Drawing.Point(202, 249);
+            this.numCorrelationThreshold.Location = new System.Drawing.Point(230, 224);
             this.numCorrelationThreshold.Maximum = new decimal(new int[] {
             1,
             0,
@@ -239,12 +202,17 @@
             this.numCorrelationThreshold.Name = "numCorrelationThreshold";
             this.numCorrelationThreshold.Size = new System.Drawing.Size(55, 20);
             this.numCorrelationThreshold.TabIndex = 52;
+            this.numCorrelationThreshold.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
             this.numCorrelationThreshold.Visible = false;
             // 
             // lblCorrelationThreshold
             // 
             this.lblCorrelationThreshold.AutoSize = true;
-            this.lblCorrelationThreshold.Location = new System.Drawing.Point(13, 249);
+            this.lblCorrelationThreshold.Location = new System.Drawing.Point(13, 224);
             this.lblCorrelationThreshold.Name = "lblCorrelationThreshold";
             this.lblCorrelationThreshold.Size = new System.Drawing.Size(106, 13);
             this.lblCorrelationThreshold.TabIndex = 51;
@@ -259,7 +227,7 @@
             // lblOutput
             // 
             this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(13, 301);
+            this.lblOutput.Location = new System.Drawing.Point(13, 276);
             this.lblOutput.Name = "lblOutput";
             this.lblOutput.Size = new System.Drawing.Size(100, 13);
             this.lblOutput.TabIndex = 53;
@@ -269,7 +237,7 @@
             // txtOutput1
             // 
             this.txtOutput1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtOutput1.Location = new System.Drawing.Point(157, 301);
+            this.txtOutput1.Location = new System.Drawing.Point(157, 276);
             this.txtOutput1.Name = "txtOutput1";
             this.txtOutput1.Size = new System.Drawing.Size(100, 20);
             this.txtOutput1.TabIndex = 54;
@@ -279,7 +247,7 @@
             // numWindow
             // 
             this.numWindow.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.numWindow.Location = new System.Drawing.Point(230, 221);
+            this.numWindow.Location = new System.Drawing.Point(230, 198);
             this.numWindow.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -294,7 +262,7 @@
             this.numWindow.Size = new System.Drawing.Size(55, 20);
             this.numWindow.TabIndex = 56;
             this.numWindow.Value = new decimal(new int[] {
-            1,
+            20,
             0,
             0,
             0});
@@ -303,7 +271,7 @@
             // lblWindow
             // 
             this.lblWindow.AutoSize = true;
-            this.lblWindow.Location = new System.Drawing.Point(13, 221);
+            this.lblWindow.Location = new System.Drawing.Point(13, 198);
             this.lblWindow.Name = "lblWindow";
             this.lblWindow.Size = new System.Drawing.Size(211, 13);
             this.lblWindow.TabIndex = 55;
@@ -313,7 +281,7 @@
             // lblSTDThreshold
             // 
             this.lblSTDThreshold.AutoSize = true;
-            this.lblSTDThreshold.Location = new System.Drawing.Point(13, 196);
+            this.lblSTDThreshold.Location = new System.Drawing.Point(13, 225);
             this.lblSTDThreshold.Name = "lblSTDThreshold";
             this.lblSTDThreshold.Size = new System.Drawing.Size(79, 13);
             this.lblSTDThreshold.TabIndex = 57;
@@ -329,7 +297,7 @@
             0,
             0,
             131072});
-            this.numSTDThreshold.Location = new System.Drawing.Point(107, 194);
+            this.numSTDThreshold.Location = new System.Drawing.Point(230, 224);
             this.numSTDThreshold.Maximum = new decimal(new int[] {
             10,
             0,
@@ -343,12 +311,17 @@
             this.numSTDThreshold.Name = "numSTDThreshold";
             this.numSTDThreshold.Size = new System.Drawing.Size(55, 20);
             this.numSTDThreshold.TabIndex = 58;
+            this.numSTDThreshold.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.numSTDThreshold.Visible = false;
             // 
             // txtOutput2
             // 
             this.txtOutput2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtOutput2.Location = new System.Drawing.Point(157, 327);
+            this.txtOutput2.Location = new System.Drawing.Point(157, 302);
             this.txtOutput2.Name = "txtOutput2";
             this.txtOutput2.Size = new System.Drawing.Size(100, 20);
             this.txtOutput2.TabIndex = 59;
@@ -383,7 +356,7 @@
             // txtMean
             // 
             this.txtMean.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtMean.Location = new System.Drawing.Point(156, 357);
+            this.txtMean.Location = new System.Drawing.Point(156, 332);
             this.txtMean.Name = "txtMean";
             this.txtMean.Size = new System.Drawing.Size(100, 20);
             this.txtMean.TabIndex = 63;
@@ -393,7 +366,7 @@
             // lblMean
             // 
             this.lblMean.AutoSize = true;
-            this.lblMean.Location = new System.Drawing.Point(12, 357);
+            this.lblMean.Location = new System.Drawing.Point(12, 332);
             this.lblMean.Name = "lblMean";
             this.lblMean.Size = new System.Drawing.Size(77, 13);
             this.lblMean.TabIndex = 62;
@@ -419,8 +392,6 @@
             this.Controls.Add(this.lblOutput);
             this.Controls.Add(this.numCorrelationThreshold);
             this.Controls.Add(this.lblCorrelationThreshold);
-            this.Controls.Add(this.numDays);
-            this.Controls.Add(this.lblDays);
             this.Controls.Add(this.btnMonitor);
             this.Controls.Add(this.lblSecondStock);
             this.Controls.Add(this.lblFirstStock);
@@ -438,7 +409,6 @@
             this.ShowInTaskbar = false;
             this.Text = "Monitor";
             ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSTDThreshold)).EndInit();
@@ -460,8 +430,6 @@
         private System.Windows.Forms.Label lblFirstStock;
         private System.Windows.Forms.TextBox txtSecondStock;
         private System.Windows.Forms.TextBox txtFirstStock;
-        private System.Windows.Forms.NumericUpDown numDays;
-        private System.Windows.Forms.Label lblDays;
         private System.Windows.Forms.NumericUpDown numCorrelationThreshold;
         private System.Windows.Forms.Label lblCorrelationThreshold;
         private System.Windows.Forms.Timer timerMonitor;

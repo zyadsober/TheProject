@@ -252,6 +252,17 @@ namespace Pairs_Trading.Forms
             lblNearestNeighborIntro.Text = "Select a pair to get its nearest neighbor with respect to the "
             + cboxDistanceMeasure.Text + " between them";
             btnNearestNeighbor.Text = "Get Nearest Neighbour (" + cboxDistanceMeasure.Text + ")";
+
+            if(cboxDistanceMeasure.SelectedIndex == 0)
+            {
+                lblDTWWindow.Visible = true;
+                numDTWWindow.Visible = true;
+            }
+            else if(cboxDistanceMeasure.SelectedIndex == 1)
+            {
+                lblDTWWindow.Visible = false;
+                numDTWWindow.Visible = false;
+            }
         }
 
         #endregion
