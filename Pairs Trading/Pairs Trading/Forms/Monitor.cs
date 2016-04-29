@@ -101,6 +101,8 @@ namespace Pairs_Trading.Forms
             txtSecondStock.Visible = true;
             lblWindow.Visible = true;
             numWindow.Visible = true;
+            lblDays.Visible = true;
+            numDays.Visible = true;
             lblCorrelationThreshold.Visible = true;
             numCorrelationThreshold.Visible = true;
             lblOutput.Visible = true;
@@ -299,7 +301,7 @@ namespace Pairs_Trading.Forms
         private void CorrelationTimerTick()
         {
             // Plot the days up until the selected number of days.
-            if (_currentDay < _stockPrices[0].Count && _currentDay < numWindow.Value)
+            if (_currentDay < _stockPrices[0].Count && _currentDay < numDays.Value)
             {
                 chartStocks.Series[_stockName0].Points.AddY(_stockPrices[0][_currentDay]);
                 chartStocks.Series[_stockName1].Points.AddY(_stockPrices[1][_currentDay]);
@@ -332,7 +334,7 @@ namespace Pairs_Trading.Forms
         private void STDTimerTick()
         {
             // Plot the days up until the selected number of days.
-            if (_currentDay < _stockPrices[0].Count && _currentDay < numWindow.Value)
+            if (_currentDay < _stockPrices[0].Count && _currentDay < numDays.Value)
             {
                 chartStocks.Series[_stockName0].Points.AddY(_stockPrices[0][_currentDay]);
                 chartStocks.Series[_stockName1].Points.AddY(_stockPrices[1][_currentDay]);
