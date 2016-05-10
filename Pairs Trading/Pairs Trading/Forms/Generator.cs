@@ -140,6 +140,10 @@ namespace Pairs_Trading.Forms
 
             // Change the chart type of our series to Line.
             chartStocks.Series[(_stockCount - 2).ToString()].ChartType = SeriesChartType.Line;
+
+            chartStocks.Series[(_stockCount - 2).ToString()].ChartType = SeriesChartType.Line;
+            chartStocks.Series[(_stockCount - 2).ToString()].BorderDashStyle = ChartDashStyle.DashDotDot;
+
             chartStocks.Series[(_stockCount - 1).ToString()].ChartType = SeriesChartType.Line;
 
             // Create directory if it does not exist.

@@ -219,6 +219,10 @@ namespace Pairs_Trading.Forms
 
             // Change the chart type of our series to Line.
             chartStocks.Series[_stockName0].ChartType = SeriesChartType.Line;
+
+            chartStocks.Series[_stockName0].ChartType = SeriesChartType.Line;
+            chartStocks.Series[_stockName0].BorderDashStyle = ChartDashStyle.DashDotDot;
+
             chartStocks.Series[_stockName1].ChartType = SeriesChartType.Line;
 
             // Reset the current day count.
