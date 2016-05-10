@@ -127,9 +127,16 @@ namespace Pairs_Trading.Forms
             // Clear our chart for new stocks.
             chartStocks.Series.Clear();
 
+            // Make the chart visible.
+            chartStocks.Visible = true;
+            lblXAxis.Visible = true;
+            lblXAxis.BringToFront();
+            lblYAxis.Visible = true;
+            lblYAxis.BringToFront();
+
             // Add the stocks to the chart series.
-            chartStocks.Series.Add((_stockCount-2).ToString());
-            chartStocks.Series.Add((_stockCount-1).ToString());
+            chartStocks.Series.Add((_stockCount - 2).ToString());
+            chartStocks.Series.Add((_stockCount - 1).ToString());
 
             // Change the chart type of our series to Line.
             chartStocks.Series[(_stockCount - 2).ToString()].ChartType = SeriesChartType.Line;
@@ -137,12 +144,6 @@ namespace Pairs_Trading.Forms
 
             // Create directory if it does not exist.
             System.IO.Directory.CreateDirectory(newPath);
-
-            StreamWriter strw1 = new StreamWriter(newPath + "\\" + (_stockCount - 2).ToString() + ".csv");
-            StreamWriter strw2 = new StreamWriter(newPath + "\\" + (_stockCount - 1).ToString() + ".csv");
-
-            strw1.Write("Date,Close");
-            strw2.Write("Date,Close");
 
             while (dt1 <= dt2)
             {
@@ -237,11 +238,7 @@ namespace Pairs_Trading.Forms
                     }
                 }
 
-                strw1.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
-                    "," + stocks[0][currentDay]);
 
-                strw2.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
-                    "," + stocks[1][currentDay]);
 
                 chartStocks.Series[(_stockCount - 2).ToString()].Points.AddY(stocks[0][currentDay]);
                 chartStocks.Series[(_stockCount - 1).ToString()].Points.AddY(stocks[1][currentDay]);
@@ -261,8 +258,27 @@ namespace Pairs_Trading.Forms
 
                 currentDay++;
             }
-            strw1.Close();
-            strw2.Close();
+
+            DialogResult dialogResult = MessageBox.Show("Would you like to save this ?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                StreamWriter strw1 = new StreamWriter(newPath + "\\" + (_stockCount - 2).ToString() + ".csv");
+                StreamWriter strw2 = new StreamWriter(newPath + "\\" + (_stockCount - 1).ToString() + ".csv");
+                strw1.Write("Date,Close");
+                strw2.Write("Date,Close");
+                for (int i = 0; i < stocks[0].Count; i++)
+                {
+                    strw1.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
+                            "," + stocks[0][i]);
+
+                    strw2.Write("\n" + dt1.Year + "-" + dt1.Month + "-" + dt1.Day +
+                        "," + stocks[1][i]);
+                }
+                strw1.Close();
+                strw2.Close();
+            }
+            else
+                _stockCount -= 2;
         }
 
         #endregion

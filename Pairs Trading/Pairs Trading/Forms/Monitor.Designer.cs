@@ -59,6 +59,8 @@
             this.lblMean = new System.Windows.Forms.Label();
             this.numDays = new System.Windows.Forms.NumericUpDown();
             this.lblDays = new System.Windows.Forms.Label();
+            this.lblXAxis = new System.Windows.Forms.Label();
+            this.lblYAxis = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartStocks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCorrelationThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWindow)).BeginInit();
@@ -123,7 +125,7 @@
             this.chartStocks.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartStocks.Legends.Add(legend1);
-            this.chartStocks.Location = new System.Drawing.Point(287, 112);
+            this.chartStocks.Location = new System.Drawing.Point(409, 113);
             this.chartStocks.Name = "chartStocks";
             this.chartStocks.Size = new System.Drawing.Size(669, 375);
             this.chartStocks.TabIndex = 27;
@@ -410,12 +412,34 @@
             this.lblDays.Text = "Start monitoring after this many days: ";
             this.lblDays.Visible = false;
             // 
+            // lblXAxis
+            // 
+            this.lblXAxis.AutoSize = true;
+            this.lblXAxis.Location = new System.Drawing.Point(981, 451);
+            this.lblXAxis.Name = "lblXAxis";
+            this.lblXAxis.Size = new System.Drawing.Size(31, 13);
+            this.lblXAxis.TabIndex = 66;
+            this.lblXAxis.Text = "Days";
+            this.lblXAxis.Visible = false;
+            // 
+            // lblYAxis
+            // 
+            this.lblYAxis.AutoSize = true;
+            this.lblYAxis.Location = new System.Drawing.Point(442, 107);
+            this.lblYAxis.Name = "lblYAxis";
+            this.lblYAxis.Size = new System.Drawing.Size(46, 13);
+            this.lblYAxis.TabIndex = 67;
+            this.lblYAxis.Text = "Price ($)";
+            this.lblYAxis.Visible = false;
+            // 
             // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(1090, 499);
+            this.Controls.Add(this.lblYAxis);
+            this.Controls.Add(this.lblXAxis);
             this.Controls.Add(this.numDays);
             this.Controls.Add(this.lblDays);
             this.Controls.Add(this.txtMean);
@@ -486,5 +510,7 @@
         private System.Windows.Forms.Label lblMean;
         private System.Windows.Forms.NumericUpDown numDays;
         private System.Windows.Forms.Label lblDays;
+        private System.Windows.Forms.Label lblXAxis;
+        private System.Windows.Forms.Label lblYAxis;
     }
 }

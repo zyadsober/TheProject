@@ -52,6 +52,8 @@
             this.lblFactorInitial = new System.Windows.Forms.Label();
             this.numFactor = new System.Windows.Forms.NumericUpDown();
             this.lblFactor = new System.Windows.Forms.Label();
+            this.lblYAxis = new System.Windows.Forms.Label();
+            this.lblXAxis = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numInitialPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivergeRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDivergePeriod)).BeginInit();
@@ -355,12 +357,34 @@
             this.lblFactor.Text = "Factor of spread from last price";
             this.lblFactor.Visible = false;
             // 
+            // lblYAxis
+            // 
+            this.lblYAxis.AutoSize = true;
+            this.lblYAxis.Location = new System.Drawing.Point(305, 183);
+            this.lblYAxis.Name = "lblYAxis";
+            this.lblYAxis.Size = new System.Drawing.Size(46, 13);
+            this.lblYAxis.TabIndex = 68;
+            this.lblYAxis.Text = "Price ($)";
+            this.lblYAxis.Visible = false;
+            // 
+            // lblXAxis
+            // 
+            this.lblXAxis.AutoSize = true;
+            this.lblXAxis.Location = new System.Drawing.Point(818, 459);
+            this.lblXAxis.Name = "lblXAxis";
+            this.lblXAxis.Size = new System.Drawing.Size(31, 13);
+            this.lblXAxis.TabIndex = 69;
+            this.lblXAxis.Text = "Days";
+            this.lblXAxis.Visible = false;
+            // 
             // Generator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(926, 504);
+            this.Controls.Add(this.lblXAxis);
+            this.Controls.Add(this.lblYAxis);
             this.Controls.Add(this.numFactor);
             this.Controls.Add(this.lblFactor);
             this.Controls.Add(this.numFactorInitial);
@@ -421,5 +445,7 @@
         private System.Windows.Forms.Label lblFactorInitial;
         private System.Windows.Forms.NumericUpDown numFactor;
         private System.Windows.Forms.Label lblFactor;
+        private System.Windows.Forms.Label lblYAxis;
+        private System.Windows.Forms.Label lblXAxis;
     }
 }
