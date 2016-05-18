@@ -224,7 +224,7 @@ namespace Pairs_Trading.Forms
             {
                 // Set mode to Euclidean.
                 _mode = 1;
-                new Thread(() => AllManager()).Start();
+                //new Thread(() => AllManager()).Start();
             }
 
             // Start new manager thread.
@@ -252,8 +252,8 @@ namespace Pairs_Trading.Forms
             lblNearestNeighborIntro.Text = "Select a pair to get its nearest neighbor with respect to the "
             + cboxDistanceMeasure.Text + " between them";
             btnNearestNeighbor.Text = "Get Nearest Neighbour (" + cboxDistanceMeasure.Text + ")";
-
-            if(cboxDistanceMeasure.SelectedIndex == 0)
+            btnAllNearestNeighbors.Text = "Get All Nearest Neighbours (" + cboxDistanceMeasure.Text + ")";
+            if (cboxDistanceMeasure.SelectedIndex == 0)
             {
                 lblDTWWindow.Visible = true;
                 numDTWWindow.Visible = true;
